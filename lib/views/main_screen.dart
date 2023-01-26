@@ -1,8 +1,11 @@
 import 'package:bowl_in/presentation/font.dart';
+import 'package:bowl_in/views/rank_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/button_new_party.dart';
 import '../widgets/scores_list_widget.dart';
+import 'game_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -14,58 +17,23 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _index = 0;
   int get index => _index;
+
+  final screens = [
+    const GameScreen(),
+    const RankScreen(),
+    const RankScreen(),
+    const RankScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xff19BDE0),
-                  Color(0xff4A17DC),
-                ],
-              )),
-            ),
-            Align(
-              alignment: AlignmentDirectional.topCenter,
-              child: Container(
-                height: 120,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage("assets/images/image_score.png"),
-                )),
-                child: Center(
-                    child: Text(
-                  "Scores",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 20),
-                )),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Positioned(
-                  bottom: 0,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height - 200,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListCardGame(),
-                  )),
-            )
-          ],
-        ),
+        extendBody: true,
+        resizeToAvoidBottomInset: false,
+        body: screens[_index],
         bottomNavigationBar: SizedBox(
             height: 75,
             child: NavigationBarTheme(
-              data: NavigationBarThemeData(
+              data: const NavigationBarThemeData(
                 indicatorColor: Colors.transparent,
               ),
               child: ConstrainedBox(
@@ -108,12 +76,12 @@ class _MainScreenState extends State<MainScreen> {
                         icon: Icon(
                           Icons.show_chart,
                           color: Colors.grey,
-                          size: 21,
+                          size: 25,
                         ),
                         label: '',
                         selectedIcon: Icon(
                           Icons.show_chart,
-                          size: 21,
+                          size: 25,
                         ),
                       ),
                       NavigationDestination(
