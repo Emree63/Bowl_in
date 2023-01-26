@@ -36,7 +36,7 @@ class NewGameModal extends StatelessWidget {
         children: [
           Transform.scale(
               scale: 1.14,
-              child: Image.asset("assets/images/image_newgame_modal.png")),
+              child: Image.asset("assets/images/image_newgame_modal(1).png")),
           SizedBox(
             height: 245,
             child: Column(

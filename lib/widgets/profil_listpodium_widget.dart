@@ -58,7 +58,7 @@ class ProfilPodiumWidget extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                this.score.toString(),
+                this.score.toString() + " pts",
                 style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontStyle: FontStyle.italic,

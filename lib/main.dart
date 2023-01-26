@@ -1,11 +1,45 @@
+import 'package:bowl_in/views/game_screen.dart';
 import 'package:bowl_in/views/main_screen.dart';
+import 'package:bowl_in/views/rank_screen.dart';
 import 'package:bowl_in/views/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+final GoRouter _router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MainScreen();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'games',
+          builder: (BuildContext context, GoRouterState state) {
+            return const GameScreen();
+          },
+        ),
+        GoRoute(
+          path: 'ranking',
+          builder: (BuildContext context, GoRouterState state) {
+            return const RankScreen();
+          },
+        ),
+        GoRoute(
+          path: 'splash',
+          builder: (BuildContext context, GoRouterState state) {
+            return const WelcomeScreen();
+          },
+        ),
+      ],
+    ),
+  ],
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

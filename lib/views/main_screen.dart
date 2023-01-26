@@ -1,10 +1,10 @@
 import 'package:bowl_in/presentation/font.dart';
+import 'package:bowl_in/views/profile_screen.dart';
 import 'package:bowl_in/views/rank_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/button_new_party.dart';
-import '../widgets/scores_list_widget.dart';
+import 'analysis_screen.dart';
 import 'game_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,21 +15,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _index = 0;
-  int get index => _index;
-
-  final screens = [
-    const GameScreen(),
-    const RankScreen(),
-    const RankScreen(),
-    const RankScreen(),
-  ];
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
         resizeToAvoidBottomInset: false,
-        body: screens[_index],
+        body: [
+          GameScreen(),
+          RankScreen(),
+          AnalysisScreen(),
+          ProfileScreen()
+        ][currentPageIndex],
         bottomNavigationBar: SizedBox(
             height: 75,
             child: NavigationBarTheme(
@@ -52,12 +49,12 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   child: NavigationBar(
                     animationDuration: const Duration(microseconds: 800),
-                    selectedIndex: index,
+                    selectedIndex: currentPageIndex,
                     labelBehavior:
                         NavigationDestinationLabelBehavior.alwaysHide,
                     height: MediaQuery.of(context).size.height * 0.1,
                     onDestinationSelected: (index) =>
-                        setState(() => _index = index),
+                        setState(() => currentPageIndex = index),
                     backgroundColor: Colors.white,
                     destinations: const [
                       NavigationDestination(
@@ -74,26 +71,26 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                       NavigationDestination(
                         icon: Icon(
-                          Icons.show_chart,
+                          BowlInFont.rank_icon,
                           color: Colors.grey,
-                          size: 25,
+                          size: 21,
                         ),
                         label: '',
                         selectedIcon: Icon(
-                          Icons.show_chart,
-                          size: 25,
+                          BowlInFont.rank_icon,
+                          size: 21,
                         ),
                       ),
                       NavigationDestination(
                         icon: Icon(
-                          BowlInFont.rank_icon,
+                          Icons.show_chart,
                           color: Colors.grey,
-                          size: 21,
+                          size: 25,
                         ),
                         label: '',
                         selectedIcon: Icon(
-                          BowlInFont.rank_icon,
-                          size: 21,
+                          Icons.show_chart,
+                          size: 25,
                         ),
                       ),
                       NavigationDestination(
