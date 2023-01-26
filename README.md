@@ -1,16 +1,62 @@
-# bowl_in
+<div align = center>
 
-A new Flutter project.
+  <img src="https://codefirst.iut.uca.fr/git/BowlDev/Bowl_in/raw/branch/master/Documentation/Banner-Bowlin.png" />
+    
+</div>
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+**Thème de l'application** : Bowl'in :bowling:
 
-A few resources to get you started if this is your first Flutter project:
+**Contexte** : Quand on fait une partie de bowling, les points sont affichés sur un écran. La majorité des joueurs font une photo de la fiche de scores finale en souvenir plus l'oublient. Par la suite, le degré de mythomanie de chacun sert d'évaluateur subjectif à la prochaine partie ("La dernière fois j'avais fait au moins 130pts"... oui bien sûr...).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Récapitulation du Projet**: 👇
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</br>
+
+:information_source: Une application mobile permettant de saisir les scores de bowling pendant une partie avec possibilité d'obtenir des statistiques (points moyens, classement, etc.) et partage. Mais aussi de rentrer le nom des joueurs et de stocker les résultats.
+
+
+## Répartition du Gitlab
+
+La racine de notre gitlab est composé de deux dossier essentielles au projet:
+
+[**src**](src) : **Code de l'application**
+
+[**doc**](doc) : **Regroupe l'entièreté  de la documentation**
+
+</br>
+
+:warning: Code de l'application en cours!
+
+## Environnement de Travail
+
+Notre environnement de travail se base sur plusieurs outils et langages :👇
+
+<div align = center>
+
+---
+
+&nbsp; ![Dart](https://img.shields.io/badge/Dart-000?style=for-the-badge&logo=dart&logoColor=blue&color=white)
+&nbsp; ![Go](https://img.shields.io/badge/GO-000?style=for-the-badge&logo=go&logoColor=white&color=blue)
+&nbsp; ![Flutter](https://img.shields.io/badge/Flutter-000?style=for-the-badge&logo=flutter&logoColor=blue&color=white)
+&nbsp; ![PostgreSQL](https://img.shields.io/badge/Postgresql-000?style=for-the-badge&logo=postgresql&logoColor=white&color=9a63ff)
+
+---
+
+</div>
+
+## Deploiement
+- [x] &nbsp; ![IOS](https://img.shields.io/badge/IOS-000?style=for-the-badge&logo=apple&logoColor=black&color=white)
+- [x] &nbsp; ![Android](https://img.shields.io/badge/Android-000?style=for-the-badge&logo=android&logoColor=white&color=green)
+
+## Technicien en charge de l'application
+
+- Emre KARTAL 
+- Lucas DELANIER
+- Arthur VALIN 
+- David D'ALMEIDA
+- Louison PARANT
+
+<div align = center>
+© PM2
+</div>
