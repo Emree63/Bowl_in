@@ -13,7 +13,9 @@
 &nbsp; ![PostgreSQL](https://img.shields.io/badge/Postgresql-000?style=for-the-badge&logo=postgresql&logoColor=white&color=9a63ff)
 
 ---
-
+## Deploiement
+- [x] &nbsp; ![IOS](https://img.shields.io/badge/IOS-000?style=for-the-badge&logo=apple&logoColor=black&color=white)
+- [x] &nbsp; ![Android](https://img.shields.io/badge/Android-000?style=for-the-badge&logo=android&logoColor=white&color=green)
 
 **Thème de l'application** : Bowl'in :bowling:
 
@@ -45,9 +47,6 @@ Notre environnement de travail se base sur plusieurs outils et langages :👇
 
 </div>
 
-## Deploiement
-- [x] &nbsp; ![IOS](https://img.shields.io/badge/IOS-000?style=for-the-badge&logo=apple&logoColor=black&color=white)
-- [x] &nbsp; ![Android](https://img.shields.io/badge/Android-000?style=for-the-badge&logo=android&logoColor=white&color=green)
 
 ## Technicien en charge de l'application
 
