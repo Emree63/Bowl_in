@@ -25,8 +25,9 @@ class ProfilPodiumWidget extends StatelessWidget {
               width: this.isfirst == 1 ? 65 : 50,
               height: this.isfirst == 1 ? 65 : 50,
               decoration: BoxDecoration(
-                color: Colors.red,
-                border: Border.all(width: 2.0, color: const Color(0xFFFFFFFF)),
+                image: DecorationImage(
+                    image: AssetImage("assets/images/image_user_red.png"),
+                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(70)),
               ),
             ),
@@ -112,7 +113,9 @@ class ProfilListWidget extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(70)),
-                color: Colors.grey,
+                image: DecorationImage(
+                    image: AssetImage("assets/images/image_user_cyan.png"),
+                    fit: BoxFit.cover),
               ),
             ),
             Padding(

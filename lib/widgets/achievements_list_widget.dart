@@ -146,7 +146,9 @@ class ProfileWidget extends StatelessWidget {
           height: 80,
           width: 80,
           decoration: BoxDecoration(
-            color: Colors.purple,
+            image: DecorationImage(
+                image: AssetImage("assets/images/image_user_orange.png"),
+                fit: BoxFit.cover),
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
         ),

@@ -173,7 +173,9 @@ class ProfilPicture extends StatelessWidget {
       height: 25,
       width: 25,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        image: DecorationImage(
+            image: AssetImage("assets/images/image_user_green.png"),
+            fit: BoxFit.cover),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     );
