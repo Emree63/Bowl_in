@@ -4,11 +4,10 @@ import (
 	"awesomeProject/model"
 	"awesomeProject/routing"
 	"fmt"
-	"github.com/iris-contrib/swagger/v12"
-	"github.com/iris-contrib/swagger/v12/swaggerFiles"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/kataras/iris/v12"
 	_ "github.com/santosh/gingo/docs"
+	swaggerFiles "github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 )
 
 // Model for our User
@@ -27,20 +26,18 @@ func main() {
 	model.InitializeDatabase()
 	model.InitializeApp()
 
-	config := swagger.Config{
-		URL:         "/docs/swagger.json",
-		DeepLinking: true,
-	}
-	swaggerUI := swagger.CustomWrapHandler(&config, swaggerFiles.Handler)
-	model.App.Get("/swagger/*any", swaggerUI)
-	model.App.HandleDir("/docs", "./docs")
+	var url = ginSwagger.URL("/docs")
+	model.App.GET("/swagger/*any", ginSwagger.WrapHandler(
+		swaggerFiles.Handler, url))
+	model.App.StaticFile("/docs", "./docs/swagger.json")
 
 	routing.SetUserRoutes()
 
 	fmt.Println("Server running ! ")
-	model.Err = model.App.Run(iris.TLS("localhost:8080", "https/cert.pem", "https/privkey.pem"))
+	model.Err = model.App.RunTLS("localhost:8080", "https/cert.pem", "https/privkey.pem")
 	if model.Err != nil {
 		return
 	}
 	defer model.Db.Close()
+
 }
