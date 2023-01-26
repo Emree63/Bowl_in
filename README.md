@@ -3,6 +3,16 @@
   <img src="https://codefirst.iut.uca.fr/git/BowlDev/Bowl_in/raw/branch/master/Documentation/Banner-Bowlin.png" />
     
 </div>
+<div align = center>
+
+---
+
+&nbsp; ![Dart](https://img.shields.io/badge/Dart-000?style=for-the-badge&logo=dart&logoColor=blue&color=white)
+&nbsp; ![Go](https://img.shields.io/badge/GO-000?style=for-the-badge&logo=go&logoColor=white&color=blue)
+&nbsp; ![Flutter](https://img.shields.io/badge/Flutter-000?style=for-the-badge&logo=flutter&logoColor=blue&color=white)
+&nbsp; ![PostgreSQL](https://img.shields.io/badge/Postgresql-000?style=for-the-badge&logo=postgresql&logoColor=white&color=9a63ff)
+
+---
 
 
 **Thème de l'application** : Bowl'in :bowling:
@@ -32,16 +42,6 @@ La racine de notre gitlab est composé de deux dossier essentielles au projet:
 
 Notre environnement de travail se base sur plusieurs outils et langages :👇
 
-<div align = center>
-
----
-
-&nbsp; ![Dart](https://img.shields.io/badge/Dart-000?style=for-the-badge&logo=dart&logoColor=blue&color=white)
-&nbsp; ![Go](https://img.shields.io/badge/GO-000?style=for-the-badge&logo=go&logoColor=white&color=blue)
-&nbsp; ![Flutter](https://img.shields.io/badge/Flutter-000?style=for-the-badge&logo=flutter&logoColor=blue&color=white)
-&nbsp; ![PostgreSQL](https://img.shields.io/badge/Postgresql-000?style=for-the-badge&logo=postgresql&logoColor=white&color=9a63ff)
-
----
 
 </div>
 
