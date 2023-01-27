@@ -25,3 +25,9 @@ steps:
           from_secret: db_user
         CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
           from_secret: db_password
+  - name: deploy-adminer
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+      IMAGENAME: adminer
+      CONTAINERNAME: adminer
+      COMMAND: create
