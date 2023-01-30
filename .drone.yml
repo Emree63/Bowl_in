@@ -8,6 +8,10 @@ trigger:
     - push
 
 steps:
+  - name: code-analysis
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter 
+    commands:
+      - cd src/
 # database container deployment
   - name: deploy-container-postgresql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
@@ -32,3 +36,5 @@ steps:
       IMAGENAME: adminer
       CONTAINERNAME: adminer
       COMMAND: create
+      OVERWRITE: true
+      ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
