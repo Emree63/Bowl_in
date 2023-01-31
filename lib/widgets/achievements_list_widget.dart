@@ -74,57 +74,61 @@ class ListAchievementWidget extends StatelessWidget {
                     ),
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath: 'assets/images/achievements/5friends_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/5friends_unlocked.png',
                     isUnlocked: 0,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath: 'assets/images/achievements/win_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/win_unlocked.png',
                     isUnlocked: 1,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath:
+                        'assets/images/achievements/10strikes_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/10strikes_unlocked.png',
                     isUnlocked: 0,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath:
+                        'assets/images/achievements/150points_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/150points_unlocked.png',
                     isUnlocked: 0,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath:
+                        'assets/images/achievements/2strikeinarow_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/2strikeinarow_unlocked.png',
                     isUnlocked: 1,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath: 'assets/images/achievements/5games_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/5games_unlocked.png',
                     isUnlocked: 1,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath: 'assets/images/achievements/10spares_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/10spares_unlocked.png',
                     isUnlocked: 1,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath:
+                        'assets/images/achievements/10x9spins_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/10x9spins_unlocked.png',
                     isUnlocked: 0,
                   ),
                   AchievementWidget(
-                    imagePath: 'assets/images/image_achievement_card.png',
+                    imagePath: 'assets/images/achievements/0point_locked.png',
                     imagePathUnlocked:
-                        'assets/images/image_achievement_unlocked.png',
+                        'assets/images/achievements/0point_unlocked.png',
                     isUnlocked: 0,
                   ),
                 ],
