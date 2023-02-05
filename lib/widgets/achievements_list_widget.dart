@@ -41,6 +41,7 @@ class ListAchievementWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
+            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             width: 520,
             height: 520,
             decoration: BoxDecoration(

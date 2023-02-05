@@ -14,6 +14,13 @@ class InGameScreen extends StatefulWidget {
 }
 
 class _InGameScreenState extends State<InGameScreen> {
+  late Widget widgetHolder;
+
+  void initState() {
+    widgetHolder = InGameCardConfig();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -37,10 +44,14 @@ class _InGameScreenState extends State<InGameScreen> {
             SizedBox(
               height: 120,
             ),
-            InGameCardConfig(),
+            widgetHolder,
             Spacer(),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  widgetHolder = FinalScoreBoard();
+                });
+              },
               child: Text(
                 "PLAY",
                 style: GoogleFonts.roboto(

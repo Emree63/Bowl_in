@@ -15,6 +15,7 @@ class CardGame extends StatelessWidget {
             alignment: AlignmentDirectional.centerEnd,
             children: [
               Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   height: 100,
                   width: 300,
                   decoration: BoxDecoration(

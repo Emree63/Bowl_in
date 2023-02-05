@@ -1,7 +1,175 @@
+import 'dart:ui';
+
+import 'package:bowl_in/widgets/profil_listpodium_widget.dart';
 import 'package:bowl_in/widgets/scores_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+class FinalScoreBoard extends StatefulWidget {
+  const FinalScoreBoard({Key? key}) : super(key: key);
+
+  @override
+  State<FinalScoreBoard> createState() => _FinalScoreBoardState();
+}
+
+class _FinalScoreBoardState extends State<FinalScoreBoard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
+        width: double.infinity,
+        height: 470,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/ingame_cardgame.png"),
+                fit: BoxFit.fill),
+            boxShadow: [
+              BoxShadow(
+                color: CupertinoColors.black.withOpacity(0.15),
+                blurRadius: 10.0,
+                spreadRadius: 5.0,
+              ),
+            ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+              padding: EdgeInsets.fromLTRB(15, 5, 15, 50),
+              child: RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'GAME OVER',
+                        style: GoogleFonts.roboto(
+                            fontSize: 15,
+                            color: CupertinoColors.black,
+                            fontWeight: FontWeight.w900,
+                            decoration: TextDecoration.none)),
+                  ],
+                ),
+              )),
+          Expanded(
+              child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Positioned(
+                child: PodiumGameOverWidget(
+                  isfirst: 2,
+                  pseudo: 'Lucas',
+                  score: 123,
+                ),
+                top: 70,
+                left: 30,
+              ),
+              Positioned(
+                child: PodiumGameOverWidget(
+                  isfirst: 1,
+                  pseudo: 'Momo',
+                  score: 160,
+                ),
+                top: 10,
+              ),
+              Positioned(
+                child: PodiumGameOverWidget(
+                  isfirst: 3,
+                  pseudo: 'popo',
+                  score: 110,
+                ),
+                top: 70,
+                right: 30,
+              )
+            ],
+          )),
+          Container(
+            width: double.infinity,
+            height: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/congrats_background.png"),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: Align(
+              child: Text(
+                "Play again",
+                style: GoogleFonts.roboto(
+                    decoration: TextDecoration.none,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+            ),
+          )
+        ]));
+  }
+}
+
+class PodiumGameOverWidget extends StatelessWidget {
+  final int isfirst;
+  final String pseudo;
+  final int score;
+  const PodiumGameOverWidget(
+      {Key? key,
+      required this.isfirst,
+      required this.pseudo,
+      required this.score})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: this.isfirst == 1 ? 65 : 50,
+              height: this.isfirst == 1 ? 65 : 50,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/image_user_red.png"),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.all(Radius.circular(70)),
+              ),
+            ),
+            if (isfirst == 1)
+              Positioned(
+                bottom: -5,
+                right: -30,
+                child: Image.asset(
+                  'assets/images/image_trophee.png',
+                  height: 60,
+                  width: 60,
+                ),
+              ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+          child: Text(
+            this.pseudo,
+            style: GoogleFonts.roboto(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.none,
+                fontSize: 20),
+          ),
+        ),
+        Text(
+          this.score.toString(),
+          style: GoogleFonts.roboto(
+              color: Colors.pink,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+              fontSize: this.isfirst == 1 ? 60 : 40,
+              decoration: TextDecoration.none),
+        ),
+      ],
+    );
+  }
+}
 
 class InGameCardConfig extends StatefulWidget {
   const InGameCardConfig({Key? key}) : super(key: key);
@@ -14,7 +182,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(35, 0, 30, 35),
+      margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
       width: MediaQuery.of(context).size.width,
       height: 470,
       decoration: BoxDecoration(
@@ -59,8 +227,9 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
           ),
+          Spacer(),
           Padding(
-              padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: ElevatedButton(
                 onPressed: () {},
                 child: Text(
@@ -186,7 +355,7 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(35, 0, 30, 35),
+      margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
       width: MediaQuery.of(context).size.width,
       height: 470,
       decoration: BoxDecoration(
@@ -201,33 +370,300 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
             ),
           ]),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-              padding: EdgeInsets.fromLTRB(0, 5, 15, 0),
+              padding: EdgeInsets.fromLTRB(15, 5, 0, 0),
               child: RichText(
                 text: TextSpan(
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'Party code : ',
+                        text: 'Round ',
                         style: GoogleFonts.roboto(
                             fontSize: 15,
                             color: CupertinoColors.black,
                             fontWeight: FontWeight.w400,
                             decoration: TextDecoration.none)),
                     TextSpan(
-                        text: '#172 520',
+                        text: '1 - 1st',
                         style: GoogleFonts.roboto(
                             fontSize: 18,
-                            color: Color(0xffF40375),
+                            color: CupertinoColors.black,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.none)),
+                    TextSpan(
+                        text: ' Throw',
+                        style: GoogleFonts.roboto(
+                            fontSize: 15,
+                            color: CupertinoColors.black,
+                            fontWeight: FontWeight.w400,
                             decoration: TextDecoration.none)),
                   ],
                 ),
               )),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Round_picture(
+                      pseudo: "Lucas",
+                      image: "assets/images/image_user_red.png"),
+                ],
+              )),
+          NumberPad(),
         ],
       ),
     );
+  }
+}
+
+class Round_picture extends StatelessWidget {
+  final String pseudo;
+  final String image;
+  const Round_picture({Key? key, required this.pseudo, required this.image})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 70,
+          height: 70,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+            borderRadius: BorderRadius.all(Radius.circular(70)),
+          ),
+        ),
+        Text(
+          pseudo,
+          style: GoogleFonts.roboto(
+              color: CupertinoColors.black,
+              decoration: TextDecoration.none,
+              fontSize: 30),
+        ),
+      ],
+    );
+  }
+}
+
+class StrikeButton extends StatelessWidget {
+  final int currentSelected;
+  final IntCallback onSonChanged;
+  const StrikeButton(
+      {Key? key, required this.onSonChanged, required this.currentSelected})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onSonChanged(10);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 100,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/images/Strike_background.png"),
+        )),
+        child: Center(
+            child: Text(
+          "STRIKE !",
+          style: GoogleFonts.roboto(
+              color:
+                  currentSelected == 10 ? Colors.pink : CupertinoColors.black,
+              decoration: TextDecoration.none,
+              fontWeight: FontWeight.w900,
+              fontStyle: FontStyle.italic,
+              fontSize: 40),
+        )),
+      ),
+    );
+  }
+}
+
+class NumberPad extends StatefulWidget {
+  const NumberPad({Key? key}) : super(key: key);
+
+  @override
+  State<NumberPad> createState() => _NumberPadState();
+}
+
+class _NumberPadState extends State<NumberPad> {
+  int NumSelected = 100;
+
+  void updateId(int newNum) {
+    print(newNum);
+    setState(() {
+      NumSelected = newNum;
+    });
+  }
+
+  void initState() {
+    NumSelected = 100;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 1,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 2,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 3,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 4,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 5,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 6,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 7,
+                    isSelectable: 1,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 8,
+                    isSelectable: 0,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                  Number(
+                    currentSelected: NumSelected,
+                    num: 9,
+                    isSelectable: 0,
+                    onSonChanged: (int newId) {
+                      updateId(newId);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        StrikeButton(
+          currentSelected: NumSelected,
+          onSonChanged: (int newId) {
+            updateId(newId);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+typedef void IntCallback(int id);
+
+class Number extends StatefulWidget {
+  final int num;
+  final int currentSelected;
+  final int isSelectable;
+  final IntCallback onSonChanged;
+  const Number(
+      {Key? key,
+      required this.num,
+      required this.isSelectable,
+      required this.onSonChanged,
+      required this.currentSelected})
+      : super(key: key);
+
+  @override
+  State<Number> createState() => _NumberState();
+}
+
+class _NumberState extends State<Number> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.isSelectable == 1
+        ? GestureDetector(
+            onTap: () {
+              widget.onSonChanged(widget.num);
+            },
+            child: Text(
+              widget.num.toString(),
+              style: GoogleFonts.roboto(
+                  color: widget.currentSelected == widget.num
+                      ? Colors.pink
+                      : Colors.black,
+                  decoration: TextDecoration.none,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 50),
+            ),
+          )
+        : Text(
+            widget.num.toString(),
+            style: GoogleFonts.roboto(
+                color: Colors.grey,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.w300,
+                fontSize: 50),
+          );
   }
 }
