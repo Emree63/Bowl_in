@@ -49,6 +49,7 @@ func getUser(c *gin.Context) {
 func postUser(c *gin.Context) {
 	var user User
 	c.BindJSON(&user)
+	println(user.Name)
 	model.Db.Create(&user)
 	c.JSON(201, user)
 }
