@@ -345,7 +345,9 @@ class _UserInGameState extends State<UserInGame> {
 }
 
 class InGameCardThrow extends StatefulWidget {
-  const InGameCardThrow({Key? key}) : super(key: key);
+  final int numberThrow;
+  const InGameCardThrow({Key? key, required this.numberThrow})
+      : super(key: key);
 
   @override
   State<InGameCardThrow> createState() => _InGameCardThrowState();
@@ -412,7 +414,9 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
                       image: "assets/images/image_user_red.png"),
                 ],
               )),
-          NumberPad(),
+          NumberPad(
+            numberThrow: widget.numberThrow,
+          ),
         ],
       ),
     );
@@ -486,8 +490,45 @@ class StrikeButton extends StatelessWidget {
   }
 }
 
+class SpareButton extends StatelessWidget {
+  final int currentSelected;
+  final IntCallback onSonChanged;
+  const SpareButton(
+      {Key? key, required this.onSonChanged, required this.currentSelected})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onSonChanged(10);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 100,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/images/Spare_background.png"),
+        )),
+        child: Center(
+            child: Text(
+          "SPARE !",
+          style: GoogleFonts.roboto(
+              color:
+                  currentSelected == 10 ? Colors.pink : CupertinoColors.black,
+              decoration: TextDecoration.none,
+              fontWeight: FontWeight.w900,
+              fontStyle: FontStyle.italic,
+              fontSize: 40),
+        )),
+      ),
+    );
+  }
+}
+
 class NumberPad extends StatefulWidget {
-  const NumberPad({Key? key}) : super(key: key);
+  final int numberThrow;
+  const NumberPad({Key? key, required this.numberThrow}) : super(key: key);
 
   @override
   State<NumberPad> createState() => _NumberPadState();
@@ -608,12 +649,19 @@ class _NumberPadState extends State<NumberPad> {
             ],
           ),
         ),
-        StrikeButton(
-          currentSelected: NumSelected,
-          onSonChanged: (int newId) {
-            updateId(newId);
-          },
-        ),
+        widget.numberThrow == 1
+            ? StrikeButton(
+                currentSelected: NumSelected,
+                onSonChanged: (int newId) {
+                  updateId(newId);
+                },
+              )
+            : SpareButton(
+                currentSelected: NumSelected,
+                onSonChanged: (int newId) {
+                  updateId(newId);
+                },
+              )
       ],
     );
   }

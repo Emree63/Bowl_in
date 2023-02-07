@@ -49,7 +49,9 @@ class _InGameScreenState extends State<InGameScreen> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  widgetHolder = FinalScoreBoard();
+                  widgetHolder = InGameCardThrow(
+                    numberThrow: 2,
+                  );
                 });
               },
               child: Text(
