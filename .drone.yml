@@ -9,29 +9,29 @@ trigger:
 
 steps:
 # build CONTAINER for app-build on flutter IMAGE
-- name: app-build
-  image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter
-  commands:
-    - cd ./Sources/bowlin_project/
-    - flutter build apk
+  - name: app-build
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter
+    commands:
+      - cd ./Sources/bowlin_project/
+      - flutter build apk
 
 # build CONTAINER for sonar on flutter IMAGE
-- name: code-analysis
-  image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter 
-  environment:
-    SONAR_TOKEN:
-      from_secret: SONAR_TOKEN
-  settings:
-    sources: ./Sources/bowlin_project 
-  commands:
-    - export SONAR_SCANNER_VERSION=4.7.0.2747
-    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-    - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-    - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-    - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=. -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
-  depends_on: [ app-build ]
+  - name: code-analysis
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter 
+    environment:
+      SONAR_TOKEN:
+        from_secret: SONAR_TOKEN
+    settings:
+      sources: ./Sources/bowlin_project 
+    commands:
+      - export SONAR_SCANNER_VERSION=4.7.0.2747
+      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+      - export SONAR_SCANNER_OPTS="-server"
+      - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=. -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
+    depends_on: [ app-build ]
 
 # database container deployment
   - name: deploy-container-postgresql
