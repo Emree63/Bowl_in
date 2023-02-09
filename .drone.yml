@@ -10,14 +10,14 @@ trigger:
 steps:
 # build CONTAINER for app-build on flutter IMAGE
   - name: app-build
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter
+    image: cirrusci/flutter:stable
     commands:
       - cd ./Sources/bowlin_project/
       - flutter build apk
 
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-flutter 
+    image: cirrusci/flutter:stable 
     environment:
       SONAR_TOKEN:
         from_secret: SONAR_TOKEN
