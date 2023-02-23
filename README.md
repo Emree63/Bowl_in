@@ -20,7 +20,7 @@
 - [x] &nbsp; ![IOS](https://img.shields.io/badge/IOS-000?style=for-the-badge&logo=apple&logoColor=black&color=white)
 - [x] &nbsp; ![Android](https://img.shields.io/badge/Android-000?style=for-the-badge&logo=android&logoColor=white&color=green)
 
-**Thème de l'application** : Bowl'in :bowling:
+**Nom de l'application** : Bowl'in :bowling:
 
 **Contexte** : Quand on fait une partie de bowling, les points sont affichés sur un écran. La majorité des joueurs font une photo de la fiche de scores finale en souvenir plus l'oublient. Par la suite, le degré de mythomanie de chacun sert d'évaluateur subjectif à la prochaine partie ("La dernière fois j'avais fait au moins 130pts"... oui bien sûr...).
 
