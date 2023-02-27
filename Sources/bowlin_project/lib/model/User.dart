@@ -3,24 +3,18 @@ import 'package:uuid/uuid_util.dart';
 import 'Achievement.dart';
 
 class User {
-  //attributes from BowlIn
-  Uuid _id;
 
-  get id => _id;
-
-  set id(value) {
-    _id = value;
-  }
-
-  String get name => _name;
-
-  set name(String value) {
-    _name = value;
-  }
-
-  String _name;
-
+  String _mail;
+  List<Stat> _stats = <Stat>[];
   List<Achievement> _achievements = <Achievement>[];
+
+  User(Uuid id, String image, String name, this._achievements, this._stats ): super(id, image, name);
+
+  String get mail => _mail;
+
+  set mail(String value) {
+    _mail = value;
+  }
 
   List<Achievement> get achievements => _achievements;
 
@@ -28,6 +22,10 @@ class User {
     _achievements = value;
   }
 
-  //constructors
-  User(this._id, this._name, this._achievements);
+  List<Stat> get stats => _stats;
+
+  set stats(List<Stat> value) {
+    _stats = value;
+  }
+
 }

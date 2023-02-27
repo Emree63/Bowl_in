@@ -4,7 +4,15 @@ import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
 
 class Game {
-  var _id;
+  
+  Uuid _id;
+  DateTime _time;
+  int _pointsCurrentUser;
+  bool _isFinished;
+  List<String> _playerImages = <String>[];
+
+  
+  Game(this._id, this._time, this._players, this._winner);
 
   get id => _id;
 
@@ -12,21 +20,28 @@ class Game {
     _id = value;
   }
 
-  DateTime _time;
-
   DateTime get time => _time;
 
   set time(DateTime value) {
     _time = value;
   }
 
-  final Map<Uuid, Int> _players;
+  int get pointsCurrentUser => _pointsCurrentUser;
 
-  Map<Uuid, Int> get players => _players;
+  set pointsCurrentUser(int value) {
+    _pointsCurrentUser = value;
+  }
 
-  final Uuid _winner;
+  bool get isFinished => _isFinished;
 
-  Uuid get winner => _winner;
+  set isFinished(bool value) {
+    _isFinished = value;
+  }
 
-  Game(this._id, this._time, this._players, this._winner);
+  List<String> get playerImages => _playerImages;
+
+  set playerImages(List<String> value) {
+    _playerImages = value;
+  }
+
 }

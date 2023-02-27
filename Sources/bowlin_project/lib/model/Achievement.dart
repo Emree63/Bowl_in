@@ -1,5 +1,8 @@
 class Achievement {
+  
   String _name;
+  
+  Achievement(this._name);
 
   String get name => _name;
 
@@ -7,5 +10,4 @@ class Achievement {
     _name = value;
   }
 
-  Achievement(this._name);
 }
