@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 import 'User.dart';
+import 'IAuthManager.dart';
 
 abstract class IUserManager {
   IAuthManager _authMgr;

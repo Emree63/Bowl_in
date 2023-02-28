@@ -1,5 +1,8 @@
 import 'User.dart';
 import 'Game.dart';
+import 'IUserManager.dart';
+import 'IGameManager.dart';
+import 'Game.dart';
 
 abstract class IManager {
   late User _userCurrent;

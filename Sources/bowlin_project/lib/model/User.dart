@@ -1,10 +1,9 @@
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 import 'Achievement.dart';
-import 'Animal.dart';
+import 'Player.dart';
 import 'Stat.dart';
 
-class User extends Animal {
+class User extends Player {
   String _mail;
   List<Stat> _stats = <Stat>[];
   List<User> _friends = <User>[];
