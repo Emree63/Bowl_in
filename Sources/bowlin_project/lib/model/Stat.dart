@@ -1,5 +1,4 @@
 class Stat {
-
   int _nbVictory;
   int _nbDefeat;
   int _nbGames;
@@ -10,9 +9,20 @@ class Stat {
   int _avgScore;
   double _avgPinsPerRound;
 
-  Round(this._nbVictory,this._nbDefeat,this._nbGames,this._highscore,this._nbStrikes,this._nbSpares,this._avgScore,this._avgPinsPerRound);
+  // Constructor
+  Stat(
+    this._nbVictory,
+    this._nbDefeat,
+    this._nbGames,
+    this._highscore,
+    this._nbStrikes,
+    this._nbSpares,
+    this._nbScore,
+    this._avgScore,
+    this._avgPinsPerRound,
+  );
 
-
+  // Getters and setters
   int get nbVictory => _nbVictory;
 
   set nbVictory(int value) {
@@ -66,5 +76,4 @@ class Stat {
   set avgPinsPerRound(double value) {
     _avgPinsPerRound = value;
   }
-
 }

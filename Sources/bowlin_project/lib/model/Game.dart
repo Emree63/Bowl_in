@@ -1,22 +1,19 @@
-import 'dart:ffi';
-
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 
 class Game {
-  
   Uuid _id;
   DateTime _time;
   int _pointsCurrentUser;
   bool _isFinished;
-  List<String> _playerImages = <String>[];
+  List<String> _playerImages = [];
 
-  
-  Game(this._id, this._time, this._players, this._winner);
+  // Constructor
+  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished, this._playerImages);
 
-  get id => _id;
+  // Getters and setters
+  Uuid get id => _id;
 
-  set id(value) {
+  set id(Uuid value) {
     _id = value;
   }
 
@@ -43,5 +40,4 @@ class Game {
   set playerImages(List<String> value) {
     _playerImages = value;
   }
-
 }

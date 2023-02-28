@@ -1,30 +1,18 @@
-import 'package:bowl_in/model/Game.dart';
-
 import 'User.dart';
+import 'Game.dart';
 
 abstract class IManager {
-  User _userCurrent;
-
-  User get userCurrent => _userCurrent;
-
-  set userCurrent(User value) {
-    _userCurrent = value;
-  }
-
+  late User _userCurrent;
   late Game _gameCurrent;
-  List<Game> _games;
+  IUserManager _userMgr;
+  IGameManager _gameMgr;
 
+  // Constructor
+  IManager(this._userCurrent, this._gameCurrent);
+  
+  // Getters and setters
+  User get userCurrent => _userCurrent;
   Game get gameCurrent => _gameCurrent;
-
-  set gameCurrent(Game value) {
-    _gameCurrent = value;
-  }
-
-  List<Game> get games => _games;
-
-  set games(List<Game> value) {
-    _games = value;
-  }
-
-  IManager(this._userCurrent, this._gameCurrent, this._games);
+  IUserManager get userMgr => _userMgr;
+  IGameManager get gameMgr => _gameMgr;
 }

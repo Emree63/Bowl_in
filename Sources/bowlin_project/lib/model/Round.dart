@@ -1,11 +1,36 @@
+import 'Player.dart';
+
 class Round {
-  int _nbPoints;
+  int _firstThrow;
+  int _secondThrow;
+  int _points;
+  Player _player;
 
-  int get nbPoints => _nbPoints;
+  // Constructor
+  Round(this._firstThrow, this._secondThrow, this._points, this._player);
 
-  set nbPoints(int value) {
-    _nbPoints = value;
+  // Getters and setters
+  int get firstThrow => _firstThrow;
+
+  set firstThrow(int value) {
+    _firstThrow = value;
   }
 
-  Round(this._nbPoints);
+  int get secondThrow => _secondThrow;
+
+  set secondThrow(int value) {
+    _secondThrow = value;
+  }
+
+  int get points => _points;
+
+  set points(int value) {
+    _points = value;
+  }
+
+  Player get player => _player;
+
+  set player(Player value) {
+    _player = value;
+  }
 }
