@@ -2,11 +2,11 @@ import 'package:uuid/uuid.dart';
 
 class Player {
   final Uuid _id;
-  String _image;
   String _name;
+  String _image;
 
   // Constructor
-  Player(this._id, this._image, this._name);
+  Player(this._id, this._name, this._image);
 
   // Getters and setters
   Uuid get id => _id;

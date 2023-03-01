@@ -5,13 +5,13 @@ import 'Stat.dart';
 
 class User extends Player {
   String _mail;
-  List<Stat> _stats = <Stat>[];
-  List<User> _friends = <User>[];
   List<Achievement> _achievements = <Achievement>[];
+  List<User> _friends = <User>[];
+  List<Stat> _stats = <Stat>[];
 
   // Constructor
-  User(Uuid id, String image, String name, this._achievements, this._friends, this._stats)
-      : super(id, image, name);
+  User(Uuid id, String name, String image, this._mail, this._achievements, this._friends, this._stats)
+      : super(id, name, image);
 
   // Getters and setters
   String get mail => _mail;
