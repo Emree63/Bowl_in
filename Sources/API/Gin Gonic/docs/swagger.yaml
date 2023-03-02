@@ -1,0 +1,124 @@
+basePath: /
+definitions:
+  model.User:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: arthur.valin@etu.uca.fr
+    name: VALIN Arthur
+  description: A bowling scorer API. More infos on [https://codefirst.iut.uca.fr/git/BowlDev/Bowl_in]
+  title: Bowl'in API
+  version: "1.0"
+paths:
+  /users:
+    get:
+      description: Responds with the list of all users as JSON.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      summary: Get users array
+      tags:
+      - user
+    post:
+      description: Takes a user JSON and store in DB. Return saved JSON.
+      parameters:
+      - description: User JSON
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Store a new user
+      tags:
+      - user
+  /users/:id:
+    delete:
+      description: delete user whose ID value matches id.
+      parameters:
+      - description: delete user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User successfully deleted
+          schema:
+            type: string
+      summary: Delete a user
+      tags:
+      - user
+    get:
+      description: responds with the user whose ID value matches the id as JSON.
+      parameters:
+      - description: search user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      summary: Get user by id
+      tags:
+      - user
+    put:
+      description: takes a user JSON and updates user whose ID value matches id.
+      parameters:
+      - description: search user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: User JSON
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Update a user
+      tags:
+      - user
+swagger: "2.0"
