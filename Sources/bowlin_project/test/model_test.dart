@@ -75,9 +75,46 @@ void main() {
       print("\tID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: Player");
     }
   }
+
+  //GameDetail
   
+  List<GameDetail> games = [ 
+    new GameDetail(Uuid(), DateTime.now(), players[0].id, 290, true, null, players[0], [ new Round(10,null,10, players[0]), new Round(5,2,7, players[1]), new Round(5,2,7, players[1]), new Round(5,1,12,players[0])], [players[0],players[1]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 2)), players[1].id, 250, true, null, players[1], [ new Round(7,null,7, players[1]), new Round(3,3,9, players[0]), new Round(5,2,7, players[1]), new Round(5,1,12,players[0])], [players[0],players[1]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 4)), players[2].id, 210, false, players[1].id, players[2], [ new Round(8,2,10, players[2]), new Round(6,2,8, players[1]), new Round(4,2,6, players[2]), new Round(2,2,4,players[1])], [players[1],players[2]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 7)), players[3].id, 300, false, players[2].id, players[3], [ new Round(12,null,12, players[3]), new Round(7,3,10, players[2]), new Round(6,2,8, players[1]), new Round(5,1,12,players[0])], [players[0],players[1],players[2],players[3]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 10)), players[4].id, 280, true, null, players[4], [ new Round(9,1,10, players[4]), new Round(7,3,10, players[2]), new Round(8,2,10, players[3]), new Round(5,2,7,players[1])], [players[1],players[2],players[3],players[4]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 12)), players[1].id, 240, false, players[4].id, players[1], [ new Round(7,null,7, players[1]), new Round(5,2,7, players[2]), new Round(6,2,8, players[1]), new Round(5,1,12,players[0])], [players[0],players[1],players[2],players[4]] ),
+    new GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 15)), players[2].id, 200, true, null, players[2], [ new Round(8,2,10, players[2]), new Round(4,2,6, players[1]), new Round(7,3,10, players[3]), new Round(5,2,7,players[0])], [players[0],players[1],players[2],players[3]] )
+  ]
 
   print("GameDetail :");
+  for (var game in games) {
+  print("Game ID: ${game.id}");
+  print("Time: ${game.time}");
+  print("Winner: ${game.winner}");
+  print("Number of Points: ${game.nbPoints}");
+  print("Is Finished: ${game.isFinished}");
+  print("Current Round: ${game.currentRound}");
+  print("Host: ${game.host}");
+
+  print("Rounds:");
+  for (var round in game.rounds) {
+    print("Round Score: ${round.score}");
+    print("Round Bonus: ${round.bonus}");
+    print("Round Total: ${round.total}");
+    print("Round Player: ${round.player}");
+  }
+
+  print("Players:");
+  for (var player in game.players) {
+    print("Player ID: ${player.id}");
+    print("Player Name: ${player.name}");
+    print("Player Score: ${player.score}");
+  }
+
+  print("----------------------------");
+}
 
 
 }

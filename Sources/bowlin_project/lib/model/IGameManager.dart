@@ -9,4 +9,6 @@ abstract class IGameManager {
   List<GameDetail> getGamesByPlayerId(Uuid id);
   List<GameDetail> getGamesByPlayer(Player user);
   List<GameDetail> getGamesByPlayers(List<Player> users);
+  List<User> getPlayersByIdGame(Uuid id);
+  Map<int, Uuid> getRankByIdGame(Uuid id);
 }
