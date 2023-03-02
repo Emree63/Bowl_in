@@ -1,0 +1,10 @@
+{
+  "simulation": "benchmark.UserSimulation",
+  "simulationId": "usersimulation-20230206154545957",
+  "start": 1675698346852,
+  "description": "Load testing Iris API",
+  "scenarios": ["Users"],
+  "assertions": [
+
+  ]
+}

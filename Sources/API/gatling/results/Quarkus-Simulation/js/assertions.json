@@ -1,0 +1,10 @@
+{
+  "simulation": "benchmark.UserSimulation",
+  "simulationId": "usersimulation-20230228213443882",
+  "start": 1677620085142,
+  "description": "Load testing quarkus API",
+  "scenarios": ["Users"],
+  "assertions": [
+
+  ]
+}

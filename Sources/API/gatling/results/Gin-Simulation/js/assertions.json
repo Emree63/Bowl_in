@@ -1,0 +1,10 @@
+{
+  "simulation": "benchmark.UserSimulation",
+  "simulationId": "usersimulation-20230206154711329",
+  "start": 1675698432185,
+  "description": "Load testing Gin Gonic API",
+  "scenarios": ["Users"],
+  "assertions": [
+
+  ]
+}
