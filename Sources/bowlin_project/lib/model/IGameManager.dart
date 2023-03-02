@@ -2,6 +2,7 @@ import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
 import 'GameDetail.dart';
 import 'Player.dart';
+import 'User.dart';
 
 abstract class IGameManager {
   // Methods

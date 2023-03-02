@@ -8,7 +8,7 @@ class GameDetail {
   Uuid _winner;
   int _nbPoints;
   bool _isFinished;
-  Round _currentRound;
+  Round? _currentRound;
   Player _host;
   List<Round> _rounds = [];
   List<Player> _players = [];
@@ -56,9 +56,9 @@ class GameDetail {
     _isFinished = value;
   }
 
-  Round get currentRound => _currentRound;
+  Round? get currentRound => _currentRound;
 
-  set currentRound(Round value) {
+  set currentRound(Round? value) {
     _currentRound = value;
   }
 
