@@ -1,5 +1,6 @@
 import 'package:uuid/uuid.dart';
 import 'Achievement.dart';
+import 'Game.dart';
 import 'Player.dart';
 import 'Stat.dart';
 
@@ -8,9 +9,11 @@ class User extends Player {
   List<Achievement> _achievements = <Achievement>[];
   List<User> _friends = <User>[];
   Stat _stat;
+  List<Game> games = [];
 
   // Constructor
-  User(Uuid id, String name, String image, this._mail, this._achievements, this._friends, this._stat)
+  User(Uuid id, String name, String image, this._mail, this._achievements,
+      this._friends, this._stat)
       : super(id, name, image);
 
   // Getters and setters

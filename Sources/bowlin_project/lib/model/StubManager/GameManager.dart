@@ -1,4 +1,6 @@
 library StubLib;
+
+import '../Game.dart';
 import '../IGameManager.dart';
 import '../GameDetail.dart';
 import '../Player.dart';
@@ -6,7 +8,6 @@ import '../User.dart';
 import '../Guest.dart';
 import 'StubData.dart';
 import 'package:uuid/uuid.dart';
-
 
 class GameManager extends IGameManager {
   List<GameDetail> games = [];
@@ -17,20 +18,36 @@ class GameManager extends IGameManager {
 
   // Methods
   GameDetail getGameById(Uuid id) {
-    return new GameDetail(Uuid(), DateTime.now(), Uuid(), 290, true, null, Guest(Uuid(),"",""), [ ], [] );
+    for (var element in parent.gameDetails) {
+      if (element.id == id) {
+        return element;
+      }
+    }
+    throw Exception("Game not found.");
   }
+
   List<GameDetail> getGamesByPlayerId(Uuid id) {
-    return [];  
+    List<GameDetail> games = [];
+    for (var element in parent.gameDetails) {
+      if (element.players.contains(id)) {
+        games.add(element);
+      }
+    }
+    throw Exception("Game not found.");
   }
+
   List<GameDetail> getGamesByPlayer(Player user) {
-    return [];  
-  }
-  List<GameDetail> getGamesByPlayers(List<Player> users) { 
     return [];
   }
+
+  List<GameDetail> getGamesByPlayers(List<Player> users) {
+    return [];
+  }
+
   List<User> getPlayersByIdGame(Uuid id) {
     return [];
   }
+
   Map<int, Uuid> getRankByIdGame(Uuid id) {
     return {};
   }
