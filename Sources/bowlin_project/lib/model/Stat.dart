@@ -6,7 +6,7 @@ class Stat {
   int _nbStrikes;
   int _nbSpares;
   int _nbScore;
-  int _avgScore;
+  double _avgScore;
   double _avgPinsPerRound;
 
   // Constructor
@@ -65,9 +65,9 @@ class Stat {
     _nbScore = value;
   }
 
-  int get avgScore => _avgScore;
+  double get avgScore => _avgScore;
 
-  set avgScore(int value) {
+  set avgScore(double value) {
     _avgScore = value;
   }
 

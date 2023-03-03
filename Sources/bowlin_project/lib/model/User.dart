@@ -7,10 +7,10 @@ class User extends Player {
   String _mail;
   List<Achievement> _achievements = <Achievement>[];
   List<User> _friends = <User>[];
-  List<Stat> _stats = <Stat>[];
+  Stat _stat;
 
   // Constructor
-  User(Uuid id, String name, String image, this._mail, this._achievements, this._friends, this._stats)
+  User(Uuid id, String name, String image, this._mail, this._achievements, this._friends, this._stat)
       : super(id, name, image);
 
   // Getters and setters
@@ -32,9 +32,9 @@ class User extends Player {
     _friends = value;
   }
 
-  List<Stat> get stats => _stats;
+  Stat get stat => _stat;
 
-  set stats(List<Stat> value) {
-    _stats = value;
+  set stats(Stat value) {
+    _stat = value;
   }
 }

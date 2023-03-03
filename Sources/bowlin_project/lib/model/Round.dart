@@ -2,7 +2,7 @@ import 'Player.dart';
 
 class Round {
   int _firstThrow;
-  int _secondThrow;
+  int? _secondThrow;
   int _points;
   Player _player;
 
@@ -16,9 +16,9 @@ class Round {
     _firstThrow = value;
   }
 
-  int get secondThrow => _secondThrow;
+  int? get secondThrow => _secondThrow;
 
-  set secondThrow(int value) {
+  set secondThrow(int? value) {
     _secondThrow = value;
   }
 

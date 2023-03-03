@@ -7,11 +7,8 @@ import 'Game.dart';
 abstract class IManager {
   late User _userCurrent;
   late Game _gameCurrent;
-  IUserManager _userMgr;
-  IGameManager _gameMgr;
-
-  // Constructor
-  IManager(this._userCurrent, this._gameCurrent);
+  late IUserManager _userMgr;
+  late IGameManager _gameMgr;
   
   // Getters and setters
   User get userCurrent => _userCurrent;
