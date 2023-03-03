@@ -5,10 +5,11 @@ class Game {
   DateTime _time;
   int _pointsCurrentUser;
   bool _isFinished;
-  List<String> _playerImages = [];
+  List<Uuid> _playerIds = [];
 
   // Constructor
-  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished, this._playerImages);
+  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished,
+      this._playerIds);
 
   // Getters and setters
   Uuid get id => _id;
@@ -35,9 +36,9 @@ class Game {
     _isFinished = value;
   }
 
-  List<String> get playerImages => _playerImages;
+  List<Uuid> get playerIds => _playerIds;
 
-  set playerImages(List<String> value) {
-    _playerImages = value;
+  set playerIds(List<Uuid> value) {
+    _playerIds = value;
   }
 }

@@ -9,7 +9,7 @@ class GameDetail {
   int _nbPoints;
   bool _isFinished;
   Round? _currentRound;
-  Player _host;
+  Uuid _host;
   List<Round> _rounds = [];
   List<Player> _players = [];
 
@@ -24,7 +24,7 @@ class GameDetail {
       this._host,
       this._rounds,
       this._players);
-      
+
   // Getters and setters
   Uuid get id => _id;
 
@@ -62,9 +62,9 @@ class GameDetail {
     _currentRound = value;
   }
 
-  Player get host => _host;
+  Uuid get host => _host;
 
-  set host(Player value) {
+  set host(Uuid value) {
     _host = value;
   }
 
