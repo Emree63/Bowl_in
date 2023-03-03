@@ -10,7 +10,8 @@ class User extends Player {
   Stat _stat;
 
   // Constructor
-  User(Uuid id, String name, String image, this._mail, this._achievements, this._friends, this._stat)
+  User(Uuid id, String name, String image, this._mail, this._achievements,
+      this._friends, this._stat)
       : super(id, name, image);
 
   // Getters and setters
@@ -36,5 +37,19 @@ class User extends Player {
 
   set stats(Stat value) {
     _stat = value;
+  }
+
+  toJSONEncodable() {
+    Map<String, dynamic> m = new Map();
+
+    m['id'] = id;
+    m['Name'] = name;
+    m['Mail'] = _mail;
+    m['Image'] = image;
+    m['Achievement'] = achievements;
+    m['Friends'] = friends;
+    m['Stat'] = stat;
+
+    return m;
   }
 }

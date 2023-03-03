@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^3.0.1
   go_router: ^6.0.1
   uuid: ^3.0.7
+  postgres: ^2.6.1
+  localstorage: ^4.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -88,8 +90,8 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: BowlInFont
-       fonts:
-         - asset: assets/fonts/BowlInFont.ttf
+    - family: BowlInFont
+      fonts:
+        - asset: assets/fonts/BowlInFont.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
