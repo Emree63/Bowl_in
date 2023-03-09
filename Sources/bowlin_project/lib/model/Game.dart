@@ -1,20 +1,18 @@
-import 'package:uuid/uuid.dart';
-
 class Game {
-  Uuid _id;
+  int _id;
   DateTime _time;
   int _pointsCurrentUser;
   bool _isFinished;
-  List<Uuid> _playersId = [];
+  List<int> _playersId = [];
 
   // Constructor
   Game(this._id, this._time, this._pointsCurrentUser, this._isFinished,
       this._playersId);
 
   // Getters and setters
-  Uuid get id => _id;
+  int get id => _id;
 
-  set id(Uuid value) {
+  set id(int value) {
     _id = value;
   }
 
@@ -36,9 +34,9 @@ class Game {
     _isFinished = value;
   }
 
-  List<Uuid> get playersId => _playersId;
+  List<int> get playersId => _playersId;
 
-  set playersId(List<Uuid> value) {
+  set playersId(List<int> value) {
     _playersId = value;
   }
 }

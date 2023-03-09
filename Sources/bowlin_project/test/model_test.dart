@@ -5,9 +5,9 @@ import '../lib/model/Stat.dart';
 import '../lib/model/Round.dart';
 import '../lib/model/GameDetail.dart';
 import '../lib/model/StubManager/StubData.dart';
+import '../lib/model/IManager.dart';
 import 'dart:math';
 import '../lib/model/Achievement.dart';
-import 'package:uuid/uuid.dart';
 
 void main() {
   List<Stat> stats = [];
@@ -30,12 +30,11 @@ void main() {
 
   print("Stats:");
   for (var stat in stats) {
-    print(
-        "\tVictoires: ${stat.nbVictory}, Défaites: ${stat.nbDefeat}, Parties jouées: ${stat.nbGames}, Meilleur score: ${stat.highscore}, Nombre de strikes: ${stat.nbStrikes}, Nom de spares: ${stat.nbStrikes}, Moyenne score: ${stat.avgScore}, Moyenne score par round: ${stat.avgPinsPerRound}");
+    print("\tVictoires: ${stat.nbVictory}, Défaites: ${stat.nbDefeat}, Parties jouées: ${stat.nbGames}, Meilleur score: ${stat.highscore}, Nombre de strikes: ${stat.nbStrikes}, Nom de spares: ${stat.nbStrikes}, Moyenne score: ${stat.avgScore}, Moyenne score par round: ${stat.avgPinsPerRound}");
   }
 
   User ami = User(
-      Uuid(),
+      5,
       "Lucas",
       "https://fastly.picsum.photos/id/288/2000/2000.jpg?hmac=AUboE-jzAzofYj_O3w_EqtZU3JHzcg7HR1IQd1Ce7lY",
       "Lucas.delanier@etu.uca.fr",
@@ -44,17 +43,17 @@ void main() {
       stats[1]);
 
   List<Player> players = [
-    Player(Uuid(), "Rami",
+    Player(1, "Rami",
         "https://fastly.picsum.photos/id/1060/2000/2000.jpg?hmac=_RrU8GpkCDUlVKfgyWE-GcX-GS5TKNyUzdFbJAGXHV4"),
-    Player(Uuid(), "Emre",
+    Player(2, "Emre",
         "https://fastly.picsum.photos/id/670/2000/2000.jpg?hmac=zWqTr_vDEab3dBtp7JZgJP8TRCPNanJ4tYwDDd-jGYA"),
-    Guest(Uuid(), "Bot1",
+    Guest(3, "Bot1",
         "https://fastly.picsum.photos/id/820/2000/2000.jpg?hmac=Ctxx2feJNZnG1S7UPx_YrWcEw89tKb7fR8i1W-VTOz4"),
-    Guest(Uuid(), "Bot2",
+    Guest(4, "Bot2",
         "https://fastly.picsum.photos/id/288/2000/2000.jpg?hmac=AUboE-jzAzofYj_O3w_EqtZU3JHzcg7HR1IQd1Ce7lY"),
     ami,
     User(
-        Uuid(),
+        6,
         "Louison",
         "https://fastly.picsum.photos/id/1029/2000/2000.jpg?hmac=_K3pMobVk00dfNR7rsj1NLnEBB5Gf88SvGPbbjoH-Uc",
         "louison.parant@etu.uca.fr",
@@ -70,33 +69,14 @@ void main() {
   print("Players :");
   // afficahge de toutes les informations de tous les joueurs
   for (var player in players) {
-    if (player is Guest) {
-      print(
-          "\tID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: Guest");
-    } else if (player is User) {
-      print(
-          "\tID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: User");
-      print("\tAchievements:");
-      for (var achievement in player.achievements) {
-        print("\t\tNom: ${achievement.name}");
-      }
-      print("\tAmis:");
-      for (var amis in player.friends) {
-        print("\t\tNom: ${amis.name}, Mail: ${amis.mail}");
-      }
-      print(
-          "\tVictoires: ${player.stat.nbVictory}, Défaites: ${player.stat.nbDefeat}, Parties jouées: ${player.stat.nbGames}, Meilleur score: ${player.stat.highscore}, Nombre de strikes: ${player.stat.nbStrikes}, Nom de spares: ${player.stat.nbStrikes}, Moyenne score: ${player.stat.avgScore}, Moyenne score par round: ${player.stat.avgPinsPerRound}");
-    } else {
-      print(
-          "\tID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: Player");
-    }
+    displayPlayer(player,1);
   }
 
   //GameDetail
 
   List<GameDetail> games = [
     GameDetail(
-        Uuid(), DateTime.now(), players[0].id, 290, true, null, players[0].id, [
+        1, DateTime.now(), players[0].id, 290, true, null, players[0].id, [
       Round(10, null, 10, players[0]),
       Round(5, 2, 7, players[1]),
       Round(5, 1, 12, players[0]),
@@ -105,7 +85,7 @@ void main() {
       players[0],
       players[1]
     ]),
-    GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 2)),
+    GameDetail(2, DateTime.now().subtract(Duration(days: 2)),
         players[1].id, 250, true, null, players[1].id, [
       Round(7, null, 7, players[1]),
       Round(3, 3, 9, players[0]),
@@ -115,7 +95,7 @@ void main() {
       players[0],
       players[1]
     ]),
-    GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 4)),
+    GameDetail(3, DateTime.now().subtract(Duration(days: 4)),
         players[2].id, 210, false, null, players[2].id, [
       Round(8, 2, 10, players[2]),
       Round(6, 2, 8, players[1]),
@@ -126,13 +106,13 @@ void main() {
       players[2]
     ]),
     GameDetail(
-        Uuid(),
-        DateTime.now().subtract(Duration(days: 7)),
-        players[3].id,
-        120,
-        true,
-        Round(12, null, 12, players[3]),
-        players[3].id, [
+      4,
+      DateTime.now().subtract(Duration(days: 7)),
+      players[3].id,
+      120,
+      true,
+      Round(12, null, 12, players[3]),
+      players[3].id, [
       Round(12, null, 12, players[3]),
       Round(7, 3, 10, players[2]),
       Round(6, 2, 8, players[1]),
@@ -143,7 +123,7 @@ void main() {
       players[2],
       players[3]
     ]),
-    GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 10)),
+    GameDetail(5, DateTime.now().subtract(Duration(days: 10)),
         players[4].id, 280, true, null, players[4].id, [
       Round(9, 1, 10, players[4]),
       Round(7, 3, 10, players[2]),
@@ -155,8 +135,8 @@ void main() {
       players[3],
       players[4]
     ]),
-    GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 12)),
-        players[1].id, 240, true, null, players[1].id, [
+    GameDetail(6, DateTime.now().subtract(Duration(days: 12)),
+      players[1].id, 240, true, null, players[1].id, [
       Round(7, null, 7, players[1]),
       Round(5, 2, 7, players[2]),
       Round(6, 2, 8, players[1]),
@@ -167,7 +147,7 @@ void main() {
       players[2],
       players[4]
     ]),
-    GameDetail(Uuid(), DateTime.now().subtract(Duration(days: 15)),
+    GameDetail(7, DateTime.now().subtract(Duration(days: 15)),
         players[2].id, 200, true, null, players[2].id, [
       Round(8, 2, 10, players[2]),
       Round(4, 2, 6, players[1]),
@@ -183,31 +163,98 @@ void main() {
 
   print("GameDetail :");
   for (var game in games) {
-    print("\tGame ID: ${game.id}");
-    print("\tTime: ${game.time}");
-    print("\tWinner: ${game.winner}");
-    print("\tNumber of Points: ${game.nbPoints}");
-    print("\tIs Finished: ${game.isFinished}");
-    print("\tCurrent Round: ${game.currentRound}");
-    print("\tHost: ${game.host}");
-    print("\tRank: ${game.getRank()}");
-
-    print("\tRounds:");
-    for (var round in game.rounds) {
-      print("\t\tRound Score: ${round.firstThrow}");
-      print("\t\tRound Bonus: ${round.secondThrow}");
-      print("\t\tRound Total: ${round.points}");
-      print("\t\tRound Player: ${round.player.name}");
-    }
-
-    print("\tPlayers:");
-    for (var player in game.players) {
-      print("\t\tPlayer ID: ${player.id}");
-      print("\t\tPlayer Name: ${player.name}");
-    }
-
+    displayGameDetail(game,1);
     print("\t-----------------------------------------");
-
-    print("StubManager:");
   }
+  
+  print("StubManager:");
+  IManager mgr = new StubData();
+
+  print("\tGameManager:");
+
+  print("\tgetGameById function with id: 2");
+  GameDetail gd = mgr.gameMgr.getGameById(2);
+  displayGameDetail(gd,2);
+
+  print("\tgetGamesByPlayerId function with id: 2");
+  List<GameDetail> gds = mgr.gameMgr.getGamesByPlayerId(3);
+  for (var game in gds)
+  {
+    displayGameDetail(game,2);
+  }
+
+  print("\tgetGamesByPlayer function:");
+  var player = mgr.userMgr.getUserById(3);
+  List<GameDetail> gdsPlayer = mgr.gameMgr.getGamesByPlayer(player);
+  for (var game in gdsPlayer)
+  {
+    displayGameDetail(game,2);
+  }
+
+  print("\tgetGamesByPlayers:");
+  var player2 = mgr.userMgr.getUserById(2);
+  List<Player> playersTest = [player,player2];
+  List<GameDetail> gdsPlayers = mgr.gameMgr.getGamesByPlayers(playersTest);
+  for (var game in gdsPlayers)
+  {
+    displayGameDetail(game,2);
+  }
+
+}
+
+void displayGameDetail(GameDetail gd, int numTabs)
+{
+  String tabs = '\t' * numTabs;
+  print(tabs+"Game ID: ${gd.id}");
+  print(tabs+"Time: ${gd.time}");
+  print(tabs+"Winner: ${gd.winner}");
+  print(tabs+"Number of Points: ${gd.nbPoints}");
+  print(tabs+"Is Finished: ${gd.isFinished}");
+  print(tabs+"Current Round: ${gd.currentRound}");
+  print(tabs+"Host: ${gd.host}");
+  print(tabs+"Rank: ${gd.getRank()}");
+  print(tabs+"Rounds:");
+  for (var round in gd.rounds) {
+    displayRound(round, numTabs+1);
+  }
+  print(tabs+"Players:");
+  for (var player in gd.players) {
+    displayPlayer(player, numTabs+1);
+  }
+}
+
+void displayRound(Round round, int numTabs)
+{
+  String tabs = '\t' * numTabs;
+  print(tabs+"Round Score: ${round.firstThrow}");
+  print(tabs+"Round Bonus: ${round.secondThrow}");
+  print(tabs+"Round Total: ${round.points}");
+  print(tabs+"Round Player: ${round.player.name}");
+}
+
+void displayPlayer(Player player, int numTabs)
+{
+  String tabs = '\t' * numTabs;
+  if (player is Guest) {
+    print(tabs+"ID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: Guest");
+  } else if (player is User) {
+    print(tabs+"ID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: User");
+    print(tabs+"Achievements:");
+    for (var achievement in player.achievements) {
+      displayAchievement(achievement, numTabs+1);
+    }
+    print(tabs+"Amis:");
+    for (var amis in player.friends) {
+      print("\t\tNom: ${amis.name}, Mail: ${amis.mail}");
+    }
+    print(tabs+"Victoires: ${player.stat.nbVictory}, Défaites: ${player.stat.nbDefeat}, Parties jouées: ${player.stat.nbGames}, Meilleur score: ${player.stat.highscore}, Nombre de strikes: ${player.stat.nbStrikes}, Nom de spares: ${player.stat.nbStrikes}, Moyenne score: ${player.stat.avgScore}, Moyenne score par round: ${player.stat.avgPinsPerRound}");
+  } else {
+    print(tabs+"ID: ${player.id}, Nom: ${player.name}, Image: ${player.image}, Type: Player");
+  }
+}
+
+void displayAchievement(Achievement achievement, int numTabs)
+{
+  String tabs = '\t' * numTabs;
+  print(tabs+"Nom: ${achievement.name}");
 }

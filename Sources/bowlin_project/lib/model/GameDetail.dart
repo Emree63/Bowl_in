@@ -1,17 +1,14 @@
-import 'dart:developer';
-
-import 'package:uuid/uuid.dart';
 import 'Player.dart';
 import 'Round.dart';
 
 class GameDetail {
-  Uuid _id;
+  int _id;
   DateTime _time;
-  Uuid _winner;
+  int _winner;
   int _nbPoints;
   bool _isFinished;
   Round? _currentRound;
-  Uuid _host;
+  int _host;
   List<Round> _rounds = [];
   List<Player> _players = [];
 
@@ -28,9 +25,9 @@ class GameDetail {
       this._players);
 
   // Getters and setters
-  Uuid get id => _id;
+  int get id => _id;
 
-  set id(Uuid value) {
+  set id(int value) {
     _id = value;
   }
 
@@ -40,9 +37,9 @@ class GameDetail {
     _time = value;
   }
 
-  Uuid get winner => _winner;
+  int get winner => _winner;
 
-  set winner(Uuid value) {
+  set winner(int value) {
     _winner = value;
   }
 
@@ -64,9 +61,9 @@ class GameDetail {
     _currentRound = value;
   }
 
-  Uuid get host => _host;
+  int get host => _host;
 
-  set host(Uuid value) {
+  set host(int value) {
     _host = value;
   }
 
@@ -82,10 +79,10 @@ class GameDetail {
     _players = value;
   }
 
-  int getPointByPlayerId(Uuid uuid) {
+  int getPointByPlayerId(int id) {
     int pointPlayer = 0;
     for (var player in players) {
-      if (player.id == uuid) {
+      if (player.id == id) {
         for (var element in rounds) {
           if (element.player == player) {
             pointPlayer += element.points;
@@ -97,8 +94,8 @@ class GameDetail {
     throw Exception("Player not in the game.");
   }
 
-  Map<Uuid, int> getRank() {
-    Map<Uuid, int> rank = {};
+  Map<int, int> getRank() {
+    Map<int, int> rank = {};
 
     for (var player in players) {
       rank.addAll({player.id: this.getPointByPlayerId(player.id)});

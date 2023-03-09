@@ -7,17 +7,15 @@ import '../Player.dart';
 import '../User.dart';
 import '../Guest.dart';
 import 'StubData.dart';
-import 'package:uuid/uuid.dart';
 
 class GameManager extends IGameManager {
-  List<GameDetail> games = [];
   final StubData parent;
 
   // Constructor
   GameManager(this.parent);
 
   // Methods
-  GameDetail getGameById(Uuid id) {
+  GameDetail getGameById(int id) {
     for (var element in parent.gameDetails) {
       if (element.id == id) {
         return element;
@@ -26,29 +24,47 @@ class GameManager extends IGameManager {
     throw Exception("Game not found.");
   }
 
-  List<GameDetail> getGamesByPlayerId(Uuid id) {
+  List<GameDetail> getGamesByPlayerId(int id) {
     List<GameDetail> games = [];
     for (var element in parent.gameDetails) {
-      if (element.players.contains(id)) {
-        games.add(element);
+      for (Player player in element.players) {
+        if (player.id == id) {
+          games.add(element);
+          break;
+        }
       }
     }
-    throw Exception("Game not found.");
+    return games;
   }
 
   List<GameDetail> getGamesByPlayer(Player user) {
-    return [];
+    List<GameDetail> games = [];
+    for (var element in parent.gameDetails) {
+      for (Player player in element.players) {
+        if (player.id == user.id) {
+          games.add(element);
+          break;
+        }
+      }
+    }
+    return games;
   }
 
   List<GameDetail> getGamesByPlayers(List<Player> users) {
+    List<GameDetail> games = [];
+    for (var element in parent.gameDetails) {
+      if (element.players.toSet().containsAll(users.toSet())) {
+        games.add(element);
+      }
+    }
+    return games;
+  }
+
+  List<User> getPlayersByIdGame(int id) {
     return [];
   }
 
-  List<User> getPlayersByIdGame(Uuid id) {
-    return [];
-  }
-
-  Map<int, Uuid> getRankByIdGame(Uuid id) {
+  Map<int, int> getRankByIdGame(int id) {
     return {};
   }
 }
