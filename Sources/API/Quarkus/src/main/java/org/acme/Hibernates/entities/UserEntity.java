@@ -1,12 +1,9 @@
 package org.acme.Hibernates.entities;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="users")
 public class UserEntity {
     @Id
     @GeneratedValue
@@ -16,6 +13,13 @@ public class UserEntity {
 
     @Column(length = 100)
     private String password;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    private UserStatsEntity stats;
+
+    public UserEntity() {
+        this.stats = new UserStatsEntity(this);
+    }
 
     // return name as uppercase in the model
     public String getName() {
