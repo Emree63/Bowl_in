@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.*;
-
-// @Entity
-// @Table(name = "games")
+@Entity
+@Table(name="games")
 public class GameEntity {
 
     @Id
@@ -87,7 +86,7 @@ public class GameEntity {
         return this.isFinished;
     }
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<RoundEntity> rounds = new ArrayList<>();
+//    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+//    public List<RoundEntity> rounds = new ArrayList<>();
 
 }

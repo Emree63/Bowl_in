@@ -12,7 +12,7 @@ public class UserStatsEntity {
     @Id
     private Long id;
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn (name = "user_id", referencedColumnName  = "id", insertable = false, updatable = false)
     private UserEntity user;
     @ColumnDefault("0")
@@ -26,9 +26,9 @@ public class UserStatsEntity {
     @ColumnDefault("0")
     private Long nbSpares = 0L;
     @ColumnDefault("-1")
-    private double avgScore = -1;
+    private Double avgScore = 0d;
     @ColumnDefault("-1")
-    private double avgPinsPerRound = -1;
+    private Double avgPinsPerRound = 0d;
 
     public UserStatsEntity() {
     }
