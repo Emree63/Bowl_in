@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+<<<<<<< HEAD
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+=======
+
+import javax.persistence.*;
+@Entity
+@Table(name="games")
+>>>>>>> bcd6335175194e1c12cc113060a02e202da0af79
 public class GameEntity {
 
     @Id
