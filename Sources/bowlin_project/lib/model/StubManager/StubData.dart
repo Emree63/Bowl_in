@@ -25,6 +25,8 @@ class StubData extends IManager {
     _initRounds();
     _initGameDetails();
     _initGame();
+    users[1].games = games;
+    userCurrent = users[1];
   }
 
   List<Player> players = [
@@ -41,7 +43,7 @@ class StubData extends IManager {
     User(
         Uuid(),
         "Emre",
-        "https://fastly.picsum.photos/id/1060/2000/2000.jpg?hmac=_RrU8GpkCDUlVKfgyWE-GcX-GS5TKNyUzdFbJAGXHV4",
+        "./assets/images/image_user_cyan.png",
         "emre.kartal@etu.uca.fr",
         [
           Achievement("5 games"),
@@ -53,7 +55,7 @@ class StubData extends IManager {
     User(
         Uuid(),
         "Dave",
-        "https://fastly.picsum.photos/id/820/2000/2000.jpg?hmac=Ctxx2feJNZnG1S7UPx_YrWcEw89tKb7fR8i1W-VTOz4",
+        "./assets/images/image_user_cyan.png",
         "david.d_almeida@etu.uca.fr",
         [
           Achievement("5 games"),
@@ -99,7 +101,8 @@ class StubData extends IManager {
 
   List<Game> games = [];
   void _initGame() {
-    games.add(Game(gameDetails[0].id, DateTime.now(), 123, true, []));
+    games.add(Game(gameDetails[0].id,
+        DateTime.now().subtract(Duration(days: 14)), 123, true, []));
     games.add(Game(gameDetails[1].id, DateTime.now(), 101, true, []));
   }
 }
