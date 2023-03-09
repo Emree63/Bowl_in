@@ -24,7 +24,8 @@ class StubData extends IManager {
     _initRounds();
     _initGameDetails();
     _initGame();
-    
+    players[8].games = games;
+    userCurrent = players[8];
   }
 
   IUserManager get userMgr => _userMgr;
@@ -42,7 +43,7 @@ class StubData extends IManager {
     User(
         8,
         "Emre",
-        "https://fastly.picsum.photos/id/1060/2000/2000.jpg?hmac=_RrU8GpkCDUlVKfgyWE-GcX-GS5TKNyUzdFbJAGXHV4",
+        "./assets/images/image_user_cyan.png",
         "emre.kartal@etu.uca.fr",
         [
           Achievement("5 games"),
@@ -55,7 +56,7 @@ class StubData extends IManager {
     User(
         9,
         "Dave",
-        "https://fastly.picsum.photos/id/820/2000/2000.jpg?hmac=Ctxx2feJNZnG1S7UPx_YrWcEw89tKb7fR8i1W-VTOz4",
+        "./assets/images/image_user_cyan.png",
         "david.d_almeida@etu.uca.fr",
         [
           Achievement("5 games"),
@@ -105,8 +106,14 @@ class StubData extends IManager {
 
   List<Game> _games = [];
   void _initGame() {
-    games.add(Game(gameDetails[0].id, DateTime.now(), 123, true, []));
-    games.add(Game(gameDetails[1].id, DateTime.now(), 101, true, []));
+    games.add(Game(
+        gameDetails[0].id,
+        DateTime.now().subtract(Duration(days: 14)),
+        123,
+        true,
+        [players[0].id, players[1].id]));
+    games.add(Game(gameDetails[1].id, DateTime.now(), 101, true,
+        [players[1].id, players[0].id]));
   }
   
   List<Game> get games => _games;

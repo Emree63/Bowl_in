@@ -1,12 +1,12 @@
 class Game {
   int _id;
-  DateTime _time;
+  DateTime _date;
   int _pointsCurrentUser;
   bool _isFinished;
   List<int> _playersId = [];
 
   // Constructor
-  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished,
+  Game(this._id, this._date, this._pointsCurrentUser, this._isFinished,
       this._playersId);
 
   // Getters and setters
@@ -16,10 +16,10 @@ class Game {
     _id = value;
   }
 
-  DateTime get time => _time;
+  DateTime get date => _date;
 
-  set time(DateTime value) {
-    _time = value;
+  set date(DateTime value) {
+    _date = value;
   }
 
   int get pointsCurrentUser => _pointsCurrentUser;

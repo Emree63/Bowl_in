@@ -1,6 +1,8 @@
 library StubLib;
+
 import '../IUserManager.dart';
 import '../IAuthManager.dart';
+import '../Player.dart';
 import 'AuthManager.dart';
 import 'StubData.dart';
 import '../Player.dart';
@@ -10,7 +12,7 @@ class UserManager extends IUserManager {
   final StubData parent;
 
   // Constructor
-  UserManager(this.parent):super(AuthManager(parent));
+  UserManager(this.parent) : super(AuthManager(parent));
 
   // Methods
   List<Player> getUsersByName(String name) {
