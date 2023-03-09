@@ -1,6 +1,8 @@
+import 'package:bowl_in/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../model/User.dart';
 import '../widgets/profil_listpodium_widget.dart';
 
 class RankScreen extends StatefulWidget {
@@ -11,6 +13,7 @@ class RankScreen extends StatefulWidget {
 }
 
 class _RankScreenState extends State<RankScreen> {
+  List<User> rank = MyApp.controller.userMgr.getRankingWithFriends();
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: [
@@ -60,16 +63,21 @@ class _RankScreenState extends State<RankScreen> {
       Positioned(
           left: 65,
           top: MediaQuery.of(context).size.height * 0.195,
-          child: ProfilPodiumWidget(isfirst: 0, pseudo: "Louison", score: 122)),
+          child: ProfilPodiumWidget(
+              isfirst: 0, pseudo: rank[1].name, score: rank[1].stat.highscore)),
       Positioned(
           top: MediaQuery.of(context).size.height * 0.114,
           child: Align(
-            child: ProfilPodiumWidget(isfirst: 1, pseudo: "Lucas", score: 167),
+            child: ProfilPodiumWidget(
+                isfirst: 1,
+                pseudo: rank[0].name,
+                score: rank[0].stat.highscore),
           )),
       Positioned(
         right: 65,
         top: MediaQuery.of(context).size.height * 0.219,
-        child: ProfilPodiumWidget(isfirst: 0, pseudo: "David", score: 102),
+        child: ProfilPodiumWidget(
+            isfirst: 0, pseudo: rank[2].name, score: rank[2].stat.highscore),
       ),
       Positioned(
           bottom: -40,
@@ -82,7 +90,7 @@ class _RankScreenState extends State<RankScreen> {
                     image: DecorationImage(
                   image: AssetImage("assets/images/image_podium.png"),
                 )),
-                child: ListPodium(),
+                child: rank.length > 3 ? ListPodium() : Container(),
               )
             ],
           )),

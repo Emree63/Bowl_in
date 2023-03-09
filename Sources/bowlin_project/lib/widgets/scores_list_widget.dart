@@ -39,7 +39,7 @@ class CardGame extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(120, 3, 3, 0),
+                    padding: EdgeInsets.fromLTRB(120, 0, 3, 0),
                     child: ClipRect(
                         clipBehavior: Clip.hardEdge,
                         child: Opacity(
@@ -88,7 +88,7 @@ class CardGame extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                      padding: EdgeInsets.fromLTRB(5, 5, 10, 3),
+                      padding: EdgeInsets.fromLTRB(5, 3, 10, 3),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -121,7 +121,7 @@ class CardGame extends StatelessWidget {
                                           .toList()))),
                           const Spacer(),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 15, 0),
+                              padding: EdgeInsets.fromLTRB(0, 25, 15, 0),
                               child: GradientText(
                                 game.pointsCurrentUser.toString(),
                                 style: TextStyle(

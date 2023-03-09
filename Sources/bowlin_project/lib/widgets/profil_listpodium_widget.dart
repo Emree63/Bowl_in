@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../main.dart';
+import '../model/Player.dart';
+import '../model/User.dart';
+
 class ProfilPodiumWidget extends StatelessWidget {
   final int isfirst;
   final String pseudo;
@@ -149,58 +153,22 @@ class ListPodium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<User> rank = MyApp.controller.userMgr.getRankingWithFriends();
     return Padding(
         padding: EdgeInsets.fromLTRB(20, 80, 20, 0),
         child: SizedBox(
             height: 500,
             child: ScrollConfiguration(
               behavior: CustomScroll(),
-              child: ListView(
-                children: [
-                  ProfilListWidget(
-                    position: 4,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 5,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 6,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 7,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 8,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 9,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 10,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  ProfilListWidget(
-                    position: 11,
-                    pseudo: 'Emre',
-                    score: 35,
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                ],
+              child: ListView.builder(
+                itemCount: rank.length - 3,
+                itemBuilder: (BuildContext context, int index) {
+                  return ProfilListWidget(
+                    position: 4 + index,
+                    pseudo: rank[index + 3].name,
+                    score: rank[index + 3].stat.highscore,
+                  );
+                },
               ),
             )));
   }

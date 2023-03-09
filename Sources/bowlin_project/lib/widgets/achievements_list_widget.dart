@@ -85,7 +85,7 @@ class ListAchievementWidget extends StatelessWidget {
                     imagePath: 'assets/images/achievements/win_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/win_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath:
@@ -106,19 +106,19 @@ class ListAchievementWidget extends StatelessWidget {
                         'assets/images/achievements/2strikeinarow_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/2strikeinarow_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath: 'assets/images/achievements/5games_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/5games_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath: 'assets/images/achievements/10spares_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/10spares_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath:

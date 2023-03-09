@@ -21,7 +21,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           child: Stack(alignment: Alignment.topCenter, children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 1.45,
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -84,18 +84,13 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   spacing: 10,
                   verticalDirection: VerticalDirection.up,
                   children: [
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
+                    StatsCard(
+                        title: "Number of victory",
+                        val: MyApp.controller.userCurrent.stat.nbVictory
+                            .toDouble()),
+                    StatsCard(
+                        title: "Average pins per round",
+                        val: MyApp.controller.userCurrent.stat.avgPinsPerRound),
                   ],
                 ))
           ]),

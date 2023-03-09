@@ -61,7 +61,68 @@ class StubData extends IManager {
           Achievement("0 point"),
           Achievement("Win a game")
         ],
-        [],
+        [
+          User(
+              21,
+              "Arthur",
+              "./assets/images/image_user_cyan.png",
+              "emre.kartal@etu.uca.fr",
+              [
+                Achievement("5 games"),
+                Achievement("2 strikes in a row"),
+                Achievement("Win a game")
+              ],
+              [],
+              Stat(10, 2, 12, 110, 7, 6, 700, 58.33, 30.2)),
+          User(
+              22,
+              "Louison",
+              "./assets/images/image_user_cyan.png",
+              "emre.kartal@etu.uca.fr",
+              [
+                Achievement("5 games"),
+                Achievement("2 strikes in a row"),
+                Achievement("Win a game")
+              ],
+              [],
+              Stat(10, 2, 12, 150, 7, 6, 700, 58.33, 30.2)),
+          User(
+              23,
+              "Owen",
+              "./assets/images/image_user_cyan.png",
+              "emre.kartal@etu.uca.fr",
+              [
+                Achievement("5 games"),
+                Achievement("2 strikes in a row"),
+                Achievement("Win a game")
+              ],
+              [],
+              Stat(10, 2, 12, 10, 7, 6, 700, 58.33, 30.2)),
+          User(
+              24,
+              "LULU",
+              "./assets/images/image_user_cyan.png",
+              "emre.kartal@etu.uca.fr",
+              [
+                Achievement("5 games"),
+                Achievement("2 strikes in a row"),
+                Achievement("Win a game")
+              ],
+              [],
+              Stat(10, 2, 12, 40, 7, 6, 700, 58.33, 30.2)),
+          User(
+              25,
+              "Raphael",
+              "./assets/images/image_user_cyan.png",
+              "emre.kartal@etu.uca.fr",
+              [
+                Achievement("5 games"),
+                Achievement("2 strikes in a row"),
+                Achievement("Win a game")
+              ],
+              [],
+              Stat(10, 2, 12, 76, 7, 6, 700, 58.33, 30.2)),
+        ],
         Stat(2, 7, 9, 80, 4, 3, 250, 27.77, 10.55))
   ];
 
@@ -71,10 +132,10 @@ class StubData extends IManager {
         null, players[7].id, rounds, [players[0], players[1]]));
     gameDetails.add(GameDetail(2, DateTime.now(), players[0].id, 113, true,
         null, players[7].id, rounds, [players[0], players[1], players[7]]));
-    gameDetails.add(GameDetail(3, DateTime.now(), players[7].id, 93, true,
-        null, players[7].id, [], [players[0], players[7]]));
-    gameDetails.add(GameDetail(4, DateTime.now(), players[7].id, 93, true,
-        null, players[7].id, [], [players[1], players[7]]));
+    gameDetails.add(GameDetail(3, DateTime.now(), players[7].id, 93, true, null,
+        players[7].id, [], [players[0], players[7]]));
+    gameDetails.add(GameDetail(4, DateTime.now(), players[7].id, 93, true, null,
+        players[7].id, [], [players[1], players[7]]));
   }
 
   List<GameDetail> get gameDetails => _gameDetails;

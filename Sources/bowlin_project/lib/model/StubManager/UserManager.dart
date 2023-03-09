@@ -1,5 +1,7 @@
 library StubLib;
 
+import 'package:bowl_in/model/User.dart';
+
 import '../IUserManager.dart';
 import '../IAuthManager.dart';
 import '../Player.dart';
@@ -17,10 +19,8 @@ class UserManager extends IUserManager {
   // Methods
   List<Player> getUsersByName(String name) {
     List<Player> players = [];
-    for (var player in parent.players)
-    {
-      if (player.name == name)
-      {
+    for (var player in parent.players) {
+      if (player.name == name) {
         players.add(player);
       }
     }
@@ -28,13 +28,18 @@ class UserManager extends IUserManager {
   }
 
   Player getUserById(int id) {
-    for (var player in parent.players)
-    {
-      if (player.id == id)
-      {
+    for (var player in parent.players) {
+      if (player.id == id) {
         return player;
       }
     }
     throw new Exception("Player not found");
+  }
+
+  @override
+  List<User> getRankingWithFriends() {
+    List<User> sortedPlayers = List.from(parent.userCurrent.friends);
+    sortedPlayers.sort((a, b) => b.stat.highscore.compareTo(a.stat.highscore));
+    return sortedPlayers;
   }
 }
