@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'ingame_widgets.dart';
 
 class ButtonNewParty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () => context.go('/in-game'),
       child: Text("+  New game"),
       style: ElevatedButton.styleFrom(
         side: BorderSide(
@@ -132,6 +135,65 @@ class NewGameModal extends StatelessWidget {
                 )
               ],
             ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ScoreBoardModal extends StatelessWidget {
+  const ScoreBoardModal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Transform.scale(
+              scale: 1.14,
+              child: Image.asset("assets/images/image_scoreboard.png")),
+          SizedBox(
+            height: 245,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Positioned(
+                      child: PodiumGameOverWidget(
+                        isfirst: 2,
+                        pseudo: 'Lucas',
+                        score: 123,
+                      ),
+                      top: 70,
+                      left: 30,
+                    ),
+                    Positioned(
+                      child: PodiumGameOverWidget(
+                        isfirst: 1,
+                        pseudo: 'Momo',
+                        score: 160,
+                      ),
+                      top: 10,
+                    ),
+                    Positioned(
+                      child: PodiumGameOverWidget(
+                        isfirst: 3,
+                        pseudo: 'popo',
+                        score: 110,
+                      ),
+                      top: 70,
+                      right: 30,
+                    )
+                  ],
+                ),
+              )),
+            ]),
           )
         ],
       ),

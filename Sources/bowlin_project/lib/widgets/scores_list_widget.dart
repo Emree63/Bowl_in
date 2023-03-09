@@ -1,4 +1,5 @@
 import 'package:bowl_in/main.dart';
+import 'package:bowl_in/widgets/button_new_party.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -108,17 +109,17 @@ class CardGame extends StatelessWidget {
                               child: SizedBox(
                                   width: 130,
                                   child: Wrap(
-                                    spacing: 5,
-                                    runSpacing: 5,
-                                    children: game.playersId
-                                        .map((item) => ProfilPicture(
-                                              path: MyApp.controller.userMgr
-                                                  .getUserById(item)
-                                                  .image,
-                                            ))
-                                        .toList(),
-                                  ))),
-                          Spacer(),
+                                      spacing: 5,
+                                      runSpacing: 5,
+                                      children: game.playersId
+                                          .map((e) => ProfilPicture(
+                                                path: MyApp.controller.userMgr
+                                                    .getUserById(e)
+                                                    .image
+                                                    .toString(),
+                                              ))
+                                          .toList()))),
+                          const Spacer(),
                           Padding(
                               padding: EdgeInsets.fromLTRB(0, 30, 15, 0),
                               child: GradientText(
@@ -144,7 +145,13 @@ class CardGame extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () => context.go('/in-game'),
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return ScoreBoardModal();
+                });
+          },
         ));
   }
 }

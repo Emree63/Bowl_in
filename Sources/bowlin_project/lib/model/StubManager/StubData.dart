@@ -24,8 +24,8 @@ class StubData extends IManager {
     _initRounds();
     _initGameDetails();
     _initGame();
-    players[8].games = games;
-    userCurrent = players[8];
+    userCurrent = players[8] as User;
+    userCurrent.games = games;
   }
 
   IUserManager get userMgr => _userMgr;
@@ -51,8 +51,7 @@ class StubData extends IManager {
           Achievement("Win a game")
         ],
         [],
-        Stat(10, 2, 12, 130, 7, 6, 700, 58.33, 30.2)
-      ),
+        Stat(10, 2, 12, 130, 7, 6, 700, 58.33, 30.2)),
     User(
         9,
         "Dave",
@@ -64,8 +63,7 @@ class StubData extends IManager {
           Achievement("Win a game")
         ],
         [],
-        Stat(2, 7, 9, 80, 4, 3, 250, 27.77, 10.55)
-        )
+        Stat(2, 7, 9, 80, 4, 3, 250, 27.77, 10.55))
   ];
 
   List<GameDetail> _gameDetails = [];
@@ -101,7 +99,7 @@ class StubData extends IManager {
     rounds.add(Round(4, 5, 9, players[7]));
     rounds.add(Round(4, 1, 5, players[8]));
   }
-    
+
   List<Round> get rounds => _rounds;
 
   List<Game> _games = [];
@@ -115,6 +113,6 @@ class StubData extends IManager {
     games.add(Game(gameDetails[1].id, DateTime.now(), 101, true,
         [players[1].id, players[0].id]));
   }
-  
+
   List<Game> get games => _games;
 }
