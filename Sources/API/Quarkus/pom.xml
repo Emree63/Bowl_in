@@ -63,14 +63,14 @@
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
   <!-- Dependency for openID -->
-    <dependency>
+    <!-- <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-oidc</artifactId>
     </dependency>
     <dependency>
     <groupId>io.quarkus</groupId>
     <artifactId>quarkus-oidc-client</artifactId>
-    </dependency>
+    </dependency> -->
 
     <!-- Dependency for Keyclock -->
     <!-- <dependency>

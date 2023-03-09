@@ -10,5 +10,4 @@ public class Game {
     private UUID winner;
     private int nbPoints;
     private Boolean isFinished;
-
 }

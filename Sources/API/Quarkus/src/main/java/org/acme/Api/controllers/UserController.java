@@ -127,6 +127,7 @@ public class UserController {
     }
 
     @DELETE
+    @Path("/{id}")
     @ReactiveTransactional
     public Uni<Response> delete(@PathParam("id") Long id) {
         return service.deleteById(id)
