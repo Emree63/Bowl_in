@@ -25,6 +25,8 @@ import org.acme.Api.DTO.UserDTO;
 import org.acme.Api.DTO.UserTinyDTO;
 import org.acme.Api.service.UserService;
 import org.acme.Hibernates.entities.UserEntity;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.jboss.logging.Logger;
 
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
@@ -37,32 +39,21 @@ import io.smallrye.mutiny.Uni;
 @Path("/users")
 public class UserController {
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
-
     @Inject
     UserService service;
 
     @GET
+    @Operation(summary = "Get all users")
     @Produces(MediaType.APPLICATION_JSON)
     public Uni<List<UserTinyDTO>> getUsers() {
-        LOGGER.info("Getting all users and ordering it by name");
+        LOGGER.info("Get all users");
         return service.findAll().project(UserTinyDTO.class).list();
     }
 
-    // @GET
-    // @Path("/{pseudo}")
-    // public Uni<UserEntity> getUser(@PathParam("pseudo") String pseudo) {
-    // Uni<UserEntity> user = service.getUserByName(pseudo);
-    // return user;
-    // }
-
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/po")
-    public String hello() {
-        return "Hello from RESTEasy Reactive";
-    }
-
-    @GET
+    @Operation(summary = "Get a user by ID")
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
     public Uni<Response> getUserById(@PathParam("id") Long id) {
         LOGGER.info("Get user with id : " + id);
@@ -75,6 +66,9 @@ public class UserController {
     }
 
     @POST
+    @Operation(summary = "Create a new User")
+    @APIResponse(responseCode = "201", description = "User successfully created")
+    @APIResponse(responseCode = "422", description = "User invalidly set on request")
     @ReactiveTransactional
     public Uni<Response> createUser(UserEntity user) {
         if (user == null) {
@@ -89,37 +83,14 @@ public class UserController {
                 .onFailure().recoverWithItem(Response.status(Status.BAD_REQUEST).build());
     }
 
-    // @POST
-    // @ReactiveTransactional
-    // public Uni<Response> createUser(UserEntity user) {
-    // if (user == null) {
-    // throw new WebApplicationException("user was invalidly set on request.", 422);
-    // }
-    // LOGGER.info("creating user: " + user.getName());
-    // return service.persist(user)
-    // .map(persistedUser -> Response
-    // .status(Status.CREATED)
-    // .entity(persistedUser)
-    // .build())
-    // .onFailure().recoverWithItem(Response.status(Status.BAD_REQUEST).build());
-    // }
-
-    // @PUT
-    // @Path("/{id}")
-    // @ReactiveTransactional
-    // public Response updateUser(@PathParam("id") String id, User newUser) throws
-    // Exception {
-    // Uni<UserEntity> oldUser = service.findById(Long.valueOf(id));
-    // if (oldUser == null)
-    // throw new Exception("user not found");
-    // service.update(id, newUser);
-    // return Response.status(Status.OK).build();
-    // }
-
     @PUT
+    @Operation(summary = "Update a User")
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
     @ReactiveTransactional
     public Uni<Response> updateUser(@PathParam("id") Long id, UserEntity newUser) {
+        LOGGER.info("Update user with id : " + id);
         return service.findById(id)
                 .onItem().ifNull().failWith(() -> new WebApplicationException("User not found", Status.NOT_FOUND))
                 .onItem().ifNotNull().invoke(oldUser -> {
@@ -129,17 +100,23 @@ public class UserController {
     }
 
     @DELETE
+    @Operation(summary = "Delete a User")
+    @APIResponse(responseCode = "200", description = "User successfully deleted")
+    @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
     @ReactiveTransactional
     public Uni<Response> delete(@PathParam("id") Long id) {
+        LOGGER.info("Delete user with id : " + id);
         return service.deleteById(id)
                 .onItem().transform(entity -> !entity ? Response.status(Status.NOT_FOUND).build()
                         : Response.ok().status(200).build());
     }
 
     @GET
+    @Operation(summary = "Get the number of users")
     @Path("/count")
     public Uni<Long> count() {
+        LOGGER.info("Get user count");
         return service.count();
     }
 }

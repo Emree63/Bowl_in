@@ -2,8 +2,10 @@ package org.acme.Api.DTO;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.acme.Hibernates.entities.UserStatsEntity;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.annotations.ColumnDefault;
 @RegisterForReflection
+@Schema(description = "A DTO describing the stats of a User")
 public class UserStatsDTO {
     public Long nbVictories;
     public Long nbGames;
