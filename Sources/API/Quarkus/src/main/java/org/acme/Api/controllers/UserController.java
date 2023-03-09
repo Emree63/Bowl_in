@@ -20,6 +20,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import io.quarkus.hibernate.reactive.panache.PanacheQuery;
+import org.acme.Api.DTO.UserDTO;
 import org.acme.Api.service.UserService;
 import org.acme.Hibernates.entities.UserEntity;
 import org.jboss.logging.Logger;
@@ -40,10 +42,9 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<List<UserEntity>> getUsers() {
+    public Uni<List<UserDTO>> getUsers() {
         LOGGER.info("Getting all users and ordering it by name");
-        Uni<List<UserEntity>> allUsers = service.listAll(Sort.by("name"));
-        return allUsers;
+        return service.findAll().project(UserDTO.class).list();
     }
 
     // @GET
