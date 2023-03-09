@@ -1,8 +1,7 @@
 library StubLib;
 
-import 'package:bowl_in/model/Game.dart';
-
 import '../IManager.dart';
+import '../Game.dart';
 import '../IUserManager.dart';
 import '../IGameManager.dart';
 import '../Player.dart';
@@ -70,18 +69,22 @@ class StubData extends IManager {
   void _initGameDetails() {
     gameDetails.add(GameDetail(1, DateTime.now(), players[7].id, 123, true,
         null, players[7].id, rounds, [players[0], players[1]]));
-    gameDetails.add(GameDetail(2, DateTime.now(), players[8].id, 113, true,
-        null, players[8].id, rounds, [players[0], players[1], players[2]]));
+    gameDetails.add(GameDetail(2, DateTime.now(), players[0].id, 113, true,
+        null, players[7].id, rounds, [players[0], players[1], players[7]]));
+    gameDetails.add(GameDetail(3, DateTime.now(), players[7].id, 93, true,
+        null, players[7].id, [], [players[0], players[7]]));
+    gameDetails.add(GameDetail(4, DateTime.now(), players[7].id, 93, true,
+        null, players[7].id, [], [players[1], players[7]]));
   }
 
   List<GameDetail> get gameDetails => _gameDetails;
 
   List<Round> _rounds = [];
   void _initRounds() {
-    rounds.add(Round(4, 5, 9, players[7]));
+    rounds.add(Round(4, 5, 9, players[1]));
     rounds.add(Round(4, 1, 5, players[8]));
     rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(4, 1, 5, players[8]));
+    rounds.add(Round(4, 1, 5, players[1]));
     rounds.add(Round(4, 5, 9, players[7]));
     rounds.add(Round(1, 5, 6, players[8]));
     rounds.add(Round(4, 1, 5, players[7]));
@@ -89,6 +92,12 @@ class StubData extends IManager {
     rounds.add(Round(4, 5, 9, players[7]));
     rounds.add(Round(9, 0, 9, players[8]));
     rounds.add(Round(4, 5, 9, players[7]));
+    rounds.add(Round(4, 5, 9, players[8]));
+    rounds.add(Round(4, 2, 6, players[0]));
+    rounds.add(Round(3, 5, 8, players[1]));
+    rounds.add(Round(4, 5, 9, players[2]));
+    rounds.add(Round(4, 5, 9, players[4]));
+    rounds.add(Round(1, 5, 6, players[6]));
     rounds.add(Round(4, 5, 9, players[8]));
     rounds.add(Round(4, 2, 6, players[7]));
     rounds.add(Round(3, 5, 8, players[8]));

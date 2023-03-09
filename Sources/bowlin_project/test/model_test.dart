@@ -177,14 +177,14 @@ void main() {
   displayGameDetail(gd,2);
 
   print("\tgetGamesByPlayerId function with id: 2");
-  List<GameDetail> gds = mgr.gameMgr.getGamesByPlayerId(3);
+  List<GameDetail> gds = mgr.gameMgr.getGamesByPlayerId(8);
   for (var game in gds)
   {
     displayGameDetail(game,2);
   }
 
   print("\tgetGamesByPlayer function:");
-  var player = mgr.userMgr.getUserById(3);
+  var player = mgr.userMgr.getUserById(8);
   List<GameDetail> gdsPlayer = mgr.gameMgr.getGamesByPlayer(player);
   for (var game in gdsPlayer)
   {
@@ -199,6 +199,21 @@ void main() {
   {
     displayGameDetail(game,2);
   }
+  
+  print("\tgetPlayersByIdGame:");
+  var playersIntoGame = mgr.gameMgr.getPlayersByIdGame(2);
+  for (var player in playersIntoGame)
+  {
+    displayPlayer(player,2);
+  }
+
+  print("\tgetRankByIdGame:");
+  var ranksPlayers = mgr.gameMgr.getRankByIdGame(2);
+  ranksPlayers.forEach((id, rank) {
+    displayPlayer(mgr.userMgr.getUserById(id),2);
+    print('\t\tRank $rank');
+  });
+
 
 }
 

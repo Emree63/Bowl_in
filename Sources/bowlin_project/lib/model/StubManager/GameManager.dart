@@ -60,11 +60,25 @@ class GameManager extends IGameManager {
     return games;
   }
 
-  List<User> getPlayersByIdGame(int id) {
-    return [];
+  List<Player> getPlayersByIdGame(int id) {
+    List<Player> players = [];
+    for (var element in parent.gameDetails) {
+      if (element.id == id) {
+        for (var player in element.players) {
+          players.add(player);
+        }
+        return players;
+      }
+    }
+    throw Exception("Game not found.");
   }
 
   Map<int, int> getRankByIdGame(int id) {
-    return {};
+    for (var game in parent.gameDetails) {
+      if (game.id == id) {
+        return game.getRank();
+      }
+    }
+    throw Exception("Game not found.");
   }
 }

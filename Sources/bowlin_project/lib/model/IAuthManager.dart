@@ -1,5 +1,5 @@
 abstract class IAuthManager {
 
   // Methods
-  bool verifiedUser(String name, String password);
+  bool verifiedUser(String mail, String password);
 }
