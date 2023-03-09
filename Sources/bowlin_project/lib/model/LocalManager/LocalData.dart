@@ -3,6 +3,11 @@ library LocalLib;
 import '../IManager.dart';
 import '../IUserManager.dart';
 import '../IGameManager.dart';
+import '../Round.dart';
+import '../Stat.dart';
+import '../GameDetail.dart';
+import '../Game.dart';
+import '../Achievement.dart';
 import '../User.dart';
 import 'UserManager.dart';
 import 'GameManager.dart';
@@ -15,12 +20,8 @@ class LocalData extends IManager {
   final LocalStorage storage = LocalStorage('local_key');
 
   List<User> users = [];
-
-  LocalData() {
-    _userMgr = UserManager(this);
-    _gameMgr = GameManager(this);
-    users = storage.getItem('users');
-  }
+  List<GameDetail> gameDetails = [];
+  List<Game> games = [];
 
   _saveToStorage() {
     storage.setItem('users', toJSONEncodable());
@@ -34,5 +35,13 @@ class LocalData extends IManager {
     return users.map((user) {
       return user.toJSONEncodable();
     }).toList();
+  }
+
+  LocalData() {
+    _userMgr = UserManager(this);
+    _gameMgr = GameManager(this);
+    users = storage.getItem('users');
+    games = storage.getItem('games');
+    gameDetails = storage.getItem('gameDetails');
   }
 }

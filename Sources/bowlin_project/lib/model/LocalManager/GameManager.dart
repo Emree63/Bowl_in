@@ -9,7 +9,6 @@ import 'LocalData.dart';
 import 'package:uuid/uuid.dart';
 
 class GameManager extends IGameManager {
-  List<GameDetail> games = [];
   final LocalData parent;
 
   // Constructor
@@ -18,23 +17,38 @@ class GameManager extends IGameManager {
   // Methods
   @override
   GameDetail getGameById(Uuid id) {
-    return GameDetail(Uuid(), DateTime.now(), Uuid(), 290, true, null,
-        Guest(Uuid(), "", ""), [], []);
+    for (var element in parent.games) {
+      if (element.id == id) {
+        for (var gd in parent.gameDetails) {
+          if (element.id == gd.id) {
+            return gd;
+          }
+        }
+        throw Exception("No GameDetail found corresponding to the given id");
+      }
+    }
+    throw Exception("No Game found corresponding to the given id");
   }
 
   @override
   List<GameDetail> getGamesByPlayerId(Uuid id) {
-    return [];
+    List<GameDetail> games = [];
+    for (var element in parent.gameDetails) {
+      if (element.players.contains(id)) {
+        games.add(element);
+      }
+    }
+    return games;
   }
 
   @override
   List<GameDetail> getGamesByPlayer(Player user) {
-    return [];
+    throw Exception("Impossible to get games by player with LocalStorage.");
   }
 
   @override
   List<GameDetail> getGamesByPlayers(List<Player> users) {
-    return [];
+    throw Exception("Impossible to get games by players with LocalStorage.");
   }
 
   @override
