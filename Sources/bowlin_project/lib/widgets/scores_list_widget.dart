@@ -38,7 +38,7 @@ class CardGame extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(120, 3, 0, 0),
+                    padding: EdgeInsets.fromLTRB(120, 3, 3, 0),
                     child: ClipRect(
                         clipBehavior: Clip.hardEdge,
                         child: Opacity(
@@ -86,15 +86,17 @@ class CardGame extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Toast(
-                          value:
-                              DateFormat('dd MMMM', 'fr_FR').format(game.date)),
-                      Toast(value: DateFormat('HH:mm').format(game.date)),
-                    ],
-                  ),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(5, 5, 10, 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Toast(
+                              value: DateFormat('dd MMMM', 'fr_FR')
+                                  .format(game.date)),
+                          Toast(value: DateFormat('HH:mm').format(game.date)),
+                        ],
+                      )),
                   Stack(
                     children: [
                       Row(
@@ -104,20 +106,18 @@ class CardGame extends StatelessWidget {
                           Padding(
                               padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
                               child: SizedBox(
-                                width: 130,
-                                child: Wrap(
-                                  spacing: 5,
-                                  runSpacing: 5,
-                                  children: [
-                                    ProfilPicture(),
-                                    ProfilPicture(),
-                                    ProfilPicture(),
-                                    ProfilPicture(),
-                                    ProfilPicture(),
-                                    ProfilPicture(),
-                                  ],
-                                ),
-                              )),
+                                  width: 130,
+                                  child: Wrap(
+                                    spacing: 5,
+                                    runSpacing: 5,
+                                    children: game.playersId
+                                        .map((item) => ProfilPicture(
+                                              path: MyApp.controller.userMgr
+                                                  .getUserById(item)
+                                                  .image,
+                                            ))
+                                        .toList(),
+                                  ))),
                           Spacer(),
                           Padding(
                               padding: EdgeInsets.fromLTRB(0, 30, 15, 0),
@@ -173,15 +173,16 @@ class ListCardGame extends StatelessWidget {
 }
 
 class ProfilPicture extends StatelessWidget {
+  final String path;
+
+  const ProfilPicture({Key? key, required this.path}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 25,
       width: 25,
       decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assets/images/image_user_green.png"),
-            fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage(path), fit: BoxFit.cover),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     );

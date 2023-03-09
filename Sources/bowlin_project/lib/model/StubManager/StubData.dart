@@ -101,8 +101,13 @@ class StubData extends IManager {
 
   List<Game> games = [];
   void _initGame() {
-    games.add(Game(gameDetails[0].id,
-        DateTime.now().subtract(Duration(days: 14)), 123, true, []));
-    games.add(Game(gameDetails[1].id, DateTime.now(), 101, true, []));
+    games.add(Game(
+        gameDetails[0].id,
+        DateTime.now().subtract(Duration(days: 14)),
+        123,
+        true,
+        [players[0].id, players[1].id]));
+    games.add(Game(gameDetails[1].id, DateTime.now(), 101, true,
+        [players[1].id, players[0].id]));
   }
 }
