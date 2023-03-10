@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             verticalDirection: VerticalDirection.up,
             children: [
-              ListAchievementWidget(nbUnlocked: 1),
+              ListAchievementWidget(nbUnlocked: 0),
               Padding(
                   padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
                   child: ProfileWidget()),

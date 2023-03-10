@@ -29,23 +29,18 @@ class _GameScreenState extends State<GameScreen> {
             ],
           )),
         ),
-        Align(
-          alignment: AlignmentDirectional.topCenter,
-          child: Container(
-            height: 120,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage("assets/images/image_score.png"),
-            )),
-            child: Center(
-                child: Text(
-              "Scores",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 20),
-            )),
-          ),
+        Container(
+          height: 120,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/images/image_score.png"),
+          )),
+          child: Center(
+              child: Text(
+            "Scores",
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+          )),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -54,19 +49,14 @@ class _GameScreenState extends State<GameScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ButtonNewParty(),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 ButtonJoinParty(),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Positioned(
-                  bottom: 0,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height - 140,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListCardGame(),
-                  )),
+            Container(
+              height: MediaQuery.of(context).size.height - 140,
+              width: MediaQuery.of(context).size.width,
+              child: ListCardGame(),
             ),
           ],
         )

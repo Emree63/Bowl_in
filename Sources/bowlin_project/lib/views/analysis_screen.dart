@@ -1,3 +1,4 @@
+import 'package:bowl_in/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           child: Stack(alignment: Alignment.topCenter, children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 1.45,
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -42,15 +43,18 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                     children: [
                       Positioned(
                         left: 34,
-                        child: SpareCard(score: 12),
+                        child: SpareCard(
+                            score: MyApp.controller.userCurrent.stat.nbSpares),
                       ),
                       Positioned(
                         top: 0,
-                        child: StrikeCard(score: 12),
+                        child: StrikeCard(
+                            score: MyApp.controller.userCurrent.stat.nbStrikes),
                       ),
                       Positioned(
                         right: 34,
-                        child: GameCard(score: 12),
+                        child: GameCard(
+                            score: MyApp.controller.userCurrent.stat.nbGames),
                       )
                     ],
                   ),
@@ -80,18 +84,13 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   spacing: 10,
                   verticalDirection: VerticalDirection.up,
                   children: [
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
-                    StatsCard(title: "Average", val: 12),
+                    StatsCard(
+                        title: "Number of victory",
+                        val: MyApp.controller.userCurrent.stat.nbVictory
+                            .toDouble()),
+                    StatsCard(
+                        title: "Average pins per round",
+                        val: MyApp.controller.userCurrent.stat.avgPinsPerRound),
                   ],
                 ))
           ]),

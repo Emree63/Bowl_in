@@ -1,23 +1,45 @@
 library StubLib;
+
+import 'package:bowl_in/model/User.dart';
+
 import '../IUserManager.dart';
 import '../IAuthManager.dart';
+import '../Player.dart';
 import 'AuthManager.dart';
 import 'StubData.dart';
-import '../User.dart';
+import '../Player.dart';
 import '../Stat.dart';
-import 'package:uuid/uuid.dart';
 
 class UserManager extends IUserManager {
   final StubData parent;
 
   // Constructor
-  UserManager(this.parent):super(AuthManager(parent));
+  UserManager(this.parent) : super(AuthManager(parent));
 
   // Methods
-  List<User> getUsersByName(String name) {
-    return [];
+  List<Player> getUsersByName(String name) {
+    List<Player> players = [];
+    for (var player in parent.players) {
+      if (player.name == name) {
+        players.add(player);
+      }
+    }
+    return players;
   }
-  User getUserById(Uuid id) {
-    return User(Uuid(),"","","",[],[], Stat(10,10,10,10,10,10,10,10,10));
+
+  Player getUserById(int id) {
+    for (var player in parent.players) {
+      if (player.id == id) {
+        return player;
+      }
+    }
+    throw new Exception("Player not found");
+  }
+
+  @override
+  List<User> getRankingWithFriends() {
+    List<User> sortedPlayers = List.from(parent.userCurrent.friends);
+    sortedPlayers.sort((a, b) => b.stat.highscore.compareTo(a.stat.highscore));
+    return sortedPlayers;
   }
 }

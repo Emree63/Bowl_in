@@ -6,6 +6,7 @@ import '../views/ingame_screen.dart';
 import '../views/main_screen.dart';
 import '../views/rank_screen.dart';
 import '../views/welcome_screen.dart';
+import '../widgets/ingame_widgets.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -36,7 +37,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'in-game',
           builder: (BuildContext context, GoRouterState state) {
-            return const InGameScreen();
+            return InGameScreen();
           },
         ),
       ],

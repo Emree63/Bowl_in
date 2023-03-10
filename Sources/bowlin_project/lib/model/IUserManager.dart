@@ -1,4 +1,4 @@
-import 'package:uuid/uuid.dart';
+import 'Player.dart';
 import 'User.dart';
 import 'IAuthManager.dart';
 
@@ -10,6 +10,7 @@ abstract class IUserManager {
 
   // Methods
   IAuthManager get authMgr => _authMgr;
-  List<User> getUsersByName(String name);
-  User getUserById(Uuid id);
+  List<Player> getUsersByName(String name);
+  Player getUserById(int id);
+  List<User> getRankingWithFriends();
 }
