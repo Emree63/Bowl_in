@@ -22,7 +22,8 @@ steps:
       SONAR_TOKEN:
         from_secret: SONAR_TOKEN
     settings:
-      sources: ./Sources/bowlin_project 
+      sources: ./Sources/bowlin_project
+      exclusions: '**/*.java'
     commands:
       - export SONAR_SCANNER_VERSION=4.7.0.2747
       - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -32,7 +33,6 @@ steps:
       - export SONAR_SCANNER_OPTS="-server"
       - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=. -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
     depends_on: [ app-build ]
-    exclusions: '**/*.java'
 
 # database container deployment
   - name: deploy-container-postgresql
