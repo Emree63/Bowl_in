@@ -61,15 +61,9 @@ class GameDetail {
     _currentRound = value;
   }
 
-<<<<<<< HEAD
-  Uuid get host => _host;
-
-  set host(Uuid value) {
-=======
   int get host => _host;
 
   set host(int value) {
->>>>>>> origin/stubdata
     _host = value;
   }
 

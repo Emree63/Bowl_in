@@ -213,11 +213,7 @@ void main() {
   ranksPlayers.forEach((id, rank) {
     displayPlayer(mgr.userMgr.getUserById(id),2);
     print('\t\tRank $rank');
-  });
-
-
-    print("StubManager:");
-  }
+  });  
 }
 
 void displayGameDetail(GameDetail gd, int numTabs)

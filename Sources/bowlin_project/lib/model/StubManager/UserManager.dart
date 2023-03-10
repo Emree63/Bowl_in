@@ -1,10 +1,9 @@
 library StubLib;
 
-import 'package:bowl_in/model/User.dart';
-
 import '../IUserManager.dart';
 import '../IAuthManager.dart';
 import '../Player.dart';
+import '../User.dart';
 import 'AuthManager.dart';
 import 'StubData.dart';
 import '../Player.dart';
