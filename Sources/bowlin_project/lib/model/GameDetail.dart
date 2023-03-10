@@ -24,7 +24,7 @@ class GameDetail {
       this._host,
       this._rounds,
       this._players);
-      
+
   // Getters and setters
   Uuid get id => _id;
 
@@ -78,5 +78,19 @@ class GameDetail {
 
   set players(List<Player> value) {
     _players = value;
+  }
+
+  toJSONEncodable() {
+    Map<String, dynamic> m = new Map();
+
+    m['id'] = id;
+    m['time'] = time;
+    m['winner'] = winner;
+    m['nbPoints'] = nbPoints;
+    m['host'] = host;
+    m['rounds'] = rounds;
+    m['players'] = players;
+
+    return m;
   }
 }

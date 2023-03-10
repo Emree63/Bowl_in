@@ -8,7 +8,8 @@ class Game {
   List<String> _playerImages = [];
 
   // Constructor
-  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished, this._playerImages);
+  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished,
+      this._playerImages);
 
   // Getters and setters
   Uuid get id => _id;
@@ -39,5 +40,15 @@ class Game {
 
   set playerImages(List<String> value) {
     _playerImages = value;
+  }
+
+  toJSONEncodable() {
+    Map<String, dynamic> m = new Map();
+
+    m['id'] = id;
+    m['time'] = time;
+    m['images'] = playerImages;
+
+    return m;
   }
 }

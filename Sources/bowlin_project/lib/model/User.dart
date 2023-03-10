@@ -43,11 +43,11 @@ class User extends Player {
     Map<String, dynamic> m = new Map();
 
     m['id'] = id;
-    m['Name'] = name;
-    m['Mail'] = _mail;
-    m['Image'] = image;
-    m['Achievement'] = achievements;
-    m['Friends'] = friends;
+    m['name'] = name;
+    m['image'] = image;
+    m['mail'] = mail;
+    m['achievements'] = achievements;
+    m['friends'] = friends;
     m['Stat'] = stat;
 
     return m;
