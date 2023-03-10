@@ -32,6 +32,7 @@ steps:
       - export SONAR_SCANNER_OPTS="-server"
       - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=. -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
     depends_on: [ app-build ]
+    exclusions: '**/*.java'
 
 # database container deployment
   - name: deploy-container-postgresql
