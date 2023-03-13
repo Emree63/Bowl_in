@@ -15,6 +15,11 @@ class GameManager extends IGameManager {
   GameManager(this.parent);
 
   // Methods
+  void addGameToLocalStorage(Game game) {
+    parent.games.add(game);
+    parent.storage._saveToStorage();
+  }
+
   @override
   GameDetail getGameById(Uuid id) {
     for (var element in parent.games) {
