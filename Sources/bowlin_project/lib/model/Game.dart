@@ -44,8 +44,8 @@ class Game {
     Map<String, dynamic> m = new Map();
 
     m['id'] = id;
-    m['time'] = time;
-    m['images'] = playerImages;
+    m['date'] = date;
+    m['IdUsers'] = playersId;
 
     return m;
   }
