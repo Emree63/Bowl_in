@@ -41,7 +41,7 @@ class LastRound extends AbstractRound{
     if(previousRound?.isStrike()??false){
       update(points??0);
     }
-    unsubscribe();
+    unsubscribePreviousRound();
   }
 
 

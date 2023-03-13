@@ -1,3 +1,5 @@
+import 'package:bowl_in/model/AbstractRound.dart';
+
 import 'Player.dart';
 import 'Round.dart';
 
@@ -7,9 +9,8 @@ class GameDetail {
   int _winner;
   int _nbPoints;
   bool _isFinished;
-  Round? _currentRound;
   int _host;
-  List<Round> _rounds = [];
+  List<AbstractRound> _rounds = [];
   List<Player> _players = [];
 
   // Constructor
@@ -19,7 +20,6 @@ class GameDetail {
       this._winner,
       this._nbPoints,
       this._isFinished,
-      this._currentRound,
       this._host,
       this._rounds,
       this._players);
@@ -55,21 +55,15 @@ class GameDetail {
     _isFinished = value;
   }
 
-  Round? get currentRound => _currentRound;
-
-  set currentRound(Round? value) {
-    _currentRound = value;
-  }
-
   int get host => _host;
 
   set host(int value) {
     _host = value;
   }
 
-  List<Round> get rounds => _rounds;
+  List<AbstractRound> get rounds => _rounds;
 
-  set rounds(List<Round> value) {
+  set rounds(List<AbstractRound> value) {
     _rounds = value;
   }
 

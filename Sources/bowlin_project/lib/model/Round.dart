@@ -13,7 +13,7 @@ class Round extends AbstractRound{
       firstThrow=val;
       if(previousRound?.isSpare() ?? false){
         previousRound?.update(val);
-        unsubscribe();
+        unsubscribePreviousRound();
       }
       return false; //Le round n'est pas fini
     }else if(firstThrow==10){
@@ -35,7 +35,7 @@ class Round extends AbstractRound{
     if(isSpareOrStrike()){
       gamePlayer.onSpareOrStrike();
     }
-    unsubscribe();
+    unsubscribePreviousRound();
   }
 
 

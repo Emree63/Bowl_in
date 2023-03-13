@@ -66,8 +66,8 @@ abstract class AbstractRound {
     previousRound?.update(val);
   }
 
-  void unsubscribe(){
-    previousRound?.unsubscribe();
+  void unsubscribePreviousRound(){
+    previousRound?.unsubscribePreviousRound();
     previousRound=null;
   }
 

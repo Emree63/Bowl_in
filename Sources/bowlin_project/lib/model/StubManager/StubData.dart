@@ -128,13 +128,11 @@ class StubData extends IManager {
 
   List<GameDetail> _gameDetails = [];
   void _initGameDetails() {
-    gameDetails.add(GameDetail(1, DateTime.now(), players[7].id, 123, true,
-        null, players[7].id, rounds, [players[0], players[1]]));
-    gameDetails.add(GameDetail(2, DateTime.now(), players[0].id, 113, true,
-        null, players[7].id, rounds, [players[0], players[1], players[7]]));
-    gameDetails.add(GameDetail(3, DateTime.now(), players[7].id, 93, true, null,
+    gameDetails.add(GameDetail(1, DateTime.now(), players[7].id, 123, true, players[7].id, rounds, [players[0], players[1]]));
+    gameDetails.add(GameDetail(2, DateTime.now(), players[0].id, 113, true, players[7].id, rounds, [players[0], players[1], players[7]]));
+    gameDetails.add(GameDetail(3, DateTime.now(), players[7].id, 93, true,
         players[7].id, [], [players[0], players[7]]));
-    gameDetails.add(GameDetail(4, DateTime.now(), players[7].id, 93, true, null,
+    gameDetails.add(GameDetail(4, DateTime.now(), players[7].id, 93, true,
         players[7].id, [], [players[1], players[7]]));
   }
 
