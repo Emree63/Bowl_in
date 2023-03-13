@@ -1,3 +1,4 @@
+import 'package:bowl_in/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,7 +85,7 @@ class ListAchievementWidget extends StatelessWidget {
                     imagePath: 'assets/images/achievements/win_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/win_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath:
@@ -105,19 +106,19 @@ class ListAchievementWidget extends StatelessWidget {
                         'assets/images/achievements/2strikeinarow_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/2strikeinarow_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath: 'assets/images/achievements/5games_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/5games_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath: 'assets/images/achievements/10spares_locked.png',
                     imagePathUnlocked:
                         'assets/images/achievements/10spares_unlocked.png',
-                    isUnlocked: 1,
+                    isUnlocked: 0,
                   ),
                   AchievementWidget(
                     imagePath:
@@ -152,7 +153,7 @@ class ProfileWidget extends StatelessWidget {
           width: 80,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/image_user_orange.png"),
+                image: AssetImage(MyApp.controller.userCurrent.image),
                 fit: BoxFit.cover),
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
@@ -163,7 +164,7 @@ class ProfileWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Lucas",
+                MyApp.controller.userCurrent.name,
                 style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontStyle: FontStyle.italic,
@@ -186,7 +187,9 @@ class ProfileWidget extends StatelessWidget {
                             fontSize: 15),
                       ),
                       TextSpan(
-                        text: "122 pts",
+                        text: MyApp.controller.userCurrent.stat.highscore
+                                .toString() +
+                            " pts",
                         style: GoogleFonts.roboto(
                             color: Color(0xffF40375).withOpacity(0.75),
                             fontStyle: FontStyle.italic,
@@ -197,38 +200,44 @@ class ProfileWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  text: '',
-                  style: DefaultTextStyle.of(context).style,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: "Last game ",
-                      style: GoogleFonts.roboto(
-                          color: Colors.white.withOpacity(0.65),
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    ),
-                    TextSpan(
-                      text: "23",
-                      style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    ),
-                    TextSpan(
-                      text: " days(s) ago",
-                      style: GoogleFonts.roboto(
-                          color: Colors.white.withOpacity(0.65),
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    ),
-                  ],
-                ),
-              ),
+              MyApp.controller.userCurrent.games.length > 0
+                  ? RichText(
+                      text: TextSpan(
+                        text: '',
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "Last game ",
+                            style: GoogleFonts.roboto(
+                                color: Colors.white.withOpacity(0.65),
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
+                          TextSpan(
+                            text: DateTime.now()
+                                .difference(MyApp
+                                    .controller.userCurrent.games.first.date)
+                                .inDays
+                                .toString(),
+                            style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
+                          TextSpan(
+                            text: " days(s) ago",
+                            style: GoogleFonts.roboto(
+                                color: Colors.white.withOpacity(0.65),
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Container(),
             ],
           ),
         )

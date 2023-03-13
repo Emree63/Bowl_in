@@ -8,11 +8,15 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bowl_in/config/app_router.dart';
 
+import 'model/IManager.dart';
+import 'model/StubManager/StubData.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static IManager controller = StubData();
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {

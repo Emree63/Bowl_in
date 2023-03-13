@@ -100,7 +100,7 @@ class GameCard extends StatelessWidget {
 
 class StatsCard extends StatelessWidget {
   final String title;
-  final int val;
+  final double val;
 
   const StatsCard({Key? key, required this.title, required this.val})
       : super(key: key);

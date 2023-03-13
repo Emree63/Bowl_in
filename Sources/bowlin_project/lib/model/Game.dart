@@ -1,27 +1,25 @@
-import 'package:uuid/uuid.dart';
-
 class Game {
-  Uuid _id;
-  DateTime _time;
+  int _id;
+  DateTime _date;
   int _pointsCurrentUser;
   bool _isFinished;
-  List<String> _playerImages = [];
+  List<int> _playersId = [];
 
   // Constructor
-  Game(this._id, this._time, this._pointsCurrentUser, this._isFinished,
-      this._playerImages);
+  Game(this._id, this._date, this._pointsCurrentUser, this._isFinished,
+      this._playersId);
 
   // Getters and setters
-  Uuid get id => _id;
+  int get id => _id;
 
-  set id(Uuid value) {
+  set id(int value) {
     _id = value;
   }
 
-  DateTime get time => _time;
+  DateTime get date => _date;
 
-  set time(DateTime value) {
-    _time = value;
+  set date(DateTime value) {
+    _date = value;
   }
 
   int get pointsCurrentUser => _pointsCurrentUser;
@@ -36,10 +34,10 @@ class Game {
     _isFinished = value;
   }
 
-  List<String> get playerImages => _playerImages;
+  List<int> get playersId => _playersId;
 
-  set playerImages(List<String> value) {
-    _playerImages = value;
+  set playersId(List<int> value) {
+    _playersId = value;
   }
 
   toJSONEncodable() {
