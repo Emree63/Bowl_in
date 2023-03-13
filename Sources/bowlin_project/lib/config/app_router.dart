@@ -1,3 +1,4 @@
+import 'package:bowl_in/widgets/button_new_party.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,6 +39,12 @@ final GoRouter router = GoRouter(
           path: 'in-game',
           builder: (BuildContext context, GoRouterState state) {
             return InGameScreen();
+          },
+        ),
+        GoRoute(
+          path: 'scoreboard',
+          builder: (BuildContext context, GoRouterState state) {
+            return FinalScoreBoard();
           },
         ),
       ],

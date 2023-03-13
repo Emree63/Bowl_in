@@ -1,36 +1,42 @@
-import 'Player.dart';
+import 'package:bowl_in/model/AbstractRound.dart';
+import 'GamePlayer.dart';
 
-class Round {
-  int _firstThrow;
-  int? _secondThrow;
-  int _points;
-  Player _player;
+class Round extends AbstractRound{
 
-  // Constructor
-  Round(this._firstThrow, this._secondThrow, this._points, this._player);
+  GamePlayer gamePlayer;
 
-  // Getters and setters
-  int get firstThrow => _firstThrow;
+  Round(super.firstThrow, super.secondThrow, super.points, super.player, this.gamePlayer);
 
-  set firstThrow(int value) {
-    _firstThrow = value;
+  @override
+  bool computeNext(int val) {
+    if(firstThrow==null){
+      firstThrow=val;
+      if(previousRound?.isSpare() ?? false){
+        previousRound?.update(val);
+        unsubscribe();
+      }
+      return false; //Le round n'est pas fini
+    }else if(firstThrow==10){
+      secondThrow=val;
+      return false; //Le round n'est pas fini
+    }
+    computePoints();
+    return true; //Le round est fini
   }
 
-  int? get secondThrow => _secondThrow;
+  @override
+  void computePoints() {
+    points = (firstThrow ?? 0)+(secondThrow ?? 0);
 
-  set secondThrow(int? value) {
-    _secondThrow = value;
+    if(previousRound?.isStrike() ?? false){
+      previousRound?.update(points ?? 0);
+    }
+
+    if(isSpareOrStrike()){
+      gamePlayer.onSpareOrStrike();
+    }
+    unsubscribe();
   }
 
-  int get points => _points;
 
-  set points(int value) {
-    _points = value;
-  }
-
-  Player get player => _player;
-
-  set player(Player value) {
-    _player = value;
-  }
 }

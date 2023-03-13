@@ -85,7 +85,7 @@ class GameDetail {
       if (player.id == id) {
         for (var element in rounds) {
           if (element.player == player) {
-            pointPlayer += element.points;
+            pointPlayer += element.points ?? 0;
           }
         }
         return pointPlayer;
@@ -98,7 +98,7 @@ class GameDetail {
     Map<int, int> rank = {};
 
     for (var player in players) {
-      rank.addAll({player.id: this.getPointByPlayerId(player.id)});
+      rank.addAll({player.id: getPointByPlayerId(player.id)});
     }
     var sortedByKeyMap = Map.fromEntries(
         rank.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));

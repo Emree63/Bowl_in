@@ -142,32 +142,32 @@ class StubData extends IManager {
 
   List<Round> _rounds = [];
   void _initRounds() {
-    rounds.add(Round(4, 5, 9, players[1]));
-    rounds.add(Round(4, 1, 5, players[8]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(4, 1, 5, players[1]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(1, 5, 6, players[8]));
-    rounds.add(Round(4, 1, 5, players[7]));
-    rounds.add(Round(1, 5, 6, players[8]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(9, 0, 9, players[8]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(4, 5, 9, players[8]));
-    rounds.add(Round(4, 2, 6, players[0]));
-    rounds.add(Round(3, 5, 8, players[1]));
-    rounds.add(Round(4, 5, 9, players[2]));
-    rounds.add(Round(4, 5, 9, players[4]));
-    rounds.add(Round(1, 5, 6, players[6]));
-    rounds.add(Round(4, 5, 9, players[8]));
-    rounds.add(Round(4, 2, 6, players[7]));
-    rounds.add(Round(3, 5, 8, players[8]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(4, 5, 9, players[8]));
-    rounds.add(Round(1, 5, 6, players[7]));
-    rounds.add(Round(4, 5, 9, players[8]));
-    rounds.add(Round(4, 5, 9, players[7]));
-    rounds.add(Round(4, 1, 5, players[8]));
+    rounds.add(Round(4, 5, 9, players[1], gamePlayer));
+    rounds.add(Round(4, 1, 5, players[8], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(4, 1, 5, players[1], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(1, 5, 6, players[8], gamePlayer));
+    rounds.add(Round(4, 1, 5, players[7], gamePlayer));
+    rounds.add(Round(1, 5, 6, players[8], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(9, 0, 9, players[8], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[8], gamePlayer));
+    rounds.add(Round(4, 2, 6, players[0], gamePlayer));
+    rounds.add(Round(3, 5, 8, players[1], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[2], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[4], gamePlayer));
+    rounds.add(Round(1, 5, 6, players[6], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[8], gamePlayer));
+    rounds.add(Round(4, 2, 6, players[7], gamePlayer));
+    rounds.add(Round(3, 5, 8, players[8], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[8], gamePlayer));
+    rounds.add(Round(1, 5, 6, players[7], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[8], gamePlayer));
+    rounds.add(Round(4, 5, 9, players[7], gamePlayer));
+    rounds.add(Round(4, 1, 5, players[8], gamePlayer));
   }
 
   List<Round> get rounds => _rounds;
