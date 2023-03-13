@@ -48,11 +48,11 @@ La racine de notre gitlab est composé de deux dossier essentielles au projet:
 
 ## Technicien en charge de l'application
 
-- Emre KARTAL 
-- Lucas DELANIER
-- Arthur VALIN 
-- David D'ALMEIDA
-- Louison PARANT
+- Emre KARTAL : emre.kartal@etu.uca.fr
+- Lucas DELANIER : lucas.delanier@etu.uca.fr
+- Arthur VALIN : arthur.valin@etu.uca.fr
+- David D'ALMEIDA : david.d_almeida@etu.uca.fr
+- Louison PARANT : louison.parant@etu.uca.fr
 
 <div align = center>
 © PM2
