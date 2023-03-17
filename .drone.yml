@@ -15,6 +15,14 @@ steps:
       - cd ./Sources/bowlin_project/
       - flutter build apk
 
+  - name: test
+    image: cirrusci/flutter:stable
+    commands:
+      - cd Sources/bowlin_project/
+      - flutter pub get
+      - flutter test
+    depends_on: [ app-build ]
+
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
     image: cirrusci/flutter:stable 
@@ -49,6 +57,7 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_POSTGRES_PASSWORD:
           from_secret: db_password
         ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
+
   - name: deploy-adminer
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
