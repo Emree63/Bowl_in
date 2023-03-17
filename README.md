@@ -11,6 +11,8 @@
 &nbsp; ![Quarkus](https://img.shields.io/badge/Quarkus-000?style=for-the-badge&logo=Quarkus&logoColor=white&color=blue)
 &nbsp; ![Flutter](https://img.shields.io/badge/Flutter-000?style=for-the-badge&logo=flutter&logoColor=blue&color=white)
 &nbsp; ![PostgreSQL](https://img.shields.io/badge/Postgresql-000?style=for-the-badge&logo=postgresql&logoColor=white&color=blue)
+</br>
+[![Quality Gate Status](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=alert_status&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
 [![Duplicated Lines (%)](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=duplicated_lines_density&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
 [![Security Rating](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=security_rating&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
 [![Vulnerabilities](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=vulnerabilities&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
