@@ -23,7 +23,7 @@ steps:
         from_secret: SONAR_TOKEN
     settings:
       sources: ./Sources/bowlin_project
-      exclusions: '**/*.java'
+      exclusions: 'Sources/API/**'
     commands:
       - export SONAR_SCANNER_VERSION=4.7.0.2747
       - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
