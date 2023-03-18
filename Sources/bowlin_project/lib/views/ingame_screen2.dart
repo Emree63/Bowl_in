@@ -20,23 +20,26 @@ class InGameScreen2 extends StatefulWidget {
 class _InGameScreen2State extends State<InGameScreen2> {
   late InGameCardThrow widgetHolder;
   int selectedValue = 0;
-  void setSelectedValue(int val){
-    selectedValue=val;
+  void setSelectedValue(int val) {
+    selectedValue = val;
   }
 
-
   void initState() {
-
-    if (widget.currentRound.firstThrow == null)
-      widgetHolder = InGameCardThrow(numberThrow: 1, currentRound:
-      widget.currentRound, setSelectedValue: setSelectedValue);
-    else if (widget.currentRound.secondThrow == null) {
-      widgetHolder = InGameCardThrow(numberThrow: 2
-          , currentRound:
-          widget.currentRound, setSelectedValue: setSelectedValue);
+    if (widget.currentRound.firstThrow == null) {
+      widgetHolder = InGameCardThrow(
+          numberThrow: 1,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
+    } else if (widget.currentRound.secondThrow == null) {
+      widgetHolder = InGameCardThrow(
+          numberThrow: 2,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
     } else {
-      widgetHolder = InGameCardThrow(numberThrow: 3, currentRound:
-      widget.currentRound, setSelectedValue: setSelectedValue);
+      widgetHolder = InGameCardThrow(
+          numberThrow: 3,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
     }
 
     super.initState();
@@ -44,7 +47,6 @@ class _InGameScreen2State extends State<InGameScreen2> {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: [
         Container(
@@ -70,11 +72,10 @@ class _InGameScreen2State extends State<InGameScreen2> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                bool isFinished = widget.currentRound.computeNext(
-                  selectedValue
-                );
+                bool isFinished =
+                    widget.currentRound.computeNext(selectedValue);
 
-                if(widget.currentRound.isSpareOrStrike()){
+                if (widget.currentRound.isSpareOrStrike()) {
                   MyApp.controller.gamePlayer.onSpareOrStrike();
                 }
 
@@ -99,7 +100,6 @@ class _InGameScreen2State extends State<InGameScreen2> {
                 ),
                 minimumSize: Size(200, 80),
               ),
-
             ),
             Spacer(),
           ],

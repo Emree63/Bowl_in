@@ -350,7 +350,12 @@ class InGameCardThrow extends StatefulWidget {
   final int numberThrow;
   final AbstractRound currentRound;
   final Function(int) setSelectedValue;
-  const InGameCardThrow({Key? key, required this.numberThrow, required this.currentRound, required this.setSelectedValue}): super(key: key);
+  const InGameCardThrow(
+      {Key? key,
+      required this.numberThrow,
+      required this.currentRound,
+      required this.setSelectedValue})
+      : super(key: key);
 
   @override
   State<InGameCardThrow> createState() => _InGameCardThrowState();
@@ -358,6 +363,19 @@ class InGameCardThrow extends StatefulWidget {
 
 class _InGameCardThrowState extends State<InGameCardThrow> {
   GlobalKey<_NumberPadState> _numberPadKey = GlobalKey();
+  late var maxValue;
+
+  void initState() {
+    if (widget.currentRound.firstThrow == null) {
+      maxValue = 10;
+    } else if (widget.currentRound.secondThrow == null) {
+      maxValue = 10 - (widget.currentRound.firstThrow ?? 0);
+    } else {
+      maxValue = 10;
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -393,9 +411,14 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
                             fontWeight: FontWeight.w400,
                             decoration: TextDecoration.none)),
                     TextSpan(
-                        text:  widget.currentRound.number.toString() + " - " +
-                              widget.numberThrow.toString()+
-                              (widget.numberThrow==1 ? "st" : widget.numberThrow==2? "nd" : "rd"),//'1 - 1st',
+                        text: widget.currentRound.number.toString() +
+                            " - " +
+                            widget.numberThrow.toString() +
+                            (widget.numberThrow == 1
+                                ? "st"
+                                : widget.numberThrow == 2
+                                    ? "nd"
+                                    : "rd"), //'1 - 1st',
                         style: GoogleFonts.roboto(
                             fontSize: 18,
                             color: CupertinoColors.black,
@@ -424,7 +447,8 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
           NumberPad(
             numberThrow: widget.numberThrow,
             setSelectedValue: widget.setSelectedValue,
-            currentRound: widget.currentRound
+            currentRound: widget.currentRound,
+            maxValue: maxValue,
           ),
         ],
       ),
@@ -539,7 +563,14 @@ class NumberPad extends StatefulWidget {
   final int numberThrow;
   final AbstractRound currentRound;
   final Function(int) setSelectedValue;
-  const NumberPad({Key? key, required this.numberThrow, required this.setSelectedValue, required this.currentRound}) : super(key: key);
+  final int maxValue;
+  const NumberPad(
+      {Key? key,
+      required this.numberThrow,
+      required this.setSelectedValue,
+      required this.currentRound,
+      required this.maxValue})
+      : super(key: key);
 
   @override
   State<NumberPad> createState() => _NumberPadState();
@@ -576,7 +607,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 1,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 1 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -584,7 +615,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 2,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 2 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -592,7 +623,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 3,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 3 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -605,7 +636,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 4,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 4 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -613,7 +644,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 5,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 5 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -621,7 +652,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 6,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 6 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -634,7 +665,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 7,
-                    isSelectable: 1,
+                    isSelectable: widget.maxValue > 7 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -642,7 +673,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 8,
-                    isSelectable: 0,
+                    isSelectable: widget.maxValue > 8 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
@@ -650,7 +681,7 @@ class _NumberPadState extends State<NumberPad> {
                   Number(
                     currentSelected: NumSelected,
                     num: 9,
-                    isSelectable: 0,
+                    isSelectable: widget.maxValue > 9 ? 1 : 0,
                     onSonChanged: (int newId) {
                       updateId(newId);
                     },
