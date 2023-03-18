@@ -73,6 +73,7 @@ abstract class AbstractRound {
 
   void update(int val){
     points = (points ?? 0) + val;
+    print("ROUND " + number.toString() + " - " + player.id.toString() + "Update points : " + points.toString());
     previousRound?.update(val);
   }
 

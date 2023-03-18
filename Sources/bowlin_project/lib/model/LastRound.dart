@@ -23,7 +23,11 @@ class LastRound extends AbstractRound{
       return false;
     }else if(secondThrow==null){
       secondThrow=val;
-      return ((firstThrow??0)+(secondThrow??0)<10);
+      if ((firstThrow??0)+(secondThrow??0)<10){
+        computePoints();
+        return true ;
+      }
+      return false;
     }else if((firstThrow??0)+(secondThrow??0)>=10){
       thirdThrow=val;
     }

@@ -600,15 +600,16 @@ class StrikeButton extends StatelessWidget {
 class SpareButton extends StatelessWidget {
   final int currentSelected;
   final IntCallback onSonChanged;
+  final int valueToReturn;
   const SpareButton(
-      {Key? key, required this.onSonChanged, required this.currentSelected})
+      {Key? key, required this.onSonChanged, required this.currentSelected, required this.valueToReturn})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onSonChanged(10);
+        onSonChanged(valueToReturn);
       },
       child: Container(
         width: double.infinity,
@@ -622,7 +623,7 @@ class SpareButton extends StatelessWidget {
           "SPARE !",
           style: GoogleFonts.roboto(
               color:
-                  currentSelected == 10 ? Colors.pink : CupertinoColors.black,
+                  currentSelected == valueToReturn ? Colors.pink : CupertinoColors.black,
               decoration: TextDecoration.none,
               fontWeight: FontWeight.w900,
               fontStyle: FontStyle.italic,
@@ -777,6 +778,7 @@ class _NumberPadState extends State<NumberPad> {
                 onSonChanged: (int newId) {
                   updateId(newId);
                 },
+                valueToReturn: widget.maxValue,
               )
       ],
     );

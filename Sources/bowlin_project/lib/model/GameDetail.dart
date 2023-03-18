@@ -15,6 +15,7 @@ class GameDetail {
   int _host;
   List<AbstractRound> _rounds = [];
   List<Player> _players = [];
+  final Map<Player, int> _points = {};
 
   // Constructor
   GameDetail(this._id, this._time, this._winner, this._nbPoints,
@@ -79,29 +80,21 @@ class GameDetail {
     _players = value;
   }
 
-  int getPointByPlayerId(int id) {
-    int pointPlayer = 0;
-    for (var player in players) {
-      if (player.id == id) {
-        for (var element in rounds) {
-          if (element.player == player) {
-            pointPlayer += element.points ?? 0;
-          }
-        }
-        return pointPlayer;
-      }
+
+  Map<Player, int> get points => _points;
+
+  void computeScores(){
+    print("====COMPUTE POINTS====");
+    for(var element in rounds){
+      print(element.points);
+      points[element.player] = (points[element.player] ?? 0) + (element.points ?? 0);
+      print(element.player.name + " : " + points[element.player].toString());
     }
-    throw Exception("Player not in the game.");
   }
 
   Map<Player, int> getRank() {
-    Map<Player, int> rank = {};
-
-    for (var player in players) {
-      rank.addAll({player: getPointByPlayerId(player.id)});
-    }
     var sortedByValueMap = Map.fromEntries(
-        rank.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));
+        points.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));
     return sortedByValueMap;
   }
 }

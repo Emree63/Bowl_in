@@ -13,8 +13,12 @@ class Round extends AbstractRound{
         previousRound?.update(val);
         unsubscribePreviousRound();
       }
-      return val==10;
-    }else if(firstThrow!=10 && secondThrow!=null){
+      if(val==10){
+        computePoints();
+        return true;
+      }
+      return false;
+    }else if(firstThrow!=10 && secondThrow==null){
       secondThrow=val;
     }
     computePoints();
@@ -24,7 +28,7 @@ class Round extends AbstractRound{
   @override
   void computePoints() {
     points = (firstThrow ?? 0)+(secondThrow ?? 0);
-
+    print("ROUND " + number.toString() + " - " + player.id.toString() + "Compute points : " + points.toString());
     if(previousRound?.isStrike() ?? false){
       previousRound?.update(points ?? 0);
     }
