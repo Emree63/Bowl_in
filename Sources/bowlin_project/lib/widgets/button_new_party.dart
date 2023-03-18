@@ -164,7 +164,7 @@ class ScoreBoardModal extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
-                    Positioned(
+                    /*Positioned(
                       child: PodiumGameOverWidget(
                         isfirst: 2,
                         pseudo: 'Lucas',
@@ -189,7 +189,7 @@ class ScoreBoardModal extends StatelessWidget {
                       ),
                       top: 70,
                       right: 30,
-                    )
+                    )*/
                   ],
                 ),
               )),

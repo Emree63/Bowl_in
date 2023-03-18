@@ -4,118 +4,193 @@ import 'package:bowl_in/widgets/profil_listpodium_widget.dart';
 import 'package:bowl_in/widgets/scores_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../model/AbstractRound.dart';
+import '../model/GameDetail.dart';
+import '../model/Player.dart';
 
 class FinalScoreBoard extends StatefulWidget {
-  const FinalScoreBoard({Key? key}) : super(key: key);
+  final GameDetail gameDeatil;
+  const FinalScoreBoard({Key? key, required this.gameDeatil}) : super(key: key);
 
   @override
   State<FinalScoreBoard> createState() => _FinalScoreBoardState();
 }
 
 class _FinalScoreBoardState extends State<FinalScoreBoard> {
+  late Map<Player, int> rank;
+  late List<Player> pseudoList;
+  late List<int> scoreList;
+  @override
+  void initState() {
+    rank = widget.gameDeatil.getRank();
+    pseudoList = rank.keys.toList();
+    scoreList = rank.values.toList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
-        width: double.infinity,
-        height: 470,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/ingame_cardgame.png"),
-                fit: BoxFit.fill),
-            boxShadow: [
-              BoxShadow(
-                color: CupertinoColors.black.withOpacity(0.15),
-                blurRadius: 10.0,
-                spreadRadius: 5.0,
-              ),
-            ]),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-              padding: EdgeInsets.fromLTRB(15, 5, 15, 50),
-              child: RichText(
-                text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'GAME OVER',
-                        style: GoogleFonts.roboto(
-                            fontSize: 15,
-                            color: CupertinoColors.black,
-                            fontWeight: FontWeight.w900,
-                            decoration: TextDecoration.none)),
-                  ],
-                ),
-              )),
-          Expanded(
-              child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              Positioned(
-                child: PodiumGameOverWidget(
-                  isfirst: 2,
-                  pseudo: 'Lucas',
-                  score: 123,
-                ),
-                top: 70,
-                left: 30,
-              ),
-              Positioned(
-                child: PodiumGameOverWidget(
-                  isfirst: 1,
-                  pseudo: 'Momo',
-                  score: 160,
-                ),
-                top: 10,
-              ),
-              Positioned(
-                child: PodiumGameOverWidget(
-                  isfirst: 3,
-                  pseudo: 'popo',
-                  score: 110,
-                ),
-                top: 70,
-                right: 30,
-              )
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xff19BDE0),
+              Color(0xff4A17DC),
             ],
           )),
-          Container(
-            width: double.infinity,
-            height: 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/congrats_background.png"),
-                  fit: BoxFit.cover),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 120,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Align(
+            Container(
+                margin: EdgeInsets.fromLTRB(30, 0, 30, 35),
+                width: double.infinity,
+                height: 470,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/ingame_cardgame.png"),
+                        fit: BoxFit.fill),
+                    boxShadow: [
+                      BoxShadow(
+                        color: CupertinoColors.black.withOpacity(0.15),
+                        blurRadius: 10.0,
+                        spreadRadius: 5.0,
+                      ),
+                    ]),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(15, 5, 15, 50),
+                          child: RichText(
+                            text: TextSpan(
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'GAME OVER',
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 15,
+                                        color: CupertinoColors.black,
+                                        fontWeight: FontWeight.w900,
+                                        decoration: TextDecoration.none)),
+                              ],
+                            ),
+                          )),
+                      Expanded(
+                          child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          rank.length > 1
+                              ? Positioned(
+                                  child: PodiumGameOverWidget(
+                                    isfirst: 2,
+                                    player: pseudoList[1],
+                                    score: scoreList[1],
+                                  ),
+                                  top: 70,
+                                  left: 30,
+                                )
+                              : Container(),
+                          rank.length > 0
+                              ? Positioned(
+                                  child: PodiumGameOverWidget(
+                                    isfirst: 1,
+                                    player: pseudoList[0],
+                                    score: scoreList[0],
+                                  ),
+                                  top: 10,
+                                )
+                              : Container(),
+                          rank.length > 2
+                              ? Positioned(
+                                  child: PodiumGameOverWidget(
+                                    isfirst: 3,
+                                    player: pseudoList[2],
+                                    score: scoreList[2],
+                                  ),
+                                  top: 70,
+                                  right: 30,
+                                )
+                              : Container()
+                        ],
+                      )),
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/images/congrats_background.png"),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: Align(
+                          child: Text(
+                            "Play again",
+                            style: GoogleFonts.roboto(
+                                decoration: TextDecoration.none,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
+                      )
+                    ])),
+            Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                context.go("/");
+              },
               child: Text(
-                "Play again",
+                "LEAVE",
                 style: GoogleFonts.roboto(
-                    decoration: TextDecoration.none,
-                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                    fontSize: 40,
+                    color: Color(0xff1ABAE0)),
+              ),
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(
+                  width: 7,
+                  color: Color(0xff1ABAE0),
+                ),
+                onPrimary: Colors.transparent,
+                primary: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(55),
+                ),
+                minimumSize: Size(200, 80),
               ),
             ),
-          )
-        ]));
+            Spacer(),
+          ],
+        )
+      ],
+    );
   }
 }
 
 class PodiumGameOverWidget extends StatelessWidget {
   final int isfirst;
-  final String pseudo;
+  final Player player;
   final int score;
   const PodiumGameOverWidget(
       {Key? key,
       required this.isfirst,
-      required this.pseudo,
+      required this.player,
       required this.score})
       : super(key: key);
 
@@ -131,8 +206,7 @@ class PodiumGameOverWidget extends StatelessWidget {
               height: this.isfirst == 1 ? 65 : 50,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/image_user_red.png"),
-                    fit: BoxFit.cover),
+                    image: AssetImage(player.image), fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(70)),
               ),
             ),
@@ -151,7 +225,7 @@ class PodiumGameOverWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
           child: Text(
-            this.pseudo,
+            this.player.name,
             style: GoogleFonts.roboto(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,

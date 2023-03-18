@@ -73,7 +73,7 @@ class GameManager extends IGameManager {
     throw Exception("Game not found.");
   }
 
-  Map<int, int> getRankByIdGame(int id) {
+  Map<Player, int> getRankByIdGame(int id) {
     for (var game in parent.gameDetails) {
       if (game.id == id) {
         return game.getRank();

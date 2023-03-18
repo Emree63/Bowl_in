@@ -17,16 +17,9 @@ class GameDetail {
   List<Player> _players = [];
 
   // Constructor
-  GameDetail(
-      this._id,
-      this._time,
-      this._winner,
-      this._nbPoints,
-      this._isFinished,
-      this._host,
-      this._players){
-
-    for(int i=1; i<=9; i++){
+  GameDetail(this._id, this._time, this._winner, this._nbPoints,
+      this._isFinished, this._host, this._players) {
+    for (int i = 1; i <= 9; i++) {
       players.forEach((element) {
         this.rounds.add(Round(null, null, 0, element, i));
       });
@@ -35,7 +28,6 @@ class GameDetail {
     players.forEach((element) {
       this.rounds.add(LastRound(null, null, 0, element, 10, null));
     });
-
   }
 
   // Getters and setters
@@ -102,14 +94,14 @@ class GameDetail {
     throw Exception("Player not in the game.");
   }
 
-  Map<int, int> getRank() {
-    Map<int, int> rank = {};
+  Map<Player, int> getRank() {
+    Map<Player, int> rank = {};
 
     for (var player in players) {
-      rank.addAll({player.id: getPointByPlayerId(player.id)});
+      rank.addAll({player: getPointByPlayerId(player.id)});
     }
-    var sortedByKeyMap = Map.fromEntries(
+    var sortedByValueMap = Map.fromEntries(
         rank.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));
-    return sortedByKeyMap;
+    return sortedByValueMap;
   }
 }

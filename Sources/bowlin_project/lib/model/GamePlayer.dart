@@ -23,7 +23,7 @@ class GamePlayer {
     }
     if (currentRoundIndex >= game.rounds.length) {
       print("FINISHED");
-      context.go("/scoreboard");
+      context.go("/scoreboard", extra: game);
     } else {
       print("IN GAME : " + currentRoundIndex.toString());
       if (game.rounds[currentRoundIndex] is Round) {
