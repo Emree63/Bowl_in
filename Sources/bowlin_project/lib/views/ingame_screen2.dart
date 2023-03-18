@@ -1,3 +1,5 @@
+import 'package:bowl_in/main.dart';
+import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,30 +9,42 @@ import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
 import '../widgets/scores_list_widget.dart';
 
-class InGameScreen extends StatefulWidget {
-  final Round currentRound;
-  const InGameScreen({Key? key, required this.currentRound}) : super(key: key);
+class InGameScreen2 extends StatefulWidget {
+  final AbstractRound currentRound;
+  const InGameScreen2({Key? key, required this.currentRound}) : super(key: key);
 
   @override
-  State<InGameScreen> createState() => _InGameScreenState();
+  State<InGameScreen2> createState() => _InGameScreen2State();
 }
 
-class _InGameScreenState extends State<InGameScreen> {
-  late Widget widgetHolder;
+class _InGameScreen2State extends State<InGameScreen2> {
+  late InGameCardThrow widgetHolder;
+  int selectedValue = 0;
+  void setSelectedValue(int val){
+    selectedValue=val;
+  }
+
 
   void initState() {
+
     if (widget.currentRound.firstThrow == null)
-      widgetHolder = InGameCardThrow(numberThrow: 1);
+      widgetHolder = InGameCardThrow(numberThrow: 1, currentRound:
+      widget.currentRound, setSelectedValue: setSelectedValue);
     else if (widget.currentRound.secondThrow == null) {
-      widgetHolder = InGameCardThrow(numberThrow: 2);
+      widgetHolder = InGameCardThrow(numberThrow: 2
+          , currentRound:
+          widget.currentRound, setSelectedValue: setSelectedValue);
     } else {
-      widgetHolder = InGameCardThrow(numberThrow: 3);
+      widgetHolder = InGameCardThrow(numberThrow: 3, currentRound:
+      widget.currentRound, setSelectedValue: setSelectedValue);
     }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       children: [
         Container(
@@ -56,11 +70,15 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  widgetHolder = InGameCardThrow(
-                    numberThrow: 2,
-                  );
-                });
+                bool isFinished = widget.currentRound.computeNext(
+                  selectedValue
+                );
+
+                if(widget.currentRound.isSpareOrStrike()){
+                  MyApp.controller.gamePlayer.onSpareOrStrike();
+                }
+
+                MyApp.controller.gamePlayer.onNext(isFinished, context);
               },
               child: Text(
                 "PLAY",
@@ -81,6 +99,7 @@ class _InGameScreenState extends State<InGameScreen> {
                 ),
                 minimumSize: Size(200, 80),
               ),
+
             ),
             Spacer(),
           ],

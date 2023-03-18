@@ -1,5 +1,9 @@
+import 'package:bowl_in/main.dart';
+import 'package:bowl_in/model/GameDetail.dart';
+import 'package:bowl_in/model/GamePlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/button_new_party.dart';
@@ -48,11 +52,12 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  widgetHolder = InGameCardThrow(
-                    numberThrow: 2,
-                  );
-                });
+                GameDetail gd = GameDetail(1, DateTime.now(), null, 123, false,
+                    MyApp.controller.userCurrent.id, [MyApp.controller.userCurrent, MyApp.controller.userMgr.getUserById(2)]);
+
+                MyApp.controller.gamePlayer.game = gd;
+                MyApp.controller.gameCurrent = gd;
+                MyApp.controller.gamePlayer.onNext(false, context);
               },
               child: Text(
                 "PLAY",

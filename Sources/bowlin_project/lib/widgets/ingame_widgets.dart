@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/AbstractRound.dart';
+
 class FinalScoreBoard extends StatefulWidget {
   const FinalScoreBoard({Key? key}) : super(key: key);
 
@@ -346,14 +348,17 @@ class _UserInGameState extends State<UserInGame> {
 
 class InGameCardThrow extends StatefulWidget {
   final int numberThrow;
-  const InGameCardThrow({Key? key, required this.numberThrow})
-      : super(key: key);
+  final AbstractRound currentRound;
+  final Function(int) setSelectedValue;
+  const InGameCardThrow({Key? key, required this.numberThrow, required this.currentRound, required this.setSelectedValue}): super(key: key);
 
   @override
   State<InGameCardThrow> createState() => _InGameCardThrowState();
 }
 
 class _InGameCardThrowState extends State<InGameCardThrow> {
+  GlobalKey<_NumberPadState> _numberPadKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -388,7 +393,9 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
                             fontWeight: FontWeight.w400,
                             decoration: TextDecoration.none)),
                     TextSpan(
-                        text: '1 - 1st',
+                        text:  widget.currentRound.number.toString() + " - " +
+                              widget.numberThrow.toString()+
+                              (widget.numberThrow==1 ? "st" : widget.numberThrow==2? "nd" : "rd"),//'1 - 1st',
                         style: GoogleFonts.roboto(
                             fontSize: 18,
                             color: CupertinoColors.black,
@@ -410,12 +417,14 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Round_picture(
-                      pseudo: "Lucas",
-                      image: "assets/images/image_user_red.png"),
+                      pseudo: widget.currentRound.player.name,
+                      image: widget.currentRound.player.image),
                 ],
               )),
           NumberPad(
             numberThrow: widget.numberThrow,
+            setSelectedValue: widget.setSelectedValue,
+            currentRound: widget.currentRound
           ),
         ],
       ),
@@ -528,24 +537,26 @@ class SpareButton extends StatelessWidget {
 
 class NumberPad extends StatefulWidget {
   final int numberThrow;
-  const NumberPad({Key? key, required this.numberThrow}) : super(key: key);
+  final AbstractRound currentRound;
+  final Function(int) setSelectedValue;
+  const NumberPad({Key? key, required this.numberThrow, required this.setSelectedValue, required this.currentRound}) : super(key: key);
 
   @override
   State<NumberPad> createState() => _NumberPadState();
 }
 
 class _NumberPadState extends State<NumberPad> {
-  int NumSelected = 100;
+  int NumSelected = 0;
 
   void updateId(int newNum) {
-    print(newNum);
     setState(() {
       NumSelected = newNum;
+      widget.setSelectedValue(newNum);
     });
   }
 
   void initState() {
-    NumSelected = 100;
+    NumSelected = 0;
     super.initState();
   }
 
@@ -649,7 +660,7 @@ class _NumberPadState extends State<NumberPad> {
             ],
           ),
         ),
-        widget.numberThrow == 1
+        widget.currentRound.shotIsStrike()
             ? StrikeButton(
                 currentSelected: NumSelected,
                 onSonChanged: (int newId) {

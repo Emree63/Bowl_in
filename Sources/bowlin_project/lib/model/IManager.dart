@@ -1,3 +1,4 @@
+import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/GamePlayer.dart';
 
 import 'User.dart';
@@ -8,8 +9,8 @@ import 'Game.dart';
 
 abstract class IManager {
   late User _userCurrent;
-  late Game _gameCurrent;
-  late GamePlayer _gamePlayer;
+  late GameDetail _gameCurrent;
+  late GamePlayer _gamePlayer = GamePlayer();
   late IUserManager _userMgr;
   late IGameManager _gameMgr;
 
@@ -26,7 +27,12 @@ abstract class IManager {
     _gamePlayer = value;
   }
 
-  Game get gameCurrent => _gameCurrent;
+  GameDetail get gameCurrent => _gameCurrent;
+
+  set gameCurrent(GameDetail value) {
+    _gameCurrent = value;
+  }
+
   IUserManager get userMgr => _userMgr;
   IGameManager get gameMgr => _gameMgr;
 }

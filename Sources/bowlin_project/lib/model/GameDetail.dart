@@ -1,4 +1,7 @@
 import 'package:bowl_in/model/AbstractRound.dart';
+import 'package:bowl_in/model/Game.dart';
+import 'package:bowl_in/model/GamePlayer.dart';
+import 'package:bowl_in/model/LastRound.dart';
 
 import 'Player.dart';
 import 'Round.dart';
@@ -6,7 +9,7 @@ import 'Round.dart';
 class GameDetail {
   int _id;
   DateTime _time;
-  int _winner;
+  int? _winner;
   int _nbPoints;
   bool _isFinished;
   int _host;
@@ -21,8 +24,19 @@ class GameDetail {
       this._nbPoints,
       this._isFinished,
       this._host,
-      this._rounds,
-      this._players);
+      this._players){
+
+    for(int i=1; i<=9; i++){
+      players.forEach((element) {
+        this.rounds.add(Round(null, null, 0, element, i));
+      });
+    }
+
+    players.forEach((element) {
+      this.rounds.add(LastRound(null, null, 0, element, 10, null));
+    });
+
+  }
 
   // Getters and setters
   int get id => _id;
@@ -37,9 +51,9 @@ class GameDetail {
     _time = value;
   }
 
-  int get winner => _winner;
+  int? get winner => _winner;
 
-  set winner(int value) {
+  set winner(int? value) {
     _winner = value;
   }
 

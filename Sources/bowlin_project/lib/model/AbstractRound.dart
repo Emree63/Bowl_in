@@ -4,12 +4,13 @@ abstract class AbstractRound {
   int? _firstThrow;
   int? _secondThrow;
   int? _points;
+  int _number;
   Player _player;
 
   AbstractRound? _previousRound;
 
   // Constructor
-  AbstractRound(this._firstThrow, this._secondThrow, this._points, this._player);
+  AbstractRound(this._firstThrow, this._secondThrow, this._points, this._player, this._number);
 
   // Getters and setters
   int? get firstThrow => _firstThrow;
@@ -30,6 +31,13 @@ abstract class AbstractRound {
     _points = value;
   }
 
+
+  int get number => _number;
+
+  set number(int value) {
+    _number = value;
+  }
+
   Player get player => _player;
 
   set player(Player value) {
@@ -44,6 +52,7 @@ abstract class AbstractRound {
 
   bool computeNext(int val);
   void computePoints();
+  bool shotIsStrike();
 
   bool isStrike() {
     return firstThrow==10;
@@ -56,6 +65,7 @@ abstract class AbstractRound {
   bool isSpareOrStrike() {
     return (firstThrow ?? 0)+(secondThrow ?? 0)==10;
   }
+
 
   void subscribe(AbstractRound nextRound){
     nextRound.previousRound=this;

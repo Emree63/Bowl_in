@@ -3,9 +3,7 @@ import 'GamePlayer.dart';
 
 class Round extends AbstractRound{
 
-  GamePlayer gamePlayer;
-
-  Round(super.firstThrow, super.secondThrow, super.points, super.player, this.gamePlayer);
+  Round(super.firstThrow, super.secondThrow, super.points, super.player, super.number);
 
   @override
   bool computeNext(int val) {
@@ -15,13 +13,12 @@ class Round extends AbstractRound{
         previousRound?.update(val);
         unsubscribePreviousRound();
       }
-      return false; //Le round n'est pas fini
-    }else if(firstThrow==10){
+      return val==10;
+    }else if(firstThrow!=10 && secondThrow!=null){
       secondThrow=val;
-      return false; //Le round n'est pas fini
     }
     computePoints();
-    return true; //Le round est fini
+    return true;
   }
 
   @override
@@ -31,11 +28,12 @@ class Round extends AbstractRound{
     if(previousRound?.isStrike() ?? false){
       previousRound?.update(points ?? 0);
     }
-
-    if(isSpareOrStrike()){
-      gamePlayer.onSpareOrStrike();
-    }
     unsubscribePreviousRound();
+  }
+
+  @override
+  bool shotIsStrike(){
+    return firstThrow==null;
   }
 
 
