@@ -1,27 +1,47 @@
 import 'package:bowl_in/main.dart';
-import 'package:bowl_in/model/GameDetail.dart';
-import 'package:bowl_in/model/GamePlayer.dart';
+import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/Round.dart';
 import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
 import '../widgets/scores_list_widget.dart';
 
-class InGameScreen extends StatefulWidget {
-  const InGameScreen({Key? key}) : super(key: key);
+class InGameScreen2 extends StatefulWidget {
+  final AbstractRound currentRound;
+  const InGameScreen2({Key? key, required this.currentRound}) : super(key: key);
 
   @override
-  State<InGameScreen> createState() => _InGameScreenState();
+  State<InGameScreen2> createState() => _InGameScreen2State();
 }
 
-class _InGameScreenState extends State<InGameScreen> {
-  late Widget widgetHolder;
+class _InGameScreen2State extends State<InGameScreen2> {
+  late InGameCardThrow widgetHolder;
+  int selectedValue = 0;
+  void setSelectedValue(int val) {
+    selectedValue = val;
+  }
 
   void initState() {
-    widgetHolder = InGameCardConfig();
+    if (widget.currentRound.firstThrow == null) {
+      widgetHolder = InGameCardThrow(
+          numberThrow: 1,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
+    } else if (widget.currentRound.secondThrow == null) {
+      widgetHolder = InGameCardThrow(
+          numberThrow: 2,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
+    } else {
+      widgetHolder = InGameCardThrow(
+          numberThrow: 3,
+          currentRound: widget.currentRound,
+          setSelectedValue: setSelectedValue);
+    }
+
     super.initState();
   }
 
@@ -52,12 +72,14 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                GameDetail gd = GameDetail(1, DateTime.now(), null, 123, false,
-                    MyApp.controller.userCurrent.id, [MyApp.controller.userCurrent, MyApp.controller.userMgr.getUserById(2)]);
+                bool isFinished =
+                    widget.currentRound.computeNext(selectedValue);
 
-                MyApp.controller.gamePlayer.game = gd;
-                MyApp.controller.gameCurrent = gd;
-                MyApp.controller.gamePlayer.onNext(false, context);
+                if (widget.currentRound.isSpareOrStrike()) {
+                  MyApp.controller.gamePlayer.onSpareOrStrike();
+                }
+
+                MyApp.controller.gamePlayer.onNext(isFinished, context);
               },
               child: Text(
                 "PLAY",
