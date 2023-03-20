@@ -39,5 +39,27 @@ class Round extends AbstractRound{
     return firstThrow==null;
   }
 
+  @override
+  int getNbSpares() {
+    if(isSpare()){
+      return 1;
+    }
+    return 0;
+  }
+
+  @override
+  int getNbStrike() {
+    if(isStrike()){
+      return 1;
+    }
+    return 0;
+  }
+
+  @override
+  int getPinsKnockedDown() {
+    return (firstThrow ?? 0)+(secondThrow ?? 0);
+  }
+
+
 
 }

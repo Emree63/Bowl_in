@@ -1,3 +1,8 @@
+import 'package:bowl_in/model/GameDetail.dart';
+import 'package:bowl_in/model/Player.dart';
+
+import 'User.dart';
+
 class Stat {
   int _nbVictory;
   int _nbDefeat;
@@ -75,5 +80,23 @@ class Stat {
 
   set avgPinsPerRound(double value) {
     _avgPinsPerRound = value;
+  }
+
+  void updateStats(GameDetail gd, Player p){
+    nbGames +=1;
+    if(gd.winner == p){
+      nbVictory +=1;
+    }
+    double totalpins = 0;
+    for(var r in gd.rounds){
+
+      if(p == r.player){
+        nbStrikes += r.getNbStrike();
+        nbSpares += r.getNbSpares();
+        totalpins = totalpins + r.getPinsKnockedDown();
+      }
+    }
+    avgPinsPerRound = ((avgPinsPerRound * (nbGames-1)) + (totalpins/10))/nbGames;
+
   }
 }

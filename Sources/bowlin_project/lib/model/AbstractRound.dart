@@ -66,6 +66,9 @@ abstract class AbstractRound {
     return (firstThrow ?? 0)+(secondThrow ?? 0)==10;
   }
 
+  int getNbStrike();
+  int getNbSpares();
+  int getPinsKnockedDown();
 
   void subscribe(AbstractRound nextRound){
     nextRound.previousRound=this;

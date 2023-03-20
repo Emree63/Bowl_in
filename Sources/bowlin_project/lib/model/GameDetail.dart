@@ -10,7 +10,7 @@ import 'User.dart';
 class GameDetail {
   int _id;
   DateTime _time;
-  int? _winner;
+  Player? _winner;
   int _nbPoints;
   bool _isFinished;
   int _host;
@@ -45,9 +45,9 @@ class GameDetail {
     _time = value;
   }
 
-  int? get winner => _winner;
+  Player? get winner => _winner;
 
-  set winner(int? value) {
+  set winner(Player? value) {
     _winner = value;
   }
 
@@ -88,17 +88,22 @@ class GameDetail {
     for(var p in players){
       if(p is User){
         p.games.add(Game(this.id, this.time, points[p] ?? 0, true, players));
+        p.stat.updateStats(this, p);
       }
     }
+  }
+
+  void computeWinner(){
+    print(getRank().entries.first.key.name);
+    this.winner = getRank().entries.first.key;
   }
 
   void computeScores(){
     print("====COMPUTE POINTS====");
     for(var element in rounds){
-      print(element.points);
       points[element.player] = (points[element.player] ?? 0) + (element.points ?? 0);
-      print(element.player.name + " : " + points[element.player].toString());
     }
+    computeWinner();
     addGameToUsers();
   }
 
