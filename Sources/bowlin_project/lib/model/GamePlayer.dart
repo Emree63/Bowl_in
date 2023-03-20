@@ -1,3 +1,4 @@
+import 'package:bowl_in/model/IManager.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'GameDetail.dart';
@@ -7,7 +8,10 @@ import 'Round.dart';
 
 class GamePlayer {
   late GameDetail _game;
+  final IManager _parent;
   int currentRoundIndex = 0;
+
+  GamePlayer(this._parent);
 
   GameDetail get game => _game;
 
@@ -23,6 +27,10 @@ class GamePlayer {
     }
     if (currentRoundIndex >= game.rounds.length) {
       print("FINISHED");
+
+      game.id=_parent.gameMgr.getNextId();
+      _parent.gameMgr.addGame(game);
+
       game.computeScores();
       context.go("/scoreboard", extra: game);
     } else {

@@ -15,8 +15,8 @@ import '../model/Player.dart';
 import '../model/User.dart';
 
 class FinalScoreBoard extends StatefulWidget {
-  final GameDetail gameDeatil;
-  const FinalScoreBoard({Key? key, required this.gameDeatil}) : super(key: key);
+  final GameDetail gameDetail;
+  const FinalScoreBoard({Key? key, required this.gameDetail}) : super(key: key);
 
   @override
   State<FinalScoreBoard> createState() => _FinalScoreBoardState();
@@ -28,7 +28,7 @@ class _FinalScoreBoardState extends State<FinalScoreBoard> {
   late List<int> scoreList;
   @override
   void initState() {
-    rank = widget.gameDeatil.getRank();
+    rank = widget.gameDetail.getRank();
     pseudoList = rank.keys.toList();
     scoreList = rank.values.toList();
     super.initState();

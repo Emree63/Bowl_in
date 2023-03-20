@@ -58,17 +58,16 @@ class _InGameScreenState extends State<InGameScreen> {
             ElevatedButton(
               onPressed: () {
                 GameDetail gd = GameDetail(
-                    1,
+                    -1,
                     DateTime.now(),
                     null,
-                    123,
+                    0,
                     false,
                     MyApp.controller.userCurrent.id, listPlayers);
 
                 MyApp.controller.gamePlayer.game = gd;
                 MyApp.controller.gameCurrent = gd;
                 MyApp.controller.gamePlayer.onNext(false, context);
-                MyApp.controller.gameMgr.addGame(gd);
               },
               child: Text(
                 "PLAY",

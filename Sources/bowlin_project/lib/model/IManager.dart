@@ -10,7 +10,7 @@ import 'Game.dart';
 abstract class IManager {
   late User _userCurrent;
   late GameDetail _gameCurrent;
-  late GamePlayer _gamePlayer = GamePlayer();
+  late GamePlayer _gamePlayer = GamePlayer(this);
   late IUserManager _userMgr;
   late IGameManager _gameMgr;
 

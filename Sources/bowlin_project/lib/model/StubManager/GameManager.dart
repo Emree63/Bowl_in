@@ -86,4 +86,9 @@ class GameManager extends IGameManager {
   addGame(GameDetail gd) {
     parent.gameDetails.add(gd);
   }
+
+  @override
+  int getNextId() {
+    return parent.gameDetails.length;
+  }
 }
