@@ -113,8 +113,7 @@ class CardGame extends StatelessWidget {
                                       runSpacing: 5,
                                       children: game.players
                                           .map((e) => ProfilPicture(
-                                                path: e.image
-                                                    .toString(),
+                                                path: e.image.toString(),
                                               ))
                                           .toList()))),
                           const Spacer(),
@@ -147,7 +146,9 @@ class CardGame extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return ScoreBoardModal();
+                  return ScoreBoardModal(
+                      gamedetail:
+                          MyApp.controller.gameMgr.getGameById(game.id));
                 });
           },
         ));

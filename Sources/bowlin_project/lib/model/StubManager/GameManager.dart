@@ -81,4 +81,9 @@ class GameManager extends IGameManager {
     }
     throw Exception("Game not found.");
   }
+
+  @override
+  addGame(GameDetail gd) {
+    parent.gameDetails.add(gd);
+  }
 }
