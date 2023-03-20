@@ -4,6 +4,7 @@ import 'Player.dart';
 import 'Stat.dart';
 
 class User extends Player {
+  final int _id;
   String _mail;
   List<Achievement> _achievements = <Achievement>[];
   List<User> _friends = <User>[];
@@ -11,9 +12,11 @@ class User extends Player {
   List<Game> games = [];
 
   // Constructor
-  User(int id, String name, String image, this._mail, this._achievements,
+  User(this._id, String name, String image, this._mail, this._achievements,
       this._friends, this._stat)
-      : super(id, name, image);
+      : super(name, image);
+
+  int get id => _id;
 
   // Getters and setters
   String get mail => _mail;

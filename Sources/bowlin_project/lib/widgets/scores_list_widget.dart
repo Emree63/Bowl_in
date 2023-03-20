@@ -111,11 +111,9 @@ class CardGame extends StatelessWidget {
                                   child: Wrap(
                                       spacing: 5,
                                       runSpacing: 5,
-                                      children: game.playersId
+                                      children: game.players
                                           .map((e) => ProfilPicture(
-                                                path: MyApp.controller.userMgr
-                                                    .getUserById(e)
-                                                    .image
+                                                path: e.image
                                                     .toString(),
                                               ))
                                           .toList()))),

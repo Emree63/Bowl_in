@@ -5,6 +5,7 @@ import 'package:bowl_in/model/LastRound.dart';
 
 import 'Player.dart';
 import 'Round.dart';
+import 'User.dart';
 
 class GameDetail {
   int _id;
@@ -25,10 +26,10 @@ class GameDetail {
         this.rounds.add(Round(null, null, 0, element, i));
       });
     }
-
     players.forEach((element) {
       this.rounds.add(LastRound(null, null, 0, element, 10, null));
     });
+
   }
 
   // Getters and setters
@@ -83,6 +84,14 @@ class GameDetail {
 
   Map<Player, int> get points => _points;
 
+  void addGameToUsers(){
+    for(var p in players){
+      if(p is User){
+        p.games.add(Game(this.id, this.time, points[p] ?? 0, true, players));
+      }
+    }
+  }
+
   void computeScores(){
     print("====COMPUTE POINTS====");
     for(var element in rounds){
@@ -90,6 +99,7 @@ class GameDetail {
       points[element.player] = (points[element.player] ?? 0) + (element.points ?? 0);
       print(element.player.name + " : " + points[element.player].toString());
     }
+    addGameToUsers();
   }
 
   Map<Player, int> getRank() {

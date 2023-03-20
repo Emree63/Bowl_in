@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/Game.dart';
+import '../model/Guest.dart';
 import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
 import '../widgets/scores_list_widget.dart';
@@ -53,7 +55,7 @@ class _InGameScreenState extends State<InGameScreen> {
             ElevatedButton(
               onPressed: () {
                 GameDetail gd = GameDetail(1, DateTime.now(), null, 123, false,
-                    MyApp.controller.userCurrent.id, [MyApp.controller.userCurrent, MyApp.controller.userMgr.getUserById(2)]);
+                    MyApp.controller.userCurrent.id, [MyApp.controller.userCurrent, new Guest("Louison")]);
 
                 MyApp.controller.gamePlayer.game = gd;
                 MyApp.controller.gameCurrent = gd;

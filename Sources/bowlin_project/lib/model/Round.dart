@@ -28,7 +28,6 @@ class Round extends AbstractRound{
   @override
   void computePoints() {
     points = (firstThrow ?? 0)+(secondThrow ?? 0);
-    print("ROUND " + number.toString() + " - " + player.id.toString() + "Compute points : " + points.toString());
     if(previousRound?.isStrike() ?? false){
       previousRound?.update(points ?? 0);
     }

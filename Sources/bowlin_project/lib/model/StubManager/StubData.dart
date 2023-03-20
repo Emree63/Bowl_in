@@ -1,5 +1,6 @@
 library StubLib;
 
+import '../Guest.dart';
 import '../IManager.dart';
 import '../Game.dart';
 import '../IUserManager.dart';
@@ -32,13 +33,13 @@ class StubData extends IManager {
   IGameManager get gameMgr => _gameMgr;
 
   List<Player> players = [
-    Player(1, "Mathieu", "./assets/images/image_user_cyan.png"),
-    Player(2, "Robin", "./assets/images/image_user_purple.png"),
-    Player(3, "Lucas", "./assets/images/image_user_red.png"),
-    Player(4, "Emre", "./assets/images/image_user_blue.png"),
-    Player(5, "Louison", "./assets/images/image_user_cyan.png"),
-    Player(6, "Arthur", "./assets/images/image_user_yellow.png"),
-    Player(7, "David", "./assets/images/image_user_pink.png"),
+    Guest("Mathieu"),
+    Guest("Robin"),
+    Guest("Lucas"),
+    Guest("Emre"),
+    Guest("Louison"),
+    Guest("Arthur"),
+    Guest("David"),
     User(
         8,
         "Emre",

@@ -28,7 +28,7 @@ class UserManager extends IUserManager {
 
   Player getUserById(int id) {
     for (var player in parent.players) {
-      if (player.id == id) {
+      if (player is User && player.id == id) {
         return player;
       }
     }

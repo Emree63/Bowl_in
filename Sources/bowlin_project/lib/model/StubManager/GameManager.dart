@@ -28,7 +28,7 @@ class GameManager extends IGameManager {
     List<GameDetail> games = [];
     for (var element in parent.gameDetails) {
       for (Player player in element.players) {
-        if (player.id == id) {
+        if (player is User && player.id == id) {
           games.add(element);
           break;
         }
@@ -41,7 +41,7 @@ class GameManager extends IGameManager {
     List<GameDetail> games = [];
     for (var element in parent.gameDetails) {
       for (Player player in element.players) {
-        if (player.id == user.id) {
+        if (player is User && user is User && player.id == user.id) {
           games.add(element);
           break;
         }
