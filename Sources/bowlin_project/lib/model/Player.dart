@@ -1,13 +1,10 @@
 class Player {
-  final int _id;
   String _name;
   String _image;
 
   // Constructor
-  Player(this._id, this._name, this._image);
-
+  Player(this._name, this._image);
   // Getters and setters
-  int get id => _id;
 
   String get name => _name;
 
@@ -20,4 +17,7 @@ class Player {
   set image(String value) {
     _image = value;
   }
+
+
+
 }

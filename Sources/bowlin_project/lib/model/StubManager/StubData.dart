@@ -1,5 +1,6 @@
 library StubLib;
 
+import '../Guest.dart';
 import '../IManager.dart';
 import '../Game.dart';
 import '../IUserManager.dart';
@@ -32,13 +33,13 @@ class StubData extends IManager {
   IGameManager get gameMgr => _gameMgr;
 
   List<Player> players = [
-    Player(1, "Mathieu", "./assets/images/image_user_cyan.png"),
-    Player(2, "Robin", "./assets/images/image_user_purple.png"),
-    Player(3, "Lucas", "./assets/images/image_user_red.png"),
-    Player(4, "Emre", "./assets/images/image_user_blue.png"),
-    Player(5, "Louison", "./assets/images/image_user_cyan.png"),
-    Player(6, "Arthur", "./assets/images/image_user_yellow.png"),
-    Player(7, "David", "./assets/images/image_user_pink.png"),
+    Guest("Mathieu"),
+    Guest("Robin"),
+    Guest("Lucas"),
+    Guest("Emre"),
+    Guest("Louison"),
+    Guest("Arthur"),
+    Guest("David"),
     User(
         8,
         "Emre",
@@ -51,15 +52,14 @@ class StubData extends IManager {
         ],
         [],
         Stat(
-            10,
-            2,
-            12,
-            130,
-            7,
-            6,
-            700,
-            58.33,
-            30.2)),
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0)),
     User(
         9,
         "Dave",
@@ -83,15 +83,14 @@ class StubData extends IManager {
               ],
               [],
               Stat(
-                  10,
-                  2,
-                  12,
-                  110,
-                  7,
-                  6,
-                  700,
-                  58.33,
-                  30.2)),
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0)),
           User(
               22,
               "Louison",
@@ -105,7 +104,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   150,
                   7,
@@ -126,7 +124,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   10,
                   7,
@@ -147,7 +144,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   40,
                   7,
@@ -168,7 +164,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   76,
                   7,
@@ -178,15 +173,14 @@ class StubData extends IManager {
                   30.2)),
         ],
         Stat(
-            2,
-            7,
-            9,
-            80,
-            4,
-            3,
-            250,
-            27.77,
-            10.55))
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0))
   ];
 
   List<GameDetail> _gameDetails = [];

@@ -85,12 +85,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   verticalDirection: VerticalDirection.up,
                   children: [
                     StatsCard(
-                        title: "Number of victory",
-                        val: MyApp.controller.userCurrent.stat.nbVictory
-                            .toDouble()),
+                        title: "Number of victories",
+                        val: MyApp.controller.userCurrent.stat.nbVictory.toDouble(),
+                        precision: 0,
+                    ),
                     StatsCard(
                         title: "Average pins per round",
-                        val: MyApp.controller.userCurrent.stat.avgPinsPerRound),
+                        val: MyApp.controller.userCurrent.stat.avgPinsPerRound,
+                        precision: 2,
+                    ),
                   ],
                 ))
           ]),

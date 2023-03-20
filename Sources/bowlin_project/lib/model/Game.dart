@@ -1,13 +1,15 @@
+import 'Player.dart';
+
 class Game {
   int _id;
   DateTime _date;
   int _pointsCurrentUser;
   bool _isFinished;
-  List<int> _playersId = [];
+  List<Player> _players = [];
 
   // Constructor
   Game(this._id, this._date, this._pointsCurrentUser, this._isFinished,
-      this._playersId);
+      this._players);
 
   // Getters and setters
   int get id => _id;
@@ -34,9 +36,9 @@ class Game {
     _isFinished = value;
   }
 
-  List<int> get playersId => _playersId;
+  List<Player> get players => _players;
 
-  set playersId(List<int> value) {
-    _playersId = value;
+  set playersId(List<Player> value) {
+    _players = value;
   }
 }

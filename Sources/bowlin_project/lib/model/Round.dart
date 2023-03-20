@@ -28,7 +28,6 @@ class Round extends AbstractRound{
   @override
   void computePoints() {
     points = (firstThrow ?? 0)+(secondThrow ?? 0);
-    print("ROUND " + number.toString() + " - " + player.id.toString() + "Compute points : " + points.toString());
     if(previousRound?.isStrike() ?? false){
       previousRound?.update(points ?? 0);
     }
@@ -40,5 +39,33 @@ class Round extends AbstractRound{
     return firstThrow==null;
   }
 
+  @override
+  int getNbSpares() {
+    if(isSpare()){
+      return 1;
+    }
+    return 0;
+  }
 
+  @override
+  int getNbStrike() {
+    if(isStrike()){
+      return 1;
+    }
+    return 0;
+  }
+
+  @override
+  int getPinsKnockedDown() {
+    return (firstThrow ?? 0)+(secondThrow ?? 0);
+  }
+
+  @override
+  int getMaxPinsThisShot() {
+    if(firstThrow==null){
+      return 10;
+    }else{
+      return 10 - (firstThrow ?? 0);
+    }
+  }
 }

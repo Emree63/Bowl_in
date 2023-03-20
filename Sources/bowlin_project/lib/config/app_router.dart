@@ -51,7 +51,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'scoreboard',
           builder: (BuildContext context, GoRouterState state) {
-            return FinalScoreBoard(gameDeatil: state.extra as GameDetail);
+            return FinalScoreBoard(gameDetail: state.extra as GameDetail);
           },
         ),
       ],

@@ -4,6 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../main.dart';
+import '../model/GameDetail.dart';
+import '../model/Player.dart';
+import '../model/User.dart';
 import 'ingame_widgets.dart';
 
 class ButtonNewParty extends StatelessWidget {
@@ -143,10 +147,14 @@ class NewGameModal extends StatelessWidget {
 }
 
 class ScoreBoardModal extends StatelessWidget {
-  const ScoreBoardModal({Key? key}) : super(key: key);
+  final GameDetail gamedetail;
+  const ScoreBoardModal({Key? key, required this.gamedetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var rank = gamedetail.getRank();
+    var pseudoList = rank.keys.toList();
+    var scoreList = rank.values.toList();
     return Dialog(
       child: Stack(
         alignment: Alignment.topCenter,
@@ -159,39 +167,42 @@ class ScoreBoardModal extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(
-                  child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    /*Positioned(
-                      child: PodiumGameOverWidget(
-                        isfirst: 2,
-                        pseudo: 'Lucas',
-                        score: 123,
-                      ),
-                      top: 70,
-                      left: 30,
-                    ),
-                    Positioned(
-                      child: PodiumGameOverWidget(
-                        isfirst: 1,
-                        pseudo: 'Momo',
-                        score: 160,
-                      ),
-                      top: 10,
-                    ),
-                    Positioned(
-                      child: PodiumGameOverWidget(
-                        isfirst: 3,
-                        pseudo: 'popo',
-                        score: 110,
-                      ),
-                      top: 70,
-                      right: 30,
-                    )*/
-                  ],
-                ),
+                  child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  rank.length > 1
+                      ? Positioned(
+                          child: PodiumGameOverWidget(
+                            isfirst: 2,
+                            player: pseudoList[1],
+                            score: scoreList[1],
+                          ),
+                          top: 70,
+                          left: 30,
+                        )
+                      : Container(),
+                  rank.length > 0
+                      ? Positioned(
+                          child: PodiumGameOverWidget(
+                            isfirst: 1,
+                            player: pseudoList[0],
+                            score: scoreList[0],
+                          ),
+                          top: 10,
+                        )
+                      : Container(),
+                  rank.length > 2
+                      ? Positioned(
+                          child: PodiumGameOverWidget(
+                            isfirst: 3,
+                            player: pseudoList[2],
+                            score: scoreList[2],
+                          ),
+                          top: 70,
+                          right: 30,
+                        )
+                      : Container()
+                ],
               )),
             ]),
           )

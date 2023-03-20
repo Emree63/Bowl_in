@@ -53,6 +53,7 @@ abstract class AbstractRound {
   bool computeNext(int val);
   void computePoints();
   bool shotIsStrike();
+  int getMaxPinsThisShot();
 
   bool isStrike() {
     return firstThrow==10;
@@ -66,6 +67,9 @@ abstract class AbstractRound {
     return (firstThrow ?? 0)+(secondThrow ?? 0)==10;
   }
 
+  int getNbStrike();
+  int getNbSpares();
+  int getPinsKnockedDown();
 
   void subscribe(AbstractRound nextRound){
     nextRound.previousRound=this;
@@ -73,7 +77,6 @@ abstract class AbstractRound {
 
   void update(int val){
     points = (points ?? 0) + val;
-    print("ROUND " + number.toString() + " - " + player.id.toString() + "Update points : " + points.toString());
     previousRound?.update(val);
   }
 

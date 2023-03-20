@@ -111,12 +111,9 @@ class CardGame extends StatelessWidget {
                                   child: Wrap(
                                       spacing: 5,
                                       runSpacing: 5,
-                                      children: game.playersId
+                                      children: game.players
                                           .map((e) => ProfilPicture(
-                                                path: MyApp.controller.userMgr
-                                                    .getUserById(e)
-                                                    .image
-                                                    .toString(),
+                                                path: e.image.toString(),
                                               ))
                                           .toList()))),
                           const Spacer(),
@@ -149,7 +146,9 @@ class CardGame extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return ScoreBoardModal();
+                  return ScoreBoardModal(
+                      gamedetail:
+                          MyApp.controller.gameMgr.getGameById(game.id));
                 });
           },
         ));

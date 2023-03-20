@@ -101,8 +101,9 @@ class GameCard extends StatelessWidget {
 class StatsCard extends StatelessWidget {
   final String title;
   final double val;
+  final int precision;
 
-  const StatsCard({Key? key, required this.title, required this.val})
+  const StatsCard({Key? key, required this.title, required this.val, required this.precision})
       : super(key: key);
 
   @override
@@ -137,7 +138,7 @@ class StatsCard extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                this.val.toString(),
+                this.val.toStringAsFixed(precision),
                 style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w900,
                     fontSize: 28,

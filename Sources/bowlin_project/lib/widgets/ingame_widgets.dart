@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bowl_in/main.dart';
 import 'package:bowl_in/widgets/profil_listpodium_widget.dart';
 import 'package:bowl_in/widgets/scores_list_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,11 +10,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../model/AbstractRound.dart';
 import '../model/GameDetail.dart';
+import '../model/Guest.dart';
 import '../model/Player.dart';
+import '../model/User.dart';
 
 class FinalScoreBoard extends StatefulWidget {
-  final GameDetail gameDeatil;
-  const FinalScoreBoard({Key? key, required this.gameDeatil}) : super(key: key);
+  final GameDetail gameDetail;
+  const FinalScoreBoard({Key? key, required this.gameDetail}) : super(key: key);
 
   @override
   State<FinalScoreBoard> createState() => _FinalScoreBoardState();
@@ -25,7 +28,7 @@ class _FinalScoreBoardState extends State<FinalScoreBoard> {
   late List<int> scoreList;
   @override
   void initState() {
-    rank = widget.gameDeatil.getRank();
+    rank = widget.gameDetail.getRank();
     pseudoList = rank.keys.toList();
     scoreList = rank.values.toList();
     super.initState();
@@ -248,13 +251,37 @@ class PodiumGameOverWidget extends StatelessWidget {
 }
 
 class InGameCardConfig extends StatefulWidget {
-  const InGameCardConfig({Key? key}) : super(key: key);
+  final List<Player> listPlayer;
+  const InGameCardConfig({Key? key, required this.listPlayer}) : super(key: key);
 
   @override
   State<InGameCardConfig> createState() => _InGameCardConfigState();
 }
 
 class _InGameCardConfigState extends State<InGameCardConfig> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void onDelete(Player p){
+    setState(() {
+
+      widget.listPlayer.remove(p);
+    });
+  }
+
+  void onReorder(int oldIndex, int newIndex){
+    setState(() {
+
+      if (oldIndex < newIndex) {
+        newIndex -= 1;
+      }
+      final Player item = widget.listPlayer.removeAt(oldIndex);
+      widget.listPlayer.insert(newIndex, item);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -298,7 +325,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                   ],
                 ),
               )),
-          ListUserInGame(),
+          ListUserInGame(listPlayer: widget.listPlayer, onDelete: onDelete, onReorder: onReorder,),
           Spacer(),
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
@@ -307,7 +334,12 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
           Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    if (widget.listPlayer.length < 10)
+                      widget.listPlayer.add(new Guest("guest"));
+                  });
+                },
                 child: Text(
                   "+ Add a player",
                   style: GoogleFonts.roboto(
@@ -332,13 +364,17 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
 }
 
 class ListUserInGame extends StatefulWidget {
-  const ListUserInGame({Key? key}) : super(key: key);
+  final List<Player> listPlayer;
+  final Function(Player) onDelete;
+  final Function(int, int) onReorder;
+  const ListUserInGame({Key? key, required this.listPlayer, required this.onDelete, required this.onReorder}) : super(key: key);
 
   @override
   State<ListUserInGame> createState() => _ListUserInGameState();
 }
 
 class _ListUserInGameState extends State<ListUserInGame> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -347,23 +383,31 @@ class _ListUserInGameState extends State<ListUserInGame> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ConstrainedBox(
-                constraints: new BoxConstraints(
-                  maxHeight: 170,
-                ),
-                child: ListView(children: [
-                  UserInGame(),
-                  UserInGame(),
-                  UserInGame(),
-                  UserInGame(),
-                  UserInGame(),
-                ])),
-            Text(
-              "3 player(s)",
-              style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                  color: CupertinoColors.black,
-                  decoration: TextDecoration.none),
+              constraints: new BoxConstraints(
+                maxHeight: 170,
+              ),
+              child: ReorderableListView.builder(
+                itemCount: widget.listPlayer.length,
+                  itemBuilder: (context, index) {
+                    return UserInGame(key:ValueKey(widget.listPlayer[index]) ,player: widget.listPlayer[index], onDelete: widget.onDelete, index: index);
+                  },
+                  onReorder: widget.onReorder,
+              ),
+            ),
+            RichText(
+              text: TextSpan(
+                text: widget.listPlayer.length.toString(),
+                style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    color: CupertinoColors.black,
+                    decoration: TextDecoration.none),
+                children: const <TextSpan>[
+                  TextSpan(
+                      text: ' player(s)',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ],
+              ),
             )
           ],
         ));
@@ -371,13 +415,17 @@ class _ListUserInGameState extends State<ListUserInGame> {
 }
 
 class UserInGame extends StatefulWidget {
-  const UserInGame({Key? key}) : super(key: key);
+  final Player player;
+  final Function(Player) onDelete;
+  final int index;
+  const UserInGame({Key? key, required this.player, required this.onDelete, required this.index}) : super(key: key);
 
   @override
   State<UserInGame> createState() => _UserInGameState();
 }
 
 class _UserInGameState extends State<UserInGame> {
+  final userNameTextField = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -393,27 +441,61 @@ class _UserInGameState extends State<UserInGame> {
       ),
       child: Row(
         children: [
-          Container(
+          ReorderableDragStartListener(
+          index: widget.index,
+          child : Container(
             width: 30,
             height: 30,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(70)),
               image: DecorationImage(
-                  image: AssetImage("assets/images/image_user_cyan.png"),
-                  fit: BoxFit.cover),
+                  image: AssetImage(widget.player.image), fit: BoxFit.cover),
             ),
+          ),
           ),
           SizedBox(
             width: 10,
           ),
-          Text(
-            "Emre",
-            style: GoogleFonts.roboto(
-                fontSize: 18,
-                decoration: TextDecoration.none,
-                color: Color(0xff241E40)),
+          widget.player is Guest
+              ? Material(
+                  surfaceTintColor: Colors.transparent,
+                  child: SizedBox(
+                    width: 220,
+                    child: TextField(
+                      controller: userNameTextField,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: Color(0xffF2F2F2),
+                        hintText: 'Pseudonyme',
+                      ),
+                      cursorColor: Colors.purple,
+                      textAlign: TextAlign.left,
+                      onChanged: (str)=> widget.player.name=str
+                      ,
+                    ),
+                  ),
+                )
+              : SizedBox(
+                  width: 220,
+                  child: Text(
+                  widget.player.name,
+                  style: GoogleFonts.roboto(
+                      fontSize: 18,
+                      decoration: TextDecoration.none,
+                      color: Color(0xff241E40))
+                  ),
+                ),
+          (widget.player is User && (widget.player as User).id == MyApp.controller.userCurrent.id) ?
+          Icon(Icons.lock, color: Colors.amber) :
+          GestureDetector(
+            onTap: () {
+              widget.onDelete(widget.player);
+            },
+            child: Icon(Icons.close)
           ),
-          Spacer(),
+          Spacer()
         ],
       ),
     );
@@ -437,17 +519,8 @@ class InGameCardThrow extends StatefulWidget {
 
 class _InGameCardThrowState extends State<InGameCardThrow> {
   GlobalKey<_NumberPadState> _numberPadKey = GlobalKey();
-  late var maxValue;
 
   void initState() {
-    if (widget.currentRound.firstThrow == null) {
-      maxValue = 10;
-    } else if (widget.currentRound.secondThrow == null) {
-      maxValue = 10 - (widget.currentRound.firstThrow ?? 0);
-    } else {
-      maxValue = 10;
-    }
-
     super.initState();
   }
 
@@ -522,7 +595,7 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
             numberThrow: widget.numberThrow,
             setSelectedValue: widget.setSelectedValue,
             currentRound: widget.currentRound,
-            maxValue: maxValue,
+            maxValue: widget.currentRound.getMaxPinsThisShot(),
           ),
         ],
       ),
@@ -602,7 +675,10 @@ class SpareButton extends StatelessWidget {
   final IntCallback onSonChanged;
   final int valueToReturn;
   const SpareButton(
-      {Key? key, required this.onSonChanged, required this.currentSelected, required this.valueToReturn})
+      {Key? key,
+      required this.onSonChanged,
+      required this.currentSelected,
+      required this.valueToReturn})
       : super(key: key);
 
   @override
@@ -622,8 +698,9 @@ class SpareButton extends StatelessWidget {
             child: Text(
           "SPARE !",
           style: GoogleFonts.roboto(
-              color:
-                  currentSelected == valueToReturn ? Colors.pink : CupertinoColors.black,
+              color: currentSelected == valueToReturn
+                  ? Colors.pink
+                  : CupertinoColors.black,
               decoration: TextDecoration.none,
               fontWeight: FontWeight.w900,
               fontStyle: FontStyle.italic,

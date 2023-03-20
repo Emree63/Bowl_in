@@ -55,4 +55,60 @@ class LastRound extends AbstractRound{
       return secondThrow==10;
     }
   }
+
+  @override
+  int getNbSpares() {
+    int nb = 0;
+    if(firstThrow!=10){
+      if((firstThrow??0)+(secondThrow??0)==10){
+        nb+=1;
+      }
+    }else{
+      if((thirdThrow??0)+(secondThrow??0)==10) {
+        nb+=1;
+      }
+    }
+    return nb;
+  }
+
+  @override
+  int getNbStrike() {
+    int nb = 0;
+    if(firstThrow==10){
+      nb+=1;
+      if(secondThrow==10){
+        nb+=1;
+        if(thirdThrow==10) {
+          nb+=1;
+        }
+      }
+    }else{
+      if(thirdThrow==10) {
+        nb+=1;
+      }
+    }
+    return nb;
+  }
+
+  @override
+  int getPinsKnockedDown() {
+    return (firstThrow??0)+(secondThrow??0)+(thirdThrow??0);
+  }
+
+
+  @override
+  int getMaxPinsThisShot() {
+    if(firstThrow==null){
+      return 10;
+    }else if(firstThrow==10 && secondThrow==null){
+      return 10;
+    }else if(secondThrow==null){
+      return 10 - (firstThrow??0);
+    }else if(secondThrow==10){
+      return 10;
+    }else{
+      return 10 - (secondThrow??0);
+    }
+  }
+
 }

@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../model/Game.dart';
+import '../model/Guest.dart';
+import '../model/Player.dart';
 import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
 import '../widgets/scores_list_widget.dart';
@@ -18,10 +21,12 @@ class InGameScreen extends StatefulWidget {
 }
 
 class _InGameScreenState extends State<InGameScreen> {
+  late List<Player> listPlayers;
   late Widget widgetHolder;
 
   void initState() {
-    widgetHolder = InGameCardConfig();
+    listPlayers = [MyApp.controller.userCurrent];
+    widgetHolder = InGameCardConfig(listPlayer: listPlayers);
     super.initState();
   }
 
@@ -52,8 +57,13 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                GameDetail gd = GameDetail(1, DateTime.now(), null, 123, false,
-                    MyApp.controller.userCurrent.id, [MyApp.controller.userCurrent, MyApp.controller.userMgr.getUserById(2)]);
+                GameDetail gd = GameDetail(
+                    -1,
+                    DateTime.now(),
+                    null,
+                    0,
+                    false,
+                    MyApp.controller.userCurrent.id, listPlayers);
 
                 MyApp.controller.gamePlayer.game = gd;
                 MyApp.controller.gameCurrent = gd;
