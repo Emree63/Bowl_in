@@ -266,7 +266,19 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
 
   void onDelete(Player p){
     setState(() {
+
       widget.listPlayer.remove(p);
+    });
+  }
+
+  void onReorder(int oldIndex, int newIndex){
+    setState(() {
+
+      if (oldIndex < newIndex) {
+        newIndex -= 1;
+      }
+      final Player item = widget.listPlayer.removeAt(oldIndex);
+      widget.listPlayer.insert(newIndex, item);
     });
   }
 
@@ -313,7 +325,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                   ],
                 ),
               )),
-          ListUserInGame(listPlayer: widget.listPlayer, onDelete: onDelete),
+          ListUserInGame(listPlayer: widget.listPlayer, onDelete: onDelete, onReorder: onReorder,),
           Spacer(),
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
@@ -354,7 +366,8 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
 class ListUserInGame extends StatefulWidget {
   final List<Player> listPlayer;
   final Function(Player) onDelete;
-  const ListUserInGame({Key? key, required this.listPlayer, required this.onDelete}) : super(key: key);
+  final Function(int, int) onReorder;
+  const ListUserInGame({Key? key, required this.listPlayer, required this.onDelete, required this.onReorder}) : super(key: key);
 
   @override
   State<ListUserInGame> createState() => _ListUserInGameState();
@@ -373,11 +386,13 @@ class _ListUserInGameState extends State<ListUserInGame> {
               constraints: new BoxConstraints(
                 maxHeight: 170,
               ),
-              child: ListView.builder(
-                  itemCount: widget.listPlayer.length,
+              child: ReorderableListView.builder(
+                itemCount: widget.listPlayer.length,
                   itemBuilder: (context, index) {
-                    return UserInGame(player: widget.listPlayer[index], onDelete: widget.onDelete);
-                  }),
+                    return UserInGame(key:ValueKey(widget.listPlayer[index]) ,player: widget.listPlayer[index], onDelete: widget.onDelete, index: index);
+                  },
+                  onReorder: widget.onReorder,
+              ),
             ),
             RichText(
               text: TextSpan(
@@ -402,7 +417,8 @@ class _ListUserInGameState extends State<ListUserInGame> {
 class UserInGame extends StatefulWidget {
   final Player player;
   final Function(Player) onDelete;
-  const UserInGame({Key? key, required this.player, required this.onDelete}) : super(key: key);
+  final int index;
+  const UserInGame({Key? key, required this.player, required this.onDelete, required this.index}) : super(key: key);
 
   @override
   State<UserInGame> createState() => _UserInGameState();
@@ -425,7 +441,9 @@ class _UserInGameState extends State<UserInGame> {
       ),
       child: Row(
         children: [
-          Container(
+          ReorderableDragStartListener(
+          index: widget.index,
+          child : Container(
             width: 30,
             height: 30,
             decoration: BoxDecoration(
@@ -433,6 +451,7 @@ class _UserInGameState extends State<UserInGame> {
               image: DecorationImage(
                   image: AssetImage(widget.player.image), fit: BoxFit.cover),
             ),
+          ),
           ),
           SizedBox(
             width: 10,
