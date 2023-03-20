@@ -250,17 +250,16 @@ class PodiumGameOverWidget extends StatelessWidget {
 }
 
 class InGameCardConfig extends StatefulWidget {
-  const InGameCardConfig({Key? key}) : super(key: key);
+  final List<Player> listPlayer;
+  const InGameCardConfig({Key? key, required this.listPlayer}) : super(key: key);
 
   @override
   State<InGameCardConfig> createState() => _InGameCardConfigState();
 }
 
 class _InGameCardConfigState extends State<InGameCardConfig> {
-  late List<Player> listPlayer;
   @override
   void initState() {
-    listPlayer = [MyApp.controller.userCurrent];
     super.initState();
   }
 
@@ -307,7 +306,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                   ],
                 ),
               )),
-          ListUserInGame(listPlayer: listPlayer),
+          ListUserInGame(listPlayer: widget.listPlayer),
           Spacer(),
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
@@ -318,8 +317,8 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if (listPlayer.length < 10)
-                      listPlayer.add(new Guest("guest"));
+                    if (widget.listPlayer.length < 10)
+                      widget.listPlayer.add(new Guest("guest"));
                   });
                 },
                 child: Text(
@@ -438,10 +437,14 @@ class _UserInGameState extends State<UserInGame> {
                       style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         border: InputBorder.none,
+                        filled: true,
+                        fillColor: Color(0xffF2F2F2),
                         hintText: 'Pseudonyme',
                       ),
                       cursorColor: Colors.purple,
                       textAlign: TextAlign.left,
+                      onChanged: (str)=> widget.player.name=str
+                      ,
                     ),
                   ),
                 )
