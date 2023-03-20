@@ -59,7 +59,6 @@ class StubData extends IManager {
             0,
             0,
             0,
-            0,
             0)),
     User(
         9,
@@ -91,7 +90,6 @@ class StubData extends IManager {
                   0,
                   0,
                   0,
-                  0,
                   0)),
           User(
               22,
@@ -106,7 +104,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   150,
                   7,
@@ -127,7 +124,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   10,
                   7,
@@ -148,7 +144,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   40,
                   7,
@@ -169,7 +164,6 @@ class StubData extends IManager {
               [],
               Stat(
                   10,
-                  2,
                   12,
                   76,
                   7,
@@ -179,7 +173,6 @@ class StubData extends IManager {
                   30.2)),
         ],
         Stat(
-            0,
             0,
             0,
             0,

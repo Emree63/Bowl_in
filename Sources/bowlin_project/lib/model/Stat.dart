@@ -5,7 +5,6 @@ import 'User.dart';
 
 class Stat {
   int _nbVictory;
-  int _nbDefeat;
   int _nbGames;
   int _highscore;
   int _nbStrikes;
@@ -17,7 +16,6 @@ class Stat {
   // Constructor
   Stat(
     this._nbVictory,
-    this._nbDefeat,
     this._nbGames,
     this._highscore,
     this._nbStrikes,
@@ -32,12 +30,6 @@ class Stat {
 
   set nbVictory(int value) {
     _nbVictory = value;
-  }
-
-  int get nbDefeat => _nbDefeat;
-
-  set nbDefeat(int value) {
-    _nbDefeat = value;
   }
 
   int get nbGames => _nbGames;
@@ -87,6 +79,11 @@ class Stat {
     if(gd.winner == p){
       nbVictory +=1;
     }
+
+    if((gd.points[p] ??  0) > highscore){
+      highscore = gd.points[p] ?? 0;
+    }
+
     double totalpins = 0;
     for(var r in gd.rounds){
 
