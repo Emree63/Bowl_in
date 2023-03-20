@@ -95,4 +95,20 @@ class LastRound extends AbstractRound{
     return (firstThrow??0)+(secondThrow??0)+(thirdThrow??0);
   }
 
+
+  @override
+  int getMaxPinsThisShot() {
+    if(firstThrow==null){
+      return 10;
+    }else if(firstThrow==10 && secondThrow==null){
+      return 10;
+    }else if(secondThrow==null){
+      return 10 - (firstThrow??0);
+    }else if(secondThrow==10){
+      return 10;
+    }else{
+      return 10 - (secondThrow??0);
+    }
+  }
+
 }

@@ -53,6 +53,7 @@ abstract class AbstractRound {
   bool computeNext(int val);
   void computePoints();
   bool shotIsStrike();
+  int getMaxPinsThisShot();
 
   bool isStrike() {
     return firstThrow==10;

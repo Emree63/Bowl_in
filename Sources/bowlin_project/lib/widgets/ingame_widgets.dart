@@ -437,17 +437,8 @@ class InGameCardThrow extends StatefulWidget {
 
 class _InGameCardThrowState extends State<InGameCardThrow> {
   GlobalKey<_NumberPadState> _numberPadKey = GlobalKey();
-  late var maxValue;
 
   void initState() {
-    if (widget.currentRound.firstThrow == null) {
-      maxValue = 10;
-    } else if (widget.currentRound.secondThrow == null) {
-      maxValue = 10 - (widget.currentRound.firstThrow ?? 0);
-    } else {
-      maxValue = 10;
-    }
-
     super.initState();
   }
 
@@ -522,7 +513,7 @@ class _InGameCardThrowState extends State<InGameCardThrow> {
             numberThrow: widget.numberThrow,
             setSelectedValue: widget.setSelectedValue,
             currentRound: widget.currentRound,
-            maxValue: maxValue,
+            maxValue: widget.currentRound.getMaxPinsThisShot(),
           ),
         ],
       ),

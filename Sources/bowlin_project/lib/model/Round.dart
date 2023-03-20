@@ -60,6 +60,12 @@ class Round extends AbstractRound{
     return (firstThrow ?? 0)+(secondThrow ?? 0);
   }
 
-
-
+  @override
+  int getMaxPinsThisShot() {
+    if(firstThrow==null){
+      return 10;
+    }else{
+      return 10 - (firstThrow ?? 0);
+    }
+  }
 }
