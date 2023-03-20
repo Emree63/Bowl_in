@@ -12,6 +12,7 @@ import '../model/AbstractRound.dart';
 import '../model/GameDetail.dart';
 import '../model/Guest.dart';
 import '../model/Player.dart';
+import '../model/User.dart';
 
 class FinalScoreBoard extends StatefulWidget {
   final GameDetail gameDeatil;
@@ -263,6 +264,12 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
     super.initState();
   }
 
+  void onDelete(Player p){
+    setState(() {
+      widget.listPlayer.remove(p);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -306,7 +313,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                   ],
                 ),
               )),
-          ListUserInGame(listPlayer: widget.listPlayer),
+          ListUserInGame(listPlayer: widget.listPlayer, onDelete: onDelete),
           Spacer(),
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
@@ -346,13 +353,15 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
 
 class ListUserInGame extends StatefulWidget {
   final List<Player> listPlayer;
-  const ListUserInGame({Key? key, required this.listPlayer}) : super(key: key);
+  final Function(Player) onDelete;
+  const ListUserInGame({Key? key, required this.listPlayer, required this.onDelete}) : super(key: key);
 
   @override
   State<ListUserInGame> createState() => _ListUserInGameState();
 }
 
 class _ListUserInGameState extends State<ListUserInGame> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -367,7 +376,7 @@ class _ListUserInGameState extends State<ListUserInGame> {
               child: ListView.builder(
                   itemCount: widget.listPlayer.length,
                   itemBuilder: (context, index) {
-                    return UserInGame(player: widget.listPlayer[index]);
+                    return UserInGame(player: widget.listPlayer[index], onDelete: widget.onDelete);
                   }),
             ),
             RichText(
@@ -392,7 +401,8 @@ class _ListUserInGameState extends State<ListUserInGame> {
 
 class UserInGame extends StatefulWidget {
   final Player player;
-  const UserInGame({Key? key, required this.player}) : super(key: key);
+  final Function(Player) onDelete;
+  const UserInGame({Key? key, required this.player, required this.onDelete}) : super(key: key);
 
   @override
   State<UserInGame> createState() => _UserInGameState();
@@ -431,7 +441,7 @@ class _UserInGameState extends State<UserInGame> {
               ? Material(
                   surfaceTintColor: Colors.transparent,
                   child: SizedBox(
-                    width: 230,
+                    width: 220,
                     child: TextField(
                       controller: userNameTextField,
                       style: const TextStyle(color: Colors.black),
@@ -448,14 +458,25 @@ class _UserInGameState extends State<UserInGame> {
                     ),
                   ),
                 )
-              : Text(
+              : SizedBox(
+                  width: 220,
+                  child: Text(
                   widget.player.name,
                   style: GoogleFonts.roboto(
                       fontSize: 18,
                       decoration: TextDecoration.none,
-                      color: Color(0xff241E40)),
+                      color: Color(0xff241E40))
+                  ),
                 ),
-          Spacer(),
+          (widget.player is User && (widget.player as User).id == MyApp.controller.userCurrent.id) ?
+          Icon(Icons.lock, color: Colors.amber) :
+          GestureDetector(
+            onTap: () {
+              widget.onDelete(widget.player);
+            },
+            child: Icon(Icons.close)
+          ),
+          Spacer()
         ],
       ),
     );
