@@ -1,5 +1,6 @@
 import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:bowl_in/model/GameDetail.dart';
+import 'package:bowl_in/model/GamePlayer.dart';
 import 'package:bowl_in/model/Guest.dart';
 import 'package:bowl_in/model/IManager.dart';
 import 'package:bowl_in/model/Player.dart';
@@ -39,5 +40,100 @@ void main() {
     expect(score, 300);
   });
 
+  test("Classic game", (){
+    final IManager mgr = StubData();
+    final List<Player> listPlayers = [mgr.userCurrent, Guest("Lucas")];
 
+    final GameDetail gd = GameDetail(
+        -1,
+        DateTime.now(),
+        null,
+        0,
+        false,
+        mgr.userCurrent.id,
+        listPlayers);
+    mgr.gamePlayer.game = gd;
+    mgr.gamePlayer.onNext(false, null);
+
+    makeThrow(7, mgr.gamePlayer);
+    makeThrow(2, mgr.gamePlayer);
+
+    makeThrow(10, mgr.gamePlayer);
+
+    makeThrow(5, mgr.gamePlayer);
+    makeThrow(5, mgr.gamePlayer);
+
+    makeThrow(5, mgr.gamePlayer);
+    makeThrow(5, mgr.gamePlayer);
+
+    makeThrow(3, mgr.gamePlayer);
+    makeThrow(7, mgr.gamePlayer);
+
+    makeThrow(0, mgr.gamePlayer);
+    makeThrow(7, mgr.gamePlayer);
+
+    makeThrow(10, mgr.gamePlayer);
+
+    makeThrow(0, mgr.gamePlayer);
+    makeThrow(0, mgr.gamePlayer);
+
+    makeThrow(9, mgr.gamePlayer);
+    makeThrow(0, mgr.gamePlayer);
+
+    makeThrow(0, mgr.gamePlayer);
+    makeThrow(10, mgr.gamePlayer);
+
+    makeThrow(2, mgr.gamePlayer);
+    makeThrow(2, mgr.gamePlayer);
+
+    makeThrow(5, mgr.gamePlayer);
+    makeThrow(5, mgr.gamePlayer);
+
+    makeThrow(10, mgr.gamePlayer);
+
+    makeThrow(3, mgr.gamePlayer);
+    makeThrow(2, mgr.gamePlayer);
+
+    makeThrow(1, mgr.gamePlayer);
+    makeThrow(2, mgr.gamePlayer);
+
+    makeThrow(7, mgr.gamePlayer);
+    makeThrow(1, mgr.gamePlayer);
+
+    makeThrow(4, mgr.gamePlayer);
+    makeThrow(6, mgr.gamePlayer);
+
+    makeThrow(1, mgr.gamePlayer);
+    makeThrow(7, mgr.gamePlayer);
+
+    makeThrow(10, mgr.gamePlayer);
+    makeThrow(6, mgr.gamePlayer);
+    makeThrow(2, mgr.gamePlayer);
+
+    makeThrow(8, mgr.gamePlayer);
+    makeThrow(1, mgr.gamePlayer);
+
+
+
+    final Iterable<int> score = gd
+        .getRank()
+        .values;
+    expect(score.first, 128);
+    expect(score.last, 95);
+
+    expect(mgr.userCurrent.games.length, 1);
+    expect(mgr.userCurrent.games.first.id, mgr.gamePlayer.game.id);
+
+  });
+
+}
+
+
+void makeThrow(int input, GamePlayer gamePlayer){
+    AbstractRound currentRound = gamePlayer.currentRound!;
+    bool isFinished = currentRound.computeNext(input);
+    if (currentRound.isSpareOrStrike()) {
+      gamePlayer.onSpareOrStrike();
+    }
+    gamePlayer.onNext(isFinished, null);
 }

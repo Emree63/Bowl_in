@@ -8,8 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 
 void testManager(IManager mgr){
-  test("Just strikes", (){
-
+  test("Test manager " + mgr.runtimeType.toString(), (){
     expect(mgr.userCurrent, mgr.userMgr.getUsersByName("Dave").first);
     expect(mgr.userCurrent, mgr.userMgr.getUserById(mgr.userCurrent.id));
 
