@@ -2,7 +2,6 @@ library StubLib;
 
 import '../Guest.dart';
 import '../IManager.dart';
-import '../Game.dart';
 import '../IUserManager.dart';
 import '../IGameManager.dart';
 import '../Player.dart';
