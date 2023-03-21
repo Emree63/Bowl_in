@@ -2,14 +2,14 @@ import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/Player.dart';
 
 class Stat {
-  int _nbVictory;
-  int _nbGames;
-  int _highscore;
-  int _nbStrikes;
-  int _nbSpares;
-  int _nbScore;
-  double _avgScore;
-  double _avgPinsPerRound;
+  int _nbVictory = 0;
+  int _nbGames = 0;
+  int _highscore = 0;
+  int _nbStrikes = 0;
+  int _nbSpares = 0;
+  int _nbScore = 0;
+  double _avgScore = 0;
+  double _avgPinsPerRound = 0;
 
   // Constructor
   Stat(
@@ -22,6 +22,9 @@ class Stat {
     this._avgScore,
     this._avgPinsPerRound,
   );
+
+  Stat.empty();
+
 
   // Getters and setters
   int get nbVictory => _nbVictory;
