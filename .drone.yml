@@ -20,7 +20,7 @@ steps:
     commands:
       - cd Sources/bowlin_project/
       - flutter pub get
-      - flutter test
+      - flutter test --coverage
     depends_on: [ app-build ]
 
 # build CONTAINER for sonar on flutter IMAGE
