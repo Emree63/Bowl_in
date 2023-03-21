@@ -102,6 +102,7 @@ class GameDetail {
     print("====COMPUTE POINTS====");
     for(var element in rounds){
       points[element.player] = (points[element.player] ?? 0) + (element.points ?? 0);
+      print(element.points);
     }
     computeWinner();
     addGameToUsers();

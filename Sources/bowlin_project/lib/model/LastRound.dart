@@ -38,6 +38,7 @@ class LastRound extends AbstractRound{
   @override
   void computePoints() {
     points = (firstThrow??0)+(secondThrow??0)+(thirdThrow??0);
+    print("Compute points : " + points.toString());
 
     if(previousRound?.isStrike()??false){
       update(points??0);

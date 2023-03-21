@@ -31,7 +31,6 @@ class Round extends AbstractRound{
     if(previousRound?.isStrike() ?? false){
       previousRound?.update(points ?? 0);
     }
-    unsubscribePreviousRound();
   }
 
   @override
