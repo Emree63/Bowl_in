@@ -9,7 +9,6 @@ import '../Round.dart';
 import '../User.dart';
 import '../Achievement.dart';
 import '../GameDetail.dart';
-import '../Stat.dart';
 import 'UserManager.dart';
 import 'GameManager.dart';
 
@@ -39,84 +38,49 @@ class StubData extends IManager {
     Guest("Louison"),
     Guest("Arthur"),
     Guest("David"),
-    User(
-        8,
-        "Emre",
-        "./assets/images/image_user_cyan.png",
-        "emre.kartal@etu.uca.fr",
-        [
-          Achievement("5 games"),
-          Achievement("2 strikes in a row"),
-          Achievement("Win a game")
-        ],
-        []),
-    User(
-        9,
-        "Dave",
-        "./assets/images/image_user_cyan.png",
-        "david.d_almeida@etu.uca.fr",
-        [
-          Achievement("5 games"),
-          Achievement("0 point"),
-          Achievement("Win a game")
-        ],
-        [
-          User(
-              21,
-              "Arthur",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              []),
-          User(
-              22,
-              "Louison",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              []),
-          User(
-              23,
-              "Owen",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              []),
-          User(
-              24,
-              "LULU",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              []),
-          User(
-              25,
-              "Raphael",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              []),
-        ])
+    User(8, "Emre", "./assets/images/image_user_cyan.png",
+        "emre.kartal@etu.uca.fr", [
+      Achievement("5 games"),
+      Achievement("2 strikes in a row"),
+      Achievement("Win a game")
+    ], []),
+    User(9, "Dave", "./assets/images/image_user_cyan.png",
+        "david.d_almeida@etu.uca.fr", [
+      Achievement("5 games"),
+      Achievement("0 point"),
+      Achievement("Win a game")
+    ], [
+      User(21, "Arthur", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(22, "Louison", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(23, "Owen", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(24, "LULU", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(25, "Raphael", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+    ])
   ];
 
   List<GameDetail> _gameDetails = [];

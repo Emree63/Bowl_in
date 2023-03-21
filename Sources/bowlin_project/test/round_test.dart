@@ -1,13 +1,15 @@
 import 'package:bowl_in/model/LastRound.dart';
 import 'package:bowl_in/model/Round.dart';
-import 'package:bowl_in/model/Stat.dart';
 import 'package:bowl_in/model/User.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
 void main() {
-  test("Test Round", (){
-    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], []);
+  test("Test Round", () {
+    User u = User(
+        1,
+        "Louison",
+        "Sources/bowlin_project/assets/images/image_user_pink.png",
+        "loparant@gmail.com", [], []);
     Round r = Round(null, null, null, u, 1);
 
     expect(r.getMaxPinsThisShot(), 10);
@@ -17,7 +19,6 @@ void main() {
 
     expect(r.getMaxPinsThisShot(), 6);
     r.computeNext(6);
-
 
     expect(r.isSpare(), true);
     expect(r.isSpareOrStrike(), true);
@@ -39,8 +40,12 @@ void main() {
     expect(r3.getPinsKnockedDown(), 7);
   });
 
-  test("Test LastRound", (){
-    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], []);
+  test("Test LastRound", () {
+    User u = User(
+        1,
+        "Louison",
+        "Sources/bowlin_project/assets/images/image_user_pink.png",
+        "loparant@gmail.com", [], []);
     LastRound r = LastRound(null, null, null, u, 1, null);
 
     expect(r.getMaxPinsThisShot(), 10);
@@ -75,6 +80,5 @@ void main() {
     expect(r3.getPinsKnockedDown(), 20);
     expect(r3.getNbSpares(), 1);
     expect(r3.getNbStrike(), 1);
-
   });
 }
