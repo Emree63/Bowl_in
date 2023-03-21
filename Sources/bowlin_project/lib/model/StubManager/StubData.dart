@@ -2,7 +2,6 @@ library StubLib;
 
 import '../Guest.dart';
 import '../IManager.dart';
-import '../Game.dart';
 import '../IUserManager.dart';
 import '../IGameManager.dart';
 import '../Player.dart';
@@ -50,16 +49,7 @@ class StubData extends IManager {
           Achievement("2 strikes in a row"),
           Achievement("Win a game")
         ],
-        [],
-        Stat(
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0)),
+        []),
     User(
         9,
         "Dave",
@@ -81,16 +71,7 @@ class StubData extends IManager {
                 Achievement("2 strikes in a row"),
                 Achievement("Win a game")
               ],
-              [],
-              Stat(
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0)),
+              []),
           User(
               22,
               "Louison",
@@ -101,16 +82,7 @@ class StubData extends IManager {
                 Achievement("2 strikes in a row"),
                 Achievement("Win a game")
               ],
-              [],
-              Stat(
-                  10,
-                  12,
-                  150,
-                  7,
-                  6,
-                  700,
-                  58.33,
-                  30.2)),
+              []),
           User(
               23,
               "Owen",
@@ -121,16 +93,7 @@ class StubData extends IManager {
                 Achievement("2 strikes in a row"),
                 Achievement("Win a game")
               ],
-              [],
-              Stat(
-                  10,
-                  12,
-                  10,
-                  7,
-                  6,
-                  700,
-                  58.33,
-                  30.2)),
+              []),
           User(
               24,
               "LULU",
@@ -141,16 +104,7 @@ class StubData extends IManager {
                 Achievement("2 strikes in a row"),
                 Achievement("Win a game")
               ],
-              [],
-              Stat(
-                  10,
-                  12,
-                  40,
-                  7,
-                  6,
-                  700,
-                  58.33,
-                  30.2)),
+              []),
           User(
               25,
               "Raphael",
@@ -161,26 +115,8 @@ class StubData extends IManager {
                 Achievement("2 strikes in a row"),
                 Achievement("Win a game")
               ],
-              [],
-              Stat(
-                  10,
-                  12,
-                  76,
-                  7,
-                  6,
-                  700,
-                  58.33,
-                  30.2)),
-        ],
-        Stat(
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0))
+              []),
+        ])
   ];
 
   List<GameDetail> _gameDetails = [];
@@ -228,8 +164,6 @@ class StubData extends IManager {
   }
 
   List<Round> get rounds => _rounds;
-
-  List<Game> _games = [];
 
   void _initGame() {
     //   games.add(Game(

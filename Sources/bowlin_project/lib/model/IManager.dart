@@ -1,11 +1,8 @@
 import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/GamePlayer.dart';
-
 import 'User.dart';
-import 'Game.dart';
 import 'IUserManager.dart';
 import 'IGameManager.dart';
-import 'Game.dart';
 
 abstract class IManager {
   late User _userCurrent;

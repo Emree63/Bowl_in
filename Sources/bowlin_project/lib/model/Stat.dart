@@ -1,17 +1,15 @@
 import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/Player.dart';
 
-import 'User.dart';
-
 class Stat {
-  int _nbVictory;
-  int _nbGames;
-  int _highscore;
-  int _nbStrikes;
-  int _nbSpares;
-  int _nbScore;
-  double _avgScore;
-  double _avgPinsPerRound;
+  int _nbVictory = 0;
+  int _nbGames = 0;
+  int _highscore = 0;
+  int _nbStrikes = 0;
+  int _nbSpares = 0;
+  int _nbScore = 0;
+  double _avgScore = 0;
+  double _avgPinsPerRound = 0;
 
   // Constructor
   Stat(
@@ -24,6 +22,9 @@ class Stat {
     this._avgScore,
     this._avgPinsPerRound,
   );
+
+  Stat.empty();
+
 
   // Getters and setters
   int get nbVictory => _nbVictory;
@@ -74,26 +75,25 @@ class Stat {
     _avgPinsPerRound = value;
   }
 
-  void updateStats(GameDetail gd, Player p){
-    nbGames +=1;
-    if(gd.winner == p){
-      nbVictory +=1;
+  void updateStats(GameDetail gd, Player p) {
+    nbGames += 1;
+    if (gd.winner == p) {
+      nbVictory += 1;
     }
 
-    if((gd.points[p] ??  0) > highscore){
+    if ((gd.points[p] ?? 0) > highscore) {
       highscore = gd.points[p] ?? 0;
     }
 
     double totalpins = 0;
-    for(var r in gd.rounds){
-
-      if(p == r.player){
+    for (var r in gd.rounds) {
+      if (p == r.player) {
         nbStrikes += r.getNbStrike();
         nbSpares += r.getNbSpares();
         totalpins = totalpins + r.getPinsKnockedDown();
       }
     }
-    avgPinsPerRound = ((avgPinsPerRound * (nbGames-1)) + (totalpins/10))/nbGames;
-
+    avgPinsPerRound =
+        ((avgPinsPerRound * (nbGames - 1)) + (totalpins / 10)) / nbGames;
   }
 }

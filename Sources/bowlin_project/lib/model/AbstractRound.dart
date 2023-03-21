@@ -1,5 +1,7 @@
 import 'Player.dart';
 
+final maxScoreInFrame = 30;
+
 abstract class AbstractRound {
   int? _firstThrow;
   int? _secondThrow;
@@ -28,7 +30,11 @@ abstract class AbstractRound {
   int? get points => _points;
 
   set points(int? value) {
-    _points = value;
+    if((value??0)>=maxScoreInFrame){
+      _points=maxScoreInFrame;
+    }else {
+      _points = value;
+    }
   }
 
 
@@ -76,11 +82,14 @@ abstract class AbstractRound {
   }
 
   void update(int val){
+    print(" ROUND " + number.toString() + "UPDATE : " + val.toString());
+
     points = (points ?? 0) + val;
     previousRound?.update(val);
   }
 
   void unsubscribePreviousRound(){
+    print("UNSUBSCRIBE");
     previousRound?.unsubscribePreviousRound();
     previousRound=null;
   }

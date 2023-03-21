@@ -1,13 +1,9 @@
 import 'dart:ui';
-
 import 'package:bowl_in/main.dart';
-import 'package:bowl_in/widgets/profil_listpodium_widget.dart';
-import 'package:bowl_in/widgets/scores_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../model/AbstractRound.dart';
 import '../model/GameDetail.dart';
 import '../model/Guest.dart';
@@ -170,8 +166,8 @@ class _FinalScoreBoardState extends State<FinalScoreBoard> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                onPrimary: Colors.transparent,
-                primary: Colors.transparent,
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),
@@ -252,7 +248,8 @@ class PodiumGameOverWidget extends StatelessWidget {
 
 class InGameCardConfig extends StatefulWidget {
   final List<Player> listPlayer;
-  const InGameCardConfig({Key? key, required this.listPlayer}) : super(key: key);
+  const InGameCardConfig({Key? key, required this.listPlayer})
+      : super(key: key);
 
   @override
   State<InGameCardConfig> createState() => _InGameCardConfigState();
@@ -264,16 +261,14 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
     super.initState();
   }
 
-  void onDelete(Player p){
+  void onDelete(Player p) {
     setState(() {
-
       widget.listPlayer.remove(p);
     });
   }
 
-  void onReorder(int oldIndex, int newIndex){
+  void onReorder(int oldIndex, int newIndex) {
     setState(() {
-
       if (oldIndex < newIndex) {
         newIndex -= 1;
       }
@@ -325,7 +320,11 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                   ],
                 ),
               )),
-          ListUserInGame(listPlayer: widget.listPlayer, onDelete: onDelete, onReorder: onReorder,),
+          ListUserInGame(
+            listPlayer: widget.listPlayer,
+            onDelete: onDelete,
+            onReorder: onReorder,
+          ),
           Spacer(),
           Image(
             image: AssetImage("assets/images/start_sentence.png"),
@@ -350,7 +349,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
                   shadowColor: Color(0xffB70056),
-                  primary: Color(0xffF40375),
+                  foregroundColor: Color(0xffF40375),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -367,14 +366,18 @@ class ListUserInGame extends StatefulWidget {
   final List<Player> listPlayer;
   final Function(Player) onDelete;
   final Function(int, int) onReorder;
-  const ListUserInGame({Key? key, required this.listPlayer, required this.onDelete, required this.onReorder}) : super(key: key);
+  const ListUserInGame(
+      {Key? key,
+      required this.listPlayer,
+      required this.onDelete,
+      required this.onReorder})
+      : super(key: key);
 
   @override
   State<ListUserInGame> createState() => _ListUserInGameState();
 }
 
 class _ListUserInGameState extends State<ListUserInGame> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -388,10 +391,14 @@ class _ListUserInGameState extends State<ListUserInGame> {
               ),
               child: ReorderableListView.builder(
                 itemCount: widget.listPlayer.length,
-                  itemBuilder: (context, index) {
-                    return UserInGame(key:ValueKey(widget.listPlayer[index]) ,player: widget.listPlayer[index], onDelete: widget.onDelete, index: index);
-                  },
-                  onReorder: widget.onReorder,
+                itemBuilder: (context, index) {
+                  return UserInGame(
+                      key: ValueKey(widget.listPlayer[index]),
+                      player: widget.listPlayer[index],
+                      onDelete: widget.onDelete,
+                      index: index);
+                },
+                onReorder: widget.onReorder,
               ),
             ),
             RichText(
@@ -418,7 +425,12 @@ class UserInGame extends StatefulWidget {
   final Player player;
   final Function(Player) onDelete;
   final int index;
-  const UserInGame({Key? key, required this.player, required this.onDelete, required this.index}) : super(key: key);
+  const UserInGame(
+      {Key? key,
+      required this.player,
+      required this.onDelete,
+      required this.index})
+      : super(key: key);
 
   @override
   State<UserInGame> createState() => _UserInGameState();
@@ -442,16 +454,16 @@ class _UserInGameState extends State<UserInGame> {
       child: Row(
         children: [
           ReorderableDragStartListener(
-          index: widget.index,
-          child : Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(70)),
-              image: DecorationImage(
-                  image: AssetImage(widget.player.image), fit: BoxFit.cover),
+            index: widget.index,
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(70)),
+                image: DecorationImage(
+                    image: AssetImage(widget.player.image), fit: BoxFit.cover),
+              ),
             ),
-          ),
           ),
           SizedBox(
             width: 10,
@@ -472,29 +484,26 @@ class _UserInGameState extends State<UserInGame> {
                       ),
                       cursorColor: Colors.purple,
                       textAlign: TextAlign.left,
-                      onChanged: (str)=> widget.player.name=str
-                      ,
+                      onChanged: (str) => widget.player.name = str,
                     ),
                   ),
                 )
               : SizedBox(
                   width: 220,
-                  child: Text(
-                  widget.player.name,
-                  style: GoogleFonts.roboto(
-                      fontSize: 18,
-                      decoration: TextDecoration.none,
-                      color: Color(0xff241E40))
-                  ),
+                  child: Text(widget.player.name,
+                      style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          decoration: TextDecoration.none,
+                          color: Color(0xff241E40))),
                 ),
-          (widget.player is User && (widget.player as User).id == MyApp.controller.userCurrent.id) ?
-          Icon(Icons.lock, color: Colors.amber) :
-          GestureDetector(
-            onTap: () {
-              widget.onDelete(widget.player);
-            },
-            child: Icon(Icons.close)
-          ),
+          (widget.player is User &&
+                  (widget.player as User).id == MyApp.controller.userCurrent.id)
+              ? Icon(Icons.lock, color: Colors.amber)
+              : GestureDetector(
+                  onTap: () {
+                    widget.onDelete(widget.player);
+                  },
+                  child: Icon(Icons.close)),
           Spacer()
         ],
       ),
@@ -518,8 +527,6 @@ class InGameCardThrow extends StatefulWidget {
 }
 
 class _InGameCardThrowState extends State<InGameCardThrow> {
-  GlobalKey<_NumberPadState> _numberPadKey = GlobalKey();
-
   void initState() {
     super.initState();
   }

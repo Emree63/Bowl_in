@@ -1,25 +1,24 @@
 import 'package:bowl_in/model/AbstractRound.dart';
-import 'GamePlayer.dart';
 
-class Round extends AbstractRound{
-
-  Round(super.firstThrow, super.secondThrow, super.points, super.player, super.number);
+class Round extends AbstractRound {
+  Round(super.firstThrow, super.secondThrow, super.points, super.player,
+      super.number);
 
   @override
   bool computeNext(int val) {
-    if(firstThrow==null){
-      firstThrow=val;
-      if(previousRound?.isSpare() ?? false){
+    if (firstThrow == null) {
+      firstThrow = val;
+      if (previousRound?.isSpare() ?? false) {
         previousRound?.update(val);
         unsubscribePreviousRound();
       }
-      if(val==10){
+      if (val == 10) {
         computePoints();
         return true;
       }
       return false;
-    }else if(firstThrow!=10 && secondThrow==null){
-      secondThrow=val;
+    } else if (firstThrow != 10 && secondThrow == null) {
+      secondThrow = val;
     }
     computePoints();
     return true;
@@ -27,21 +26,20 @@ class Round extends AbstractRound{
 
   @override
   void computePoints() {
-    points = (firstThrow ?? 0)+(secondThrow ?? 0);
-    if(previousRound?.isStrike() ?? false){
+    points = (firstThrow ?? 0) + (secondThrow ?? 0);
+    if (previousRound?.isStrike() ?? false) {
       previousRound?.update(points ?? 0);
     }
-    unsubscribePreviousRound();
   }
 
   @override
-  bool shotIsStrike(){
-    return firstThrow==null;
+  bool shotIsStrike() {
+    return firstThrow == null;
   }
 
   @override
   int getNbSpares() {
-    if(isSpare()){
+    if (isSpare()) {
       return 1;
     }
     return 0;
@@ -49,7 +47,7 @@ class Round extends AbstractRound{
 
   @override
   int getNbStrike() {
-    if(isStrike()){
+    if (isStrike()) {
       return 1;
     }
     return 0;
@@ -57,14 +55,14 @@ class Round extends AbstractRound{
 
   @override
   int getPinsKnockedDown() {
-    return (firstThrow ?? 0)+(secondThrow ?? 0);
+    return (firstThrow ?? 0) + (secondThrow ?? 0);
   }
 
   @override
   int getMaxPinsThisShot() {
-    if(firstThrow==null){
+    if (firstThrow == null) {
       return 10;
-    }else{
+    } else {
       return 10 - (firstThrow ?? 0);
     }
   }
