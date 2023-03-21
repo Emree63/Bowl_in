@@ -20,7 +20,7 @@ steps:
     commands:
       - cd Sources/bowlin_project/
       - flutter pub get
-      - flutter test --coverage
+      - flutter test --machine --coverage
     depends_on: [ app-build ]
 
 # build CONTAINER for sonar on flutter IMAGE
@@ -36,7 +36,7 @@ steps:
       - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
       - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
       - export SONAR_SCANNER_OPTS="-server"
-      - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=./Sources/bowlin_project -D sonar.host.url=https://codefirst.iut.uca.fr/sonar -D sonar.coverageReportPaths=./Sources/bowlin_project/coverage/lcov.info
+      - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=./Sources/bowlin_project -D sonar.host.url=https://codefirst.iut.uca.fr/sonar -D sonar.flutter.coverage.reportPath=./Sources/bowlin_project/coverage/lcov.info
     depends_on: [ test ]
 
 # database container deployment
