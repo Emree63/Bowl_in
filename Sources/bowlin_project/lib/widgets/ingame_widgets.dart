@@ -166,8 +166,8 @@ class _FinalScoreBoardState extends State<FinalScoreBoard> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                primary: Colors.transparent,
-                onPrimary: Colors.transparent,
+                foregroundColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),
