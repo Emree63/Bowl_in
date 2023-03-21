@@ -1,13 +1,10 @@
 library StubLib;
 
 import '../IUserManager.dart';
-import '../IAuthManager.dart';
 import '../Player.dart';
 import '../User.dart';
 import 'AuthManager.dart';
 import 'StubData.dart';
-import '../Player.dart';
-import '../Stat.dart';
 
 class UserManager extends IUserManager {
   final StubData parent;

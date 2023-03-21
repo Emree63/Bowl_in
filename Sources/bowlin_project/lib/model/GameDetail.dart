@@ -1,8 +1,6 @@
 import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:bowl_in/model/Game.dart';
-import 'package:bowl_in/model/GamePlayer.dart';
 import 'package:bowl_in/model/LastRound.dart';
-
 import 'Player.dart';
 import 'Round.dart';
 import 'User.dart';
@@ -29,7 +27,6 @@ class GameDetail {
     players.forEach((element) {
       this.rounds.add(LastRound(null, null, 0, element, 10, null));
     });
-
   }
 
   // Getters and setters
@@ -81,27 +78,27 @@ class GameDetail {
     _players = value;
   }
 
-
   Map<Player, int> get points => _points;
 
-  void addGameToUsers(){
-    for(var p in players){
-      if(p is User){
+  void addGameToUsers() {
+    for (var p in players) {
+      if (p is User) {
         p.games.add(Game(this.id, this.time, points[p] ?? 0, true, players));
         p.stat.updateStats(this, p);
       }
     }
   }
 
-  void computeWinner(){
+  void computeWinner() {
     print(getRank().entries.first.key.name);
     this.winner = getRank().entries.first.key;
   }
 
-  void computeScores(){
+  void computeScores() {
     print("====COMPUTE POINTS====");
-    for(var element in rounds){
-      points[element.player] = (points[element.player] ?? 0) + (element.points ?? 0);
+    for (var element in rounds) {
+      points[element.player] =
+          (points[element.player] ?? 0) + (element.points ?? 0);
       print(element.points);
     }
     computeWinner();
@@ -109,8 +106,8 @@ class GameDetail {
   }
 
   Map<Player, int> getRank() {
-    var sortedByValueMap = Map.fromEntries(
-        points.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));
+    var sortedByValueMap = Map.fromEntries(points.entries.toList()
+      ..sort((e1, e2) => e2.value.compareTo(e1.value)));
     return sortedByValueMap;
   }
 }
