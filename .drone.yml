@@ -15,6 +15,14 @@ steps:
       - cd ./Sources/bowlin_project/
       - flutter build apk
 
+  - name: test
+    image: cirrusci/flutter:stable
+    commands:
+      - cd Sources/bowlin_project/
+      - flutter pub get
+      - flutter test
+    depends_on: [ app-build ]
+
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
     image: cirrusci/flutter:stable 
