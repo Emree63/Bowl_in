@@ -17,6 +17,8 @@
 [![Security Rating](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=security_rating&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
 [![Vulnerabilities](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=vulnerabilities&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
 [![Lines of Code](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=ncloc&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
+[![Coverage](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=Bowl_in&metric=coverage&token=88dd5f9f10bb02aede7a82a2bccf8c987af1ecab)](https://codefirst.iut.uca.fr/sonar/dashboard?id=Bowl_in)
+
 ---
 
 </div>
