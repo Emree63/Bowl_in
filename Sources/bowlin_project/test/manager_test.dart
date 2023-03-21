@@ -1,4 +1,3 @@
-import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/Guest.dart';
 import 'package:bowl_in/model/IManager.dart';
@@ -13,7 +12,11 @@ void testManager(IManager mgr) {
 
     List<Player> players = [mgr.userCurrent, Guest("Emre")];
     GameDetail gd = GameDetail(
-        mgr.gameMgr.getNextId(), DateTime.now(), null, 135, true, 5, players);
+        mgr.gameMgr.getNextId(), DateTime.now(), null, mgr.userCurrent.id, players);
+
+    expect(gd.players, players);
+    expect(gd.host, mgr.userCurrent.id);
+
 
     mgr.gameMgr.addGame(gd);
 

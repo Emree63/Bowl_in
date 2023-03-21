@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test("Test Round", (){
-    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], [], Stat.empty());
+    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], []);
     Round r = Round(null, null, null, u, 1);
 
     expect(r.getMaxPinsThisShot(), 10);
@@ -40,7 +40,7 @@ void main() {
   });
 
   test("Test LastRound", (){
-    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], [], Stat.empty());
+    User u =  User(1, "Louison" , "Sources/bowlin_project/assets/images/image_user_pink.png", "loparant@gmail.com", [], []);
     LastRound r = LastRound(null, null, null, u, 1, null);
 
     expect(r.getMaxPinsThisShot(), 10);

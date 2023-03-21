@@ -50,7 +50,7 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                GameDetail gd = GameDetail(-1, DateTime.now(), null, 0, false,
+                GameDetail gd = GameDetail(-1, DateTime.now(), null,
                     MyApp.controller.userCurrent.id, listPlayers);
 
                 MyApp.controller.gamePlayer.game = gd;

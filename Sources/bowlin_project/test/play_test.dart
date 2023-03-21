@@ -16,8 +16,6 @@ void main() {
         -1,
         DateTime.now(),
         null,
-        0,
-        false,
         mgr.userCurrent.id,
         listPlayers);
     mgr.gamePlayer.game = gd;
@@ -44,12 +42,12 @@ void main() {
     final IManager mgr = StubData();
     final List<Player> listPlayers = [mgr.userCurrent, Guest("Lucas")];
 
+    final DateTime dateGame = DateTime.now();
+
     final GameDetail gd = GameDetail(
         -1,
-        DateTime.now(),
+        dateGame,
         null,
-        0,
-        false,
         mgr.userCurrent.id,
         listPlayers);
     mgr.gamePlayer.game = gd;
@@ -123,6 +121,9 @@ void main() {
 
     expect(mgr.userCurrent.games.length, 1);
     expect(mgr.userCurrent.games.first.id, mgr.gamePlayer.game.id);
+    expect(mgr.userCurrent.games.first.pointsCurrentUser, 128);
+    expect(mgr.userCurrent.games.first.date, dateGame);
+    expect(mgr.userCurrent.games.first.players, listPlayers);
 
   });
 
