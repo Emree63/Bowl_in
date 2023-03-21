@@ -89,8 +89,8 @@ class _InGameScreen2State extends State<InGameScreen2> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                foregroundColor: Colors.transparent,
-                backgroundColor: Colors.transparent,
+                onPrimary: Colors.transparent,
+                primary: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),

@@ -17,8 +17,8 @@ class ButtonNewParty extends StatelessWidget {
           width: 4,
           color: Color(0xffFF419B),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xffF40375),
+        primary: Colors.white,
+        onPrimary: Color(0xffF40375),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),

@@ -166,8 +166,8 @@ class _FinalScoreBoardState extends State<FinalScoreBoard> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.transparent,
+                primary: Colors.transparent,
+                onPrimary: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),
@@ -349,7 +349,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
                   shadowColor: Color(0xffB70056),
-                  foregroundColor: Color(0xffF40375),
+                  onPrimary: Color(0xffF40375),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
