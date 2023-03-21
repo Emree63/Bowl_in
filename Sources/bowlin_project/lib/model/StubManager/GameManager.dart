@@ -1,11 +1,9 @@
 library StubLib;
 
-import '../Game.dart';
 import '../IGameManager.dart';
 import '../GameDetail.dart';
 import '../Player.dart';
 import '../User.dart';
-import '../Guest.dart';
 import 'StubData.dart';
 
 class GameManager extends IGameManager {
