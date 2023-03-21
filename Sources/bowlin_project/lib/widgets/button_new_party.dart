@@ -17,8 +17,8 @@ class ButtonNewParty extends StatelessWidget {
           width: 4,
           color: Color(0xffFF419B),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xffF40375),
+        onPrimary: Colors.white,
+        primary: Color(0xffF40375),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),
@@ -123,8 +123,8 @@ class NewGameModal extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Color(0xffF40375),
+                        onPrimary: Colors.white,
+                        primary: Color(0xffF40375),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -225,8 +225,8 @@ class ButtonJoinParty extends StatelessWidget {
           width: 4,
           color: Color(0xff6B6588),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xff45405D),
+        onPrimary: Colors.white,
+        primary: Color(0xff45405D),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),

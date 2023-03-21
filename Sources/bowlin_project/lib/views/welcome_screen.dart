@@ -66,8 +66,8 @@ class ButtonConnexion extends StatelessWidget {
           width: 7,
           color: Color(0xffFF419B),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xffF40375),
+        onPrimary: Colors.white,
+        primary: Color(0xffF40375),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),
