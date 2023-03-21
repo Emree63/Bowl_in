@@ -349,7 +349,7 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
                   shadowColor: Color(0xffB70056),
-                  onPrimary: Color(0xffF40375),
+                  backgroundColor: Color(0xffF40375),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
