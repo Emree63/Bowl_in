@@ -25,7 +25,6 @@ class StubData extends IManager {
     _initGameDetails();
     _initGame();
     userCurrent = players[8] as User;
-    userCurrent.games = [];
   }
 
   IUserManager get userMgr => _userMgr;

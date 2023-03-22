@@ -1,3 +1,5 @@
+import 'package:bowl_in/database/fields/UserFields.dart';
+
 import 'Achievement.dart';
 import 'Game.dart';
 import 'Player.dart';
@@ -42,4 +44,5 @@ class User extends Player {
   set stat(Stat value) {
     _stat = value;
   }
+
 }

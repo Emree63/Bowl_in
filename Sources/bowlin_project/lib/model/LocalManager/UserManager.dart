@@ -16,10 +16,21 @@ class UserManager extends IUserManager {
     _initUser();
   }
 
-  _initUser() {
-    String userJson = parent.storage.getItem('user');
+  _initUser() async {
+    var userJson = await parent.storage.getItem('user');
+    if (userJson == null || userJson =='') {
+      User user2 = User(
+          1,
+          "Unknown",
+          "./assets/images/image_user_cyan.png",
+          "",
+          [],
+          [],
+          Stat(0, 0, 0, 0, 0, 0, 0, 0));
+       parent.userCurrent = user2;
 
-    if (userJson != null) {
+
+    } else {
       Map<String, dynamic> userMap = json.decode(userJson);
       User user = User(
         userMap['_id'],
@@ -28,18 +39,9 @@ class UserManager extends IUserManager {
         userMap['_mail'],
         [],
         [],
-        new Stat(0, 0, 0, 0, 0, 0, 2.0, 3.0),
+        Stat(0, 0, 0, 0, 0, 0, 2.0, 3.0),
       );
       parent.userCurrent = user;
-    } else {
-      parent.userCurrent = new User(
-          1,
-          "Unknown",
-          "./assets/images/image_user_cyan.png",
-          "david.d_almeida@etu.uca.fr",
-          [],
-          [],
-          Stat(0, 0, 0, 0, 0, 0, 0, 0));
     }
   }
 

@@ -16,4 +16,9 @@ class LocalData extends IManager{
     _userMgr = UserManager(this);
     _gameMgr = GameManager(this);
   }
+
+  IUserManager get userMgr => _userMgr;
+
+  IGameManager get gameMgr => _gameMgr;
+
 }

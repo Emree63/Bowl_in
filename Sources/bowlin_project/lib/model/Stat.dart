@@ -96,4 +96,17 @@ class Stat {
     avgPinsPerRound = ((avgPinsPerRound * (nbGames-1)) + (totalpins/10))/nbGames;
 
   }
+
+
+  // Serialize to JSON
+  Map<String, dynamic> toJson() => {
+    'nbVictory': nbVictory,
+    'nbGames': nbGames,
+    'highscore': highscore,
+    'nbStrikes': nbStrikes,
+    'nbSpares': nbSpares,
+    'nbScore': nbScore,
+    'avgScore': avgScore,
+    'avgPinsPerRound': avgPinsPerRound,
+  };
 }

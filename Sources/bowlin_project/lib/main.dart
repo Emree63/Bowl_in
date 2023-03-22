@@ -1,3 +1,4 @@
+import 'package:bowl_in/model/LocalManager/LocalData.dart';
 import 'package:bowl_in/views/game_screen.dart';
 import 'package:bowl_in/views/ingame_screen.dart';
 import 'package:bowl_in/views/main_screen.dart';
@@ -16,7 +17,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static IManager controller = StubData();
+  static IManager controller = LocalData();
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
