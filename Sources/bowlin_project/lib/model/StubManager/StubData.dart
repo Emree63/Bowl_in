@@ -1,12 +1,7 @@
 library StubLib;
 
-import 'package:bowl_in/model/Game.dart';
-import 'package:bowl_in/model/StubManager/AuthManager.dart';
-
 import '../Guest.dart';
 import '../IManager.dart';
-import '../IUserManager.dart';
-import '../IGameManager.dart';
 import '../Player.dart';
 import '../Round.dart';
 import '../User.dart';

@@ -1,4 +1,3 @@
-import 'package:bowl_in/model/IUserManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bowl_in/config/app_router.dart';
