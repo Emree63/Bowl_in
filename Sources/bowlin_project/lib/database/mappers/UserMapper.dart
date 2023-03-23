@@ -1,6 +1,5 @@
-import '../../model/Stat.dart';
 import '../../model/User.dart';
-import '../fields/StatFields.dart';
+import '../fields/UserFields.dart';
 
 class UserMapper {
   static Map<String, dynamic> toJson(User user) {
@@ -20,7 +19,6 @@ class UserMapper {
       json[UserFields.mail],
       [],
       [],
-        Stat(0,0,0,0,0,0,0,0)
     );
   }
 }

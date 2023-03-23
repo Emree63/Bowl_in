@@ -10,12 +10,12 @@ class User extends Player {
   String _mail;
   List<Achievement> _achievements = <Achievement>[];
   List<User> _friends = <User>[];
-  Stat _stat;
+  final Stat _stat = Stat.empty();
   List<Game> games = [];
 
   // Constructor
   User(this._id, String name, String image, this._mail, this._achievements,
-      this._friends, this._stat)
+      this._friends)
       : super(name, image);
 
   int get id => _id;
@@ -40,9 +40,5 @@ class User extends Player {
   }
 
   Stat get stat => _stat;
-
-  set stat(Stat value) {
-    _stat = value;
-  }
 
 }

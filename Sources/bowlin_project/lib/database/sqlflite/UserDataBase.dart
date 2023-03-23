@@ -6,11 +6,16 @@ import '../fields/UserFields.dart';
 import '../mappers/UserMapper.dart';
 
 class UserDatabase {
+
+  UserDatabase();
+
   static final UserDatabase instance = UserDatabase._init();
 
   static Database? _database;
 
   UserDatabase._init();
+
+  static const String tableUser = 'users';
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -27,17 +32,17 @@ class UserDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableUser ( 
   ${UserFields.id} $idType, 
   ${UserFields.name} $boolType,
-  ${UserFields.image} $integerType,
-  ${UserFields.mail} $textType,
+  ${UserFields.image} $textType,
+  ${UserFields.mail} $textType
       )
 ''');
   }

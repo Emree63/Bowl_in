@@ -2,9 +2,7 @@ import 'package:bowl_in/widgets/scores_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../main.dart';
-import '../model/Player.dart';
 import '../model/User.dart';
 
 class ProfilPodiumWidget extends StatelessWidget {

@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:bowl_in/model/IUserManager.dart';
 import 'package:bowl_in/model/LocalManager/LocalData.dart';
 import 'package:bowl_in/model/Player.dart';
 import 'package:bowl_in/model/User.dart';
-
-import '../Stat.dart';
 import 'AuthManager.dart';
 
 class UserManager extends IUserManager {
@@ -13,42 +9,25 @@ class UserManager extends IUserManager {
 
   // Constructor
   UserManager(this.parent) : super(AuthManager(parent)) {
+    saveUser(
+        User(0, "Lucas", "./assets/images/image_user_red.png", "", [], []));
     _initUser();
   }
 
   _initUser() async {
-    var userJson = await parent.storage.getItem('user');
-    if (userJson == null || userJson =='') {
-      User user2 = User(
-          1,
-          "Unknown",
-          "./assets/images/image_user_cyan.png",
-          "",
-          [],
-          [],
-          Stat(0, 0, 0, 0, 0, 0, 0, 0));
-       parent.userCurrent = user2;
-
-
+    var user = await parent.userDatabase.readUser(0);
+    if (user == null) {
+      User user2 =
+          User(1, "Unknown", "./assets/images/image_user_cyan.png", "", [], []);
+      parent.userCurrent = user2;
     } else {
-      Map<String, dynamic> userMap = json.decode(userJson);
-      User user = User(
-        userMap['_id'],
-        userMap['name'],
-        userMap['image'],
-        userMap['_mail'],
-        [],
-        [],
-        Stat(0, 0, 0, 0, 0, 0, 2.0, 3.0),
-      );
       parent.userCurrent = user;
     }
   }
 
   saveUser(User user) {
-    String userJson = json.encode(userToMap(user));
-
-    parent.storage.setItem('user', userJson);
+    parent.userDatabase.deleteUser(0);
+    parent.userDatabase.createUser(user);
   }
 
   Map<String, dynamic> userToMap(User user) {

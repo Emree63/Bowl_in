@@ -1,17 +1,10 @@
 import 'package:bowl_in/main.dart';
 import 'package:bowl_in/model/GameDetail.dart';
-import 'package:bowl_in/model/GamePlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../model/Game.dart';
-import '../model/Guest.dart';
 import '../model/Player.dart';
-import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
-import '../widgets/scores_list_widget.dart';
 
 class InGameScreen extends StatefulWidget {
   const InGameScreen({Key? key}) : super(key: key);
@@ -57,12 +50,7 @@ class _InGameScreenState extends State<InGameScreen> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                GameDetail gd = GameDetail(
-                    -1,
-                    DateTime.now(),
-                    null,
-                    0,
-                    false,
+                GameDetail gd = GameDetail(-1, DateTime.now(), null,
                     MyApp.controller.userCurrent.id, listPlayers);
 
                 MyApp.controller.gamePlayer.game = gd;
@@ -81,8 +69,8 @@ class _InGameScreenState extends State<InGameScreen> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                onPrimary: Colors.transparent,
-                primary: Colors.transparent,
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),

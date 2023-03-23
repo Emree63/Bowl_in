@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../main.dart';
 import '../model/GameDetail.dart';
-import '../model/Player.dart';
-import '../model/User.dart';
 import 'ingame_widgets.dart';
 
 class ButtonNewParty extends StatelessWidget {
@@ -21,8 +17,8 @@ class ButtonNewParty extends StatelessWidget {
           width: 4,
           color: Color(0xffFF419B),
         ),
-        onPrimary: Colors.white,
-        primary: Color(0xffF40375),
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xffF40375),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),
@@ -127,8 +123,8 @@ class NewGameModal extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       style: ElevatedButton.styleFrom(
-                        onPrimary: Colors.white,
-                        primary: Color(0xffF40375),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Color(0xffF40375),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -229,8 +225,8 @@ class ButtonJoinParty extends StatelessWidget {
           width: 4,
           color: Color(0xff6B6588),
         ),
-        onPrimary: Colors.white,
-        primary: Color(0xff45405D),
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff45405D),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(35),
         ),

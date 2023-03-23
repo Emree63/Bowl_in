@@ -1,3 +1,4 @@
+import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:bowl_in/model/IManager.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -20,7 +21,14 @@ class GamePlayer {
     _game = value;
   }
 
-  void onNext(bool isRoundFinished, BuildContext context) {
+  AbstractRound? get currentRound {
+    if (currentRoundIndex < game.rounds.length){
+        return game.rounds[currentRoundIndex];
+    }
+    return null;
+  }
+
+  void onNext(bool isRoundFinished, BuildContext? context) {
     if (isRoundFinished) {
       print("++");
       currentRoundIndex++;
@@ -32,7 +40,7 @@ class GamePlayer {
       _parent.gameMgr.addGame(game);
 
       game.computeScores();
-      context.go("/scoreboard", extra: game);
+      context?.go("/scoreboard", extra: game);
     } else {
       print("IN GAME : " + currentRoundIndex.toString());
       if (game.rounds[currentRoundIndex] is Round) {
@@ -40,7 +48,7 @@ class GamePlayer {
       } else {
         print("LAST ROUND");
       }
-      context.pushReplacement("/in-game",
+      context?.pushReplacement("/in-game",
           extra: game.rounds[currentRoundIndex]);
     }
   }

@@ -2,34 +2,23 @@ library StubLib;
 
 import '../Guest.dart';
 import '../IManager.dart';
-import '../Game.dart';
-import '../IUserManager.dart';
-import '../IGameManager.dart';
 import '../Player.dart';
 import '../Round.dart';
 import '../User.dart';
 import '../Achievement.dart';
 import '../GameDetail.dart';
-import '../Stat.dart';
 import 'UserManager.dart';
 import 'GameManager.dart';
 
 class StubData extends IManager {
-  late IUserManager _userMgr;
-  late IGameManager _gameMgr;
-
   StubData() {
-    _userMgr = UserManager(this);
-    _gameMgr = GameManager(this);
+    userMgr = UserManager(this);
+    gameMgr = GameManager(this);
     _initRounds();
     _initGameDetails();
     _initGame();
     userCurrent = players[8] as User;
   }
-
-  IUserManager get userMgr => _userMgr;
-
-  IGameManager get gameMgr => _gameMgr;
 
   List<Player> players = [
     Guest("Mathieu"),
@@ -39,91 +28,49 @@ class StubData extends IManager {
     Guest("Louison"),
     Guest("Arthur"),
     Guest("David"),
-    User(
-        8,
-        "Emre",
-        "./assets/images/image_user_cyan.png",
-        "emre.kartal@etu.uca.fr",
-        [
-          Achievement("5 games"),
-          Achievement("2 strikes in a row"),
-          Achievement("Win a game")
-        ],
-        [],
-        Stat(0, 0, 0, 0, 0, 0, 0, 0)),
-    User(
-        9,
-        "Dave",
-        "./assets/images/image_user_cyan.png",
-        "david.d_almeida@etu.uca.fr",
-        [
-          Achievement("5 games"),
-          Achievement("0 point"),
-          Achievement("Win a game")
-        ],
-        [
-          User(
-              21,
-              "Arthur",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              [],
-              Stat(0, 0, 0, 0, 0, 0, 0, 0)),
-          User(
-              22,
-              "Louison",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              [],
-              Stat(10, 12, 150, 7, 6, 700, 58.33, 30.2)),
-          User(
-              23,
-              "Owen",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              [],
-              Stat(10, 12, 10, 7, 6, 700, 58.33, 30.2)),
-          User(
-              24,
-              "LULU",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              [],
-              Stat(10, 12, 40, 7, 6, 700, 58.33, 30.2)),
-          User(
-              25,
-              "Raphael",
-              "./assets/images/image_user_cyan.png",
-              "emre.kartal@etu.uca.fr",
-              [
-                Achievement("5 games"),
-                Achievement("2 strikes in a row"),
-                Achievement("Win a game")
-              ],
-              [],
-              Stat(10, 12, 76, 7, 6, 700, 58.33, 30.2)),
-        ],
-        Stat(0, 0, 0, 0, 0, 0, 0, 0))
+    User(8, "Emre", "./assets/images/image_user_cyan.png",
+        "emre.kartal@etu.uca.fr", [
+      Achievement("5 games"),
+      Achievement("2 strikes in a row"),
+      Achievement("Win a game")
+    ], []),
+    User(9, "Dave", "./assets/images/image_user_cyan.png",
+        "david.d_almeida@etu.uca.fr", [
+      Achievement("5 games"),
+      Achievement("0 point"),
+      Achievement("Win a game")
+    ], [
+      User(21, "Arthur", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(22, "Louison", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(23, "Owen", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(24, "LULU", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+      User(25, "Raphael", "./assets/images/image_user_cyan.png",
+          "emre.kartal@etu.uca.fr", [
+        Achievement("5 games"),
+        Achievement("2 strikes in a row"),
+        Achievement("Win a game")
+      ], []),
+    ])
   ];
 
   List<GameDetail> _gameDetails = [];
@@ -171,8 +118,6 @@ class StubData extends IManager {
   }
 
   List<Round> get rounds => _rounds;
-
-  List<Game> _games = [];
 
   void _initGame() {
     //   games.add(Game(

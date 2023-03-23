@@ -3,11 +3,7 @@ import 'package:bowl_in/model/AbstractRound.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../model/Round.dart';
-import '../widgets/button_new_party.dart';
 import '../widgets/ingame_widgets.dart';
-import '../widgets/scores_list_widget.dart';
 
 class InGameScreen2 extends StatefulWidget {
   final AbstractRound currentRound;
@@ -93,8 +89,8 @@ class _InGameScreen2State extends State<InGameScreen2> {
                   width: 7,
                   color: Color(0xff1ABAE0),
                 ),
-                onPrimary: Colors.transparent,
-                primary: Colors.transparent,
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(55),
                 ),

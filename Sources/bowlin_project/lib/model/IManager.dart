@@ -1,6 +1,5 @@
 import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/GamePlayer.dart';
-
 import 'User.dart';
 import 'IUserManager.dart';
 import 'IGameManager.dart';
@@ -8,9 +7,9 @@ import 'IGameManager.dart';
 abstract class IManager {
   late User _userCurrent;
   late GameDetail _gameCurrent;
-  late GamePlayer _gamePlayer = GamePlayer(this);
-  late IUserManager _userMgr;
-  late IGameManager _gameMgr;
+  late final GamePlayer _gamePlayer = GamePlayer(this);
+  late final IUserManager _userMgr;
+  late final IGameManager _gameMgr;
 
   // Getters and setters
   User get userCurrent => _userCurrent;
@@ -21,10 +20,6 @@ abstract class IManager {
 
   GamePlayer get gamePlayer => _gamePlayer;
 
-  set gamePlayer(GamePlayer value) {
-    _gamePlayer = value;
-  }
-
   GameDetail get gameCurrent => _gameCurrent;
 
   set gameCurrent(GameDetail value) {
@@ -32,5 +27,14 @@ abstract class IManager {
   }
 
   IUserManager get userMgr => _userMgr;
+
   IGameManager get gameMgr => _gameMgr;
+
+  set gameMgr(IGameManager value) {
+    _gameMgr = value;
+  }
+
+  set userMgr(IUserManager value) {
+    _userMgr = value;
+  }
 }
