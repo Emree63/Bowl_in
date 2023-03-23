@@ -2,6 +2,7 @@ import 'package:bowl_in/model/IUserManager.dart';
 import 'package:bowl_in/model/LocalManager/LocalData.dart';
 import 'package:bowl_in/model/Player.dart';
 import 'package:bowl_in/model/User.dart';
+import '../Game.dart';
 import 'AuthManager.dart';
 
 class UserManager extends IUserManager {
@@ -9,8 +10,9 @@ class UserManager extends IUserManager {
 
   // Constructor
   UserManager(this.parent) : super(AuthManager(parent)) {
-    saveUser(
-        User(0, "Lucas", "./assets/images/image_user_red.png", "", [], []));
+    User user = User(0, "Dave", "./assets/images/image_user_red.png", "", [], []);
+    user.games.add(Game(0,DateTime.now(), 30, []));
+    saveUser(user);
     _initUser();
   }
 
@@ -26,8 +28,7 @@ class UserManager extends IUserManager {
   }
 
   saveUser(User user) {
-    parent.userDatabase.deleteUser(0);
-    parent.userDatabase.createUser(user);
+    parent.userDatabase.updateUser(user);
   }
 
   Map<String, dynamic> userToMap(User user) {
