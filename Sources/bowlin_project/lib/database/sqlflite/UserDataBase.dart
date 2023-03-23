@@ -3,21 +3,23 @@ import 'package:bowl_in/model/User.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../fields/GameDetailFields.dart';
 import '../fields/GameFields.dart';
 import '../fields/UserFields.dart';
 import '../mappers/UserMapper.dart';
 
-class UserDatabase {
-  UserDatabase();
+class BowlInDatabase {
+  BowlInDatabase();
 
-  static final UserDatabase instance = UserDatabase._init();
+  static final BowlInDatabase instance = BowlInDatabase._init();
 
   static Database? _database;
 
-  UserDatabase._init();
+  BowlInDatabase._init();
 
   static const String tableUser = 'users';
   static const String tableGame = 'games';
+  static const String tableGameDetail = 'gameDetails';
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -57,12 +59,22 @@ CREATE TABLE $tableGame (
   FOREIGN KEY(${GameFields.userId}) REFERENCES $tableUser(${UserFields.id})
 )
 ''');
+
+    await db.execute('''
+CREATE TABLE $tableGameDetail (
+  ${GameDetailFields.id} $idType,
+  ${GameDetailFields.date} $textType,
+  ${GameDetailFields.nameWinner} $textType,
+  ${GameDetailFields.host} $textType,
+)
+''');
   }
 
   Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 4) {
       await db.execute('DROP TABLE IF EXISTS $tableUser');
       await db.execute('DROP TABLE IF EXISTS $tableGame');
+      await db.execute('DROP TABLE IF EXISTS $tableGameDetail');
       await _createDB(db, newVersion);
     }
   }

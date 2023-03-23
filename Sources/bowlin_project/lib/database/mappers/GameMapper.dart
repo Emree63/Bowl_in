@@ -1,4 +1,3 @@
-import 'package:bowl_in/database/mappers/UserMapper.dart';
 import 'package:bowl_in/model/Game.dart';
 import '../../model/User.dart';
 import '../fields/GameFields.dart';
