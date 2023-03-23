@@ -46,7 +46,7 @@ steps:
         IMAGENAME: postgres:latest
         CONTAINERNAME: postgresql
         COMMAND: create
-        # OVERWRITE: false
+        OVERWRITE: false
         PRIVATE: true
         CODEFIRST_CLIENTDRONE_ENV_POSTGRES_ROOT_PASSWORD:
           from_secret: db_root_password
@@ -57,11 +57,3 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_POSTGRES_PASSWORD:
           from_secret: db_password
         ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
-  - name: deploy-adminer
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    environment:
-      IMAGENAME: adminer
-      CONTAINERNAME: adminer
-      COMMAND: create
-      OVERWRITE: true
-      ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
