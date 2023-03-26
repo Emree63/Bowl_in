@@ -33,7 +33,7 @@
 
 **Récapitulation du Projet**: 👇
 
-</br>
+
 
 :information_source: Une application mobile permettant de saisir les scores de bowling pendant une partie avec possibilité d'obtenir des statistiques (points moyens, classement, etc.) et partage. Mais aussi de rentrer le nom des joueurs et de stocker les résultats.
 
@@ -91,12 +91,13 @@ L'application à été réaliser à un très simple pour n'importe quel utilisat
 
 <div align = center>
 
-<img src="Documentation/Images/Home-Page.png" width="200" >
-<img src="Documentation/Images/Ranking-Page.png" width="200" >
-<img src="Documentation/Images/Analysis-Page.png" width="200" >
-<img src="Documentation/Images/Profile-Page.png" width="200" >
+<img src="Documentation/Images/Home-Page.png" width="250" >
+<img src="Documentation/Images/Ranking-Page.png" width="250" >
+<img src="Documentation/Images/Analysis-Page.png" width="250" >
+<img src="Documentation/Images/Profile-Page.png" width="250" >
 
 </div>
+<br>
 
 :confounded: Pas de panique, ce n'est pas si compliqué que ça !
 
