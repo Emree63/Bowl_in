@@ -63,9 +63,9 @@ Tout d'abord, si ce n'est pas déjà fait, clonez le dépôt de la branche **mas
 
 </div>
 
-En utilisant ce lien, vous pouvez cloner le dépôt dans un terminal ou via Tortoise, mais si vous ne savez pas comment faire, vous devez d'abord installer Git for Windows en suivant ce [lien](https://gitforwindows.org/), puis suivre le [tutoriel](https://docs.github.com/fr/repositories/creating-and-managing-repositories/cloning-a-repository))
+En utilisant ce lien, vous pouvez cloner le dépôt soit dans un terminal, soit via Tortoise. Si vous ne savez pas comment faire, vous devez avoir d'abord installer Git for Windows en suivant ce [lien](https://gitforwindows.org/), puis suivre le [tutoriel](https://docs.github.com/fr/repositories/creating-and-managing-repositories/cloning-a-repository))
 
-:information_source: *Si vous n'êtes pas familier avec Git, vous pouvez également récupérer le dépôt au format zip en cliquant simplement avec le bouton droit de la souris.*
+:information_source: *Si vous n'êtes pas familier avec Git, vous pouvez également télécharger le dépôt au format zip en cliquant simplement sur le bouton situé à droite de l'URL.*
 
 
 :warning: Maintenant, vient l'étape un peu plus complexe : **Android Studio** !
@@ -73,7 +73,7 @@ Avant de pouvoir exécuter l'application, vous devez installer le SDK de Flutter
 
 Pour *Android Studio*, vous n'avez qu'à installer l'application en suivant ce [lien](https://developer.android.com/studio) et en suivant les étapes !
 
-Une fois *Android Studio* installer, il ne vous reste seulement à ouvrir le projet récuperer dans ce dépôt que avez du récuperer au préalable :
+Une fois qu'*Android Studio* est installé, il ne vous reste plus qu'à ouvrir le projet que vous avez récupéré préalablement à partir de ce dépôt :
 
 <div align = center>
 
@@ -87,7 +87,7 @@ Il ne vous reste plus qu'à connecter votre téléphone **Android** (n'oubliez p
 
 - Comment utiliser l'application ?
 
-L'application à été réaliser à un très simple pour n'importe quel utilisateur et se résume en 4 grande 4 pages : 
+L'application à été réaliser à un très simple pour n'importe quel utilisateur et se résume en 4 grande pages : 
 
 <div align = center>
 
