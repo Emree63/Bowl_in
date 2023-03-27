@@ -11,6 +11,7 @@ import 'UserManager.dart';
 import 'GameManager.dart';
 
 class StubData extends IManager {
+
   StubData() {
     userMgr = UserManager(this);
     gameMgr = GameManager(this);

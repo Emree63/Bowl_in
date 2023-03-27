@@ -1,3 +1,4 @@
+import '../../model/Stat.dart';
 import '../../model/User.dart';
 import '../fields/UserFields.dart';
 
@@ -11,14 +12,15 @@ class UserMapper {
     };
   }
 
-  static User toModel(Map<String, dynamic> json) {
-    return User(
+  static User toModel(Map<String, dynamic> json, Stat stat) {
+    return User.withStat(
       json[UserFields.id],
       json[UserFields.name],
       json[UserFields.image],
       json[UserFields.mail],
       [],
       [],
+      stat
     );
   }
 }

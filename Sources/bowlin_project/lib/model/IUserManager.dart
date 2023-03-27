@@ -12,5 +12,6 @@ abstract class IUserManager {
   IAuthManager get authMgr => _authMgr;
   List<Player> getUsersByName(String name);
   Player getUserById(int id);
+  saveUser(User user);
   List<User> getRankingWithFriends();
 }

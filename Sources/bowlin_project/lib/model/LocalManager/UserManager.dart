@@ -2,7 +2,6 @@ import 'package:bowl_in/model/IUserManager.dart';
 import 'package:bowl_in/model/LocalManager/LocalData.dart';
 import 'package:bowl_in/model/Player.dart';
 import 'package:bowl_in/model/User.dart';
-import '../Game.dart';
 import 'AuthManager.dart';
 
 class UserManager extends IUserManager {
@@ -10,14 +9,15 @@ class UserManager extends IUserManager {
 
   // Constructor
   UserManager(this.parent) : super(AuthManager(parent)) {
-    User user = User(0, "Dave", "./assets/images/image_user_red.png", "", [], []);
-    user.games.add(Game(0,DateTime.now(), 30, []));
-    saveUser(user);
+    //User user = User(0, "Victor", "./assets/images/image_user_red.png", "", [], []);
+    //saveUser(user);
+    //parent.database.deleteUser(0);
+    //test();
     _initUser();
   }
 
   _initUser() async {
-    var user = await parent.userDatabase.readUser(0);
+    var user = await parent.database.readUser(0);
     if (user == null) {
       User user2 =
           User(1, "Unknown", "./assets/images/image_user_cyan.png", "", [], []);
@@ -27,8 +27,13 @@ class UserManager extends IUserManager {
     }
   }
 
-  saveUser(User user) {
-    parent.userDatabase.updateUser(user);
+  saveUser(User user) async {
+    var result = await parent.database.readUser(0);
+    if (result == null) {
+      await parent.database.createUser(user);
+    } else {
+      await parent.database.updateUser(user);
+    }
   }
 
   Map<String, dynamic> userToMap(User user) {
@@ -42,8 +47,9 @@ class UserManager extends IUserManager {
 
   @override
   List<User> getRankingWithFriends() {
-    // TODO: implement getRankingWithFriends
-    throw UnimplementedError();
+    List<User> sortedPlayers = List.from(parent.userCurrent.friends);
+    sortedPlayers.sort((a, b) => b.stat.highscore.compareTo(a.stat.highscore));
+    return sortedPlayers;
   }
 
   @override
