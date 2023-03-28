@@ -17,28 +17,77 @@ class CardGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting();
-    return Padding(
-        padding: EdgeInsets.fromLTRB(41, 0, 41, 10),
-        child: GestureDetector(
-          child: Stack(
-            alignment: AlignmentDirectional.centerEnd,
-            children: [
-              Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  height: 100,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8),
-                        bottomRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(15)),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/card_game.png"),
-                    ),
+    return GestureDetector(
+      child: Stack(
+        alignment: AlignmentDirectional.centerEnd,
+        children: [
+          Container(
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              height: 100,
+              width: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomRight: Radius.circular(15),
+                    bottomLeft: Radius.circular(15)),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/card_game.png"),
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Toast(
+                              value: DateFormat('dd MMMM', 'fr_FR')
+                                  .format(game.date)),
+                          Toast(value: DateFormat('HH:mm').format(game.date)),
+                        ],
+                      )),
+                  Positioned(
+                      left: 0,
+                      top: 0,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(10, 35, 0, 0),
+                        child: SizedBox(
+                            width: 130,
+                            child: Wrap(
+                                spacing: 5,
+                                runSpacing: 5,
+                                children: game.players
+                                    .map((e) => ProfilPicture(
+                                          path: e.image.toString(),
+                                        ))
+                                    .toList())),
+                      )),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 25, 15, 0),
+                        child: GradientText(
+                          game.pointsCurrentUser.toString(),
+                          style: TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.w900,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          gradientType: GradientType.linear,
+                          gradientDirection: GradientDirection.ttb,
+                          radius: 2.5,
+                          colors: [
+                            Color(0xff181818),
+                            Color(0xff626262),
+                          ],
+                        )),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(120, 0, 3, 0),
+                  Positioned(
+                    right: 0,
                     child: ClipRect(
                         clipBehavior: Clip.hardEdge,
                         child: Opacity(
@@ -81,76 +130,20 @@ class CardGame extends StatelessWidget {
                                 ),
                               ],
                             ))),
-                  )),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(5, 3, 10, 3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Toast(
-                              value: DateFormat('dd MMMM', 'fr_FR')
-                                  .format(game.date)),
-                          Toast(value: DateFormat('HH:mm').format(game.date)),
-                        ],
-                      )),
-                  Stack(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                              child: SizedBox(
-                                  width: 130,
-                                  child: Wrap(
-                                      spacing: 5,
-                                      runSpacing: 5,
-                                      children: game.players
-                                          .map((e) => ProfilPicture(
-                                                path: e.image.toString(),
-                                              ))
-                                          .toList()))),
-                          const Spacer(),
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(0, 25, 15, 0),
-                              child: GradientText(
-                                game.pointsCurrentUser.toString(),
-                                style: TextStyle(
-                                  fontSize: 40.0,
-                                  fontWeight: FontWeight.w900,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                                gradientType: GradientType.linear,
-                                gradientDirection: GradientDirection.ttb,
-                                radius: 2.5,
-                                colors: [
-                                  Color(0xff181818),
-                                  Color(0xff626262),
-                                ],
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
+                  )
                 ],
-              ),
-            ],
-          ),
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return ScoreBoardModal(
-                      gamedetail:
-                          MyApp.controller.gameMgr.getGameById(game.id));
-                });
-          },
-        ));
+              )),
+        ],
+      ),
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return ScoreBoardModal(
+                  gamedetail: MyApp.controller.gameMgr.getGameById(game.id));
+            });
+      },
+    );
   }
 }
 
@@ -171,7 +164,9 @@ class ListCardGame extends StatelessWidget {
           shrinkWrap: false,
           itemCount: MyApp.controller.userCurrent.games.length,
           itemBuilder: (BuildContext context, int index) {
-            return CardGame(game: MyApp.controller.userCurrent.games[index]);
+            return Center(
+              child: CardGame(game: MyApp.controller.userCurrent.games[index]),
+            );
           },
         ));
   }

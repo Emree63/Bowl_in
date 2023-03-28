@@ -325,11 +325,12 @@ class _InGameCardConfigState extends State<InGameCardConfig> {
             onDelete: onDelete,
             onReorder: onReorder,
           ),
-          Spacer(),
-          Image(
-            image: AssetImage("assets/images/start_sentence.png"),
+          Align(
+            child: Image(
+              height: MediaQuery.of(context).size.height * 0.15,
+              image: AssetImage("assets/images/start_sentence.png"),
+            ),
           ),
-          Spacer(),
           Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: ElevatedButton(
@@ -496,6 +497,7 @@ class _UserInGameState extends State<UserInGame> {
                           decoration: TextDecoration.none,
                           color: Color(0xff241E40))),
                 ),
+          Spacer(),
           (widget.player is User &&
                   (widget.player as User).id == MyApp.controller.userCurrent.id)
               ? Icon(Icons.lock, color: Colors.amber)

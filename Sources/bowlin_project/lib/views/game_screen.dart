@@ -43,7 +43,9 @@ class _GameScreenState extends State<GameScreen> {
           )),
         ),
         Column(
+          verticalDirection: VerticalDirection.down,
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +58,9 @@ class _GameScreenState extends State<GameScreen> {
             Container(
               height: MediaQuery.of(context).size.height - 140,
               width: MediaQuery.of(context).size.width,
-              child: ListCardGame(),
+              child: Center(
+                child: ListCardGame(),
+              ),
             ),
           ],
         )
