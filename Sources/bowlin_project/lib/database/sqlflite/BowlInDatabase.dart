@@ -217,7 +217,6 @@ CREATE TABLE $tablePlayer (
             where: '${PlayerFields.idGame} = ?',
             whereArgs: [gameDetail[GameDetailFields.id]]);
         for (var player in resultPlayer) {
-          var winner;
           var rPlayer = PlayerMapper.toModel(player);
           players.add(rPlayer);
           if (rPlayer.name == gameDetail[GameDetailFields.nameWinner]) {
