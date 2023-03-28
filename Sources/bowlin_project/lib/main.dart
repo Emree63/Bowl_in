@@ -11,7 +11,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static IManager controller = StubData();
+
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  // This widget is the root of your application.
+// This widget is the root of your application.
 }
 
 class MyHomePage extends StatefulWidget {

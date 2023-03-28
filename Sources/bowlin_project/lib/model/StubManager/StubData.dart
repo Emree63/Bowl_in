@@ -2,8 +2,6 @@ library StubLib;
 
 import '../Guest.dart';
 import '../IManager.dart';
-import '../IUserManager.dart';
-import '../IGameManager.dart';
 import '../Player.dart';
 import '../Round.dart';
 import '../User.dart';
@@ -13,22 +11,15 @@ import 'UserManager.dart';
 import 'GameManager.dart';
 
 class StubData extends IManager {
-  late IUserManager _userMgr;
-  late IGameManager _gameMgr;
-
   StubData() {
-    _userMgr = UserManager(this);
-    _gameMgr = GameManager(this);
+    userMgr = UserManager(this);
+    gameMgr = GameManager(this);
     _initRounds();
     _initGameDetails();
     _initGame();
     userCurrent = players[8] as User;
     userCurrent.games = [];
   }
-
-  IUserManager get userMgr => _userMgr;
-
-  IGameManager get gameMgr => _gameMgr;
 
   List<Player> players = [
     Guest("Mathieu"),
