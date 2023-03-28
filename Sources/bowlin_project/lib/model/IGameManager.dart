@@ -3,6 +3,7 @@ import 'Player.dart';
 
 abstract class IGameManager {
   GameDetail getGameById(int id);
+  saveGame(GameDetail gameDetail);
   List<GameDetail> getGamesByPlayerId(int id);
   List<GameDetail> getGamesByPlayer(Player user);
   List<GameDetail> getGamesByPlayers(List<Player> users);

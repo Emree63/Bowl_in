@@ -9,6 +9,7 @@ class AuthManager extends IAuthManager {
 
   // Constructor
   AuthManager(this.parent);
+
   // Methods
   bool verifiedUser(String mail, String password) {
     for (var user in parent.players) {

@@ -1,18 +1,23 @@
-library StubLib;
+import 'package:bowl_in/model/GameDetail.dart';
+import 'package:bowl_in/model/IGameManager.dart';
+import 'package:bowl_in/model/LocalManager/LocalData.dart';
+import 'package:bowl_in/model/Player.dart';
 
-import '../IGameManager.dart';
-import '../GameDetail.dart';
-import '../Player.dart';
 import '../User.dart';
-import 'StubData.dart';
 
 class GameManager extends IGameManager {
-  final StubData parent;
+  final LocalData parent;
 
   // Constructor
-  GameManager(this.parent);
+  GameManager(this.parent){
+    _initGame();
+  }
 
   // Methods
+  _initGame() async {
+    parent.gameDetails = await parent.database.readGameDetail();
+  }
+
   GameDetail getGameById(int id) {
     for (var element in parent.gameDetails) {
       if (element.id == id) {
@@ -22,8 +27,8 @@ class GameManager extends IGameManager {
     throw Exception("Game not found.");
   }
 
-  saveGame(GameDetail gameDetail) {
-    return ;
+  saveGame(GameDetail gameDetail) async {
+    await parent.database.createGameDetail(gameDetail);
   }
 
   List<GameDetail> getGamesByPlayerId(int id) {

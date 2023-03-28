@@ -8,12 +8,18 @@ class User extends Player {
   String _mail;
   List<Achievement> _achievements = <Achievement>[];
   List<User> _friends = <User>[];
-  final Stat _stat = Stat.empty();
+  late final Stat _stat;
   List<Game> games = [];
 
   // Constructor
   User(this._id, String name, String image, this._mail, this._achievements,
       this._friends)
+      : super(name, image){
+    _stat = Stat.empty();
+  }
+
+  User.withStat(this._id, String name, String image, this._mail, this._achievements,
+      this._friends, this._stat)
       : super(name, image);
 
   int get id => _id;
@@ -38,4 +44,5 @@ class User extends Player {
   }
 
   Stat get stat => _stat;
+
 }

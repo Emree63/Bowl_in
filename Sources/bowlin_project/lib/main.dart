@@ -1,16 +1,16 @@
+import 'package:bowl_in/model/LocalManager/LocalData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bowl_in/config/app_router.dart';
 
 import 'model/IManager.dart';
-import 'model/StubManager/StubData.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  static IManager controller = StubData();
+  static IManager controller = LocalData();
 
   const MyApp({super.key});
 

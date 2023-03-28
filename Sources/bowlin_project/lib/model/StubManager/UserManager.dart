@@ -38,4 +38,9 @@ class UserManager extends IUserManager {
     sortedPlayers.sort((a, b) => b.stat.highscore.compareTo(a.stat.highscore));
     return sortedPlayers;
   }
+
+  @override
+  saveUser(User user) {
+    return ;
+  }
 }

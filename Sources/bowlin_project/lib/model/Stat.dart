@@ -96,4 +96,5 @@ class Stat {
     avgPinsPerRound =
         ((avgPinsPerRound * (nbGames - 1)) + (totalpins / 10)) / nbGames;
   }
+
 }

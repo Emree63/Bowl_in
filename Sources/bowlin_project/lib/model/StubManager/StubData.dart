@@ -11,6 +11,7 @@ import 'UserManager.dart';
 import 'GameManager.dart';
 
 class StubData extends IManager {
+
   StubData() {
     userMgr = UserManager(this);
     gameMgr = GameManager(this);
@@ -18,7 +19,6 @@ class StubData extends IManager {
     _initGameDetails();
     _initGame();
     userCurrent = players[8] as User;
-    userCurrent.games = [];
   }
 
   List<Player> players = [
