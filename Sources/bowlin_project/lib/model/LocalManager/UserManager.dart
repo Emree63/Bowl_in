@@ -9,18 +9,18 @@ class UserManager extends IUserManager {
 
   // Constructor
   UserManager(this.parent) : super(AuthManager(parent)) {
-    //User user = User(0, "Victor", "./assets/images/image_user_red.png", "", [], []);
-    //saveUser(user);
-    //parent.database.deleteUser(0);
-    //test();
     _initUser();
   }
 
   _initUser() async {
+    //await parent.database.deleteGameDetail();
+    //await parent.database.deleteUser(0);
+    //User crUser = User(0, "Lucas", "./assets/images/image_user_red.png", "", [], []);
+    //await saveUser(crUser);
     var user = await parent.database.readUser(0);
     if (user == null) {
       User user2 =
-          User(1, "Unknown", "./assets/images/image_user_cyan.png", "", [], []);
+          User(0, "Unknown", "./assets/images/image_user_pink.png", "", [], []);
       parent.userCurrent = user2;
     } else {
       parent.userCurrent = user;

@@ -41,6 +41,7 @@ class GamePlayer {
 
       game.computeScores();
       _parent.userMgr.saveUser(_parent.userCurrent);
+      _parent.gameMgr.saveGame(_game);
       context?.go("/scoreboard", extra: game);
     } else {
       print("IN GAME : " + currentRoundIndex.toString());

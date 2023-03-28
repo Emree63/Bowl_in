@@ -1,6 +1,6 @@
 import 'package:bowl_in/model/GameDetail.dart';
 
-import '../../model/User.dart';
+import '../../model/Player.dart';
 import '../fields/GameDetailFields.dart';
 
 class GameDetailMapper {
@@ -13,13 +13,14 @@ class GameDetailMapper {
     };
   }
 
-  static GameDetail toModel(Map<String, dynamic> json, User winner) {
+  static GameDetail toModel(
+      Map<String, dynamic> json, Player? winner, List<Player> players) {
+    String dateString = json[GameDetailFields.date];
     return GameDetail(
-      json[GameDetailFields.id],
-      json[GameDetailFields.date],
-      json[winner],
-      json[GameDetailFields.host],
-      [],
-    );
+        json[GameDetailFields.id],
+        DateTime.parse(dateString),
+        winner,
+        json[GameDetailFields.host],
+        players);
   }
 }

@@ -9,9 +9,15 @@ class GameManager extends IGameManager {
   final LocalData parent;
 
   // Constructor
-  GameManager(this.parent);
+  GameManager(this.parent){
+    _initGame();
+  }
 
   // Methods
+  _initGame() async {
+    parent.gameDetails = await parent.database.readGameDetail();
+  }
+
   GameDetail getGameById(int id) {
     for (var element in parent.gameDetails) {
       if (element.id == id) {
@@ -19,6 +25,10 @@ class GameManager extends IGameManager {
       }
     }
     throw Exception("Game not found.");
+  }
+
+  saveGame(GameDetail gameDetail) async {
+    await parent.database.createGameDetail(gameDetail);
   }
 
   List<GameDetail> getGamesByPlayerId(int id) {

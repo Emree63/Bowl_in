@@ -22,6 +22,10 @@ class GameManager extends IGameManager {
     throw Exception("Game not found.");
   }
 
+  saveGame(GameDetail gameDetail) {
+    return ;
+  }
+
   List<GameDetail> getGamesByPlayerId(int id) {
     List<GameDetail> games = [];
     for (var element in parent.gameDetails) {

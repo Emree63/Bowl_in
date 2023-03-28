@@ -1,4 +1,5 @@
 import 'package:bowl_in/model/Game.dart';
+import '../../model/Player.dart';
 import '../../model/User.dart';
 import '../fields/GameFields.dart';
 
@@ -12,12 +13,12 @@ class GameMapper {
     };
   }
 
-  static Game toModel(Map<String, dynamic> json) {
+  static Game toModel(Map<String, dynamic> json, List<Player> players) {
     return Game(
       json[GameFields.id],
       DateTime.parse(json[GameFields.date]),
       json[GameFields.pointsCurrentUser],
-      [],
+      players
     );
   }
 }

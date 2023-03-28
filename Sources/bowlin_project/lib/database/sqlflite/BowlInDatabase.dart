@@ -1,15 +1,20 @@
+import 'package:bowl_in/database/fields/PlayerFields.dart';
 import 'package:bowl_in/database/mappers/GameMapper.dart';
+import 'package:bowl_in/database/mappers/PlayerMapper.dart';
 import 'package:bowl_in/database/mappers/StatMapper.dart';
 import 'package:bowl_in/model/Game.dart';
+import 'package:bowl_in/model/GameDetail.dart';
 import 'package:bowl_in/model/User.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../model/Player.dart';
 import '../../model/Stat.dart';
 import '../fields/GameDetailFields.dart';
 import '../fields/GameFields.dart';
 import '../fields/StatFields.dart';
 import '../fields/UserFields.dart';
+import '../mappers/GameDetailMapper.dart';
 import '../mappers/UserMapper.dart';
 
 class BowlInDatabase {
@@ -25,6 +30,7 @@ class BowlInDatabase {
   static const String tableGame = 'games';
   static const String tableGameDetail = 'gameDetails';
   static const String tableStat = 'stats';
+  static const String tablePlayer = 'players';
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -38,7 +44,7 @@ class BowlInDatabase {
     final path = join(dbPath, filePath);
 
     return await openDatabase(path,
-        version: 1, onCreate: _createDB, onUpgrade: _upgradeDB);
+        version: 6, onCreate: _createDB, onUpgrade: _upgradeDB);
   }
 
   Future _createDB(Database db, int version) async {
@@ -72,7 +78,7 @@ CREATE TABLE $tableGameDetail (
   ${GameDetailFields.id} $idType,
   ${GameDetailFields.date} $textType,
   ${GameDetailFields.nameWinner} $textType,
-  ${GameDetailFields.host} $textType
+  ${GameDetailFields.host} $integerType
 )
 ''');
 
@@ -90,14 +96,25 @@ CREATE TABLE $tableStat (
   FOREIGN KEY(${StatFields.idUser}) REFERENCES $tableUser(${UserFields.id})
 )
 ''');
+
+    await db.execute('''
+CREATE TABLE $tablePlayer (
+  id $idType,
+  ${PlayerFields.name} $textType,
+  ${PlayerFields.image} $textType,
+  ${PlayerFields.idGame} $integerType,
+  FOREIGN KEY(${PlayerFields.idGame}) REFERENCES $tableGame(${GameFields.id})
+)
+''');
   }
 
   Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion == 5) {
+    if (oldVersion < 6 ) {
       await db.execute('DROP TABLE IF EXISTS $tableUser');
       await db.execute('DROP TABLE IF EXISTS $tableGame');
       await db.execute('DROP TABLE IF EXISTS $tableGameDetail');
       await db.execute('DROP TABLE IF EXISTS $tableStat');
+      await db.execute('DROP TABLE IF EXISTS $tablePlayer');
       await _createDB(db, newVersion);
     }
   }
@@ -121,14 +138,13 @@ CREATE TABLE $tableStat (
       User user;
       if (stat != null) {
         user = UserMapper.toModel(result.first, stat);
-      }
-      else {
+      } else {
         user = UserMapper.toModel(result.first, Stat.empty());
       }
-      //final games = await readGame(id);
-      //for (var game in games!) {
-        //user.games.add(game);
-      //}
+      final games = await readGame(id);
+      for (var game in games) {
+        user.games.add(game);
+      }
       return user;
     } else {
       return null;
@@ -146,7 +162,21 @@ CREATE TABLE $tableStat (
           where: '${StatFields.idUser} = ?', whereArgs: [user.id]);
 
       // Insert new games for the user
-      //await createGame(user);
+      for (var game in user.games) {
+        var result = await txn.query(tableGame,
+            where: '${GameFields.id} = ? AND ${GameFields.userId} = ?',
+            whereArgs: [game.id, user.id]);
+        if (result.isNotEmpty) {
+          await txn.update(tableGame, GameMapper.toJson(game, user),
+              where: '${GameFields.id} = ? AND ${GameFields.userId} = ?',
+              whereArgs: [game.id, user.id]);
+        } else {
+          await txn.insert(tableGame, GameMapper.toJson(game, user));
+          for (var player in game.players) {
+            await txn.insert(tablePlayer, PlayerMapper.toJson(player, game));
+          }
+        }
+      }
     });
   }
 
@@ -166,6 +196,48 @@ CREATE TABLE $tableStat (
 
   // GameDetail
 
+  Future<void> createGameDetail(GameDetail gameDetail) async {
+    final db = await instance.database;
+
+    await db.transaction((txn) async {
+      await txn.insert(tableGameDetail, GameDetailMapper.toJson(gameDetail));
+    });
+  }
+
+  Future<List<GameDetail>> readGameDetail() async {
+    final db = await instance.database;
+    final result = await db.query(tableGameDetail);
+
+    if (result.isNotEmpty) {
+      List<GameDetail> gameDetails = [];
+      for (var gameDetail in result) {
+        List<Player> players = [];
+        Player? winner = null;
+        final resultPlayer = await db.query(tablePlayer,
+            where: '${PlayerFields.idGame} = ?',
+            whereArgs: [gameDetail[GameDetailFields.id]]);
+        for (var player in resultPlayer) {
+          var winner;
+          var rPlayer = PlayerMapper.toModel(player);
+          players.add(rPlayer);
+          if (rPlayer.name == gameDetail[GameDetailFields.nameWinner]) {
+            winner = rPlayer;
+          }
+        }
+        gameDetails.add(GameDetailMapper.toModel(gameDetail, winner, players));
+      }
+      return gameDetails;
+    } else {
+      return [];
+    }
+  }
+
+  Future<int> deleteGameDetail() async {
+    final db = await instance.database;
+
+    return await db.delete(tableGameDetail);
+  }
+
   // Game
 
   Future<void> createGame(User user) async {
@@ -178,30 +250,45 @@ CREATE TABLE $tableStat (
     });
   }
 
-  Future<List<Game>?> readGame(int id) async {
+  Future<List<Game>> readGame(int id) async {
     final db = await instance.database;
-    final result = await db.query(tableGame,
-        where: '${GameFields.userId} = ?', whereArgs: [id]);
+    final result = await db
+        .query(tableGame, where: '${GameFields.userId} = ?', whereArgs: [id]);
 
     if (result.isNotEmpty) {
       List<Game> games = [];
       for (var game in result) {
-        games.add(GameMapper.toModel(game));
+        List<Player> players = [];
+        final resultPlayer = await db.query(tablePlayer,
+            where: '${PlayerFields.idGame} = ?', whereArgs: [game[GameFields.id]]);
+        for (var player in resultPlayer) {
+          players.add(PlayerMapper.toModel(player));
+        }
+        games.add(GameMapper.toModel(game, players));
+        players = [];
       }
       return games;
     } else {
-      return null;
+      return [];
     }
   }
 
   Future<int> deleteGame(int id) async {
     final db = await instance.database;
 
-    return await db.delete(
-      tableGame,
-      where: '${GameFields.userId} = ?',
-      whereArgs: [id],
-    );
+    return await db.transaction((txn) async {
+      await txn.delete(
+        tablePlayer,
+        where: '${PlayerFields.idGame} IN (SELECT ${GameFields.id} FROM $tableGame WHERE ${GameFields.userId} = ?)',
+        whereArgs: [id],
+      );
+
+      return await txn.delete(
+        tableGame,
+        where: '${GameFields.userId} = ?',
+        whereArgs: [id],
+      );
+    });
   }
 
   // Stat
@@ -213,8 +300,8 @@ CREATE TABLE $tableStat (
 
   Future<Stat?> readStat(int id) async {
     final db = await instance.database;
-    final result = await db.query(tableStat,
-        where: '${StatFields.idUser} = ?', whereArgs: [id]);
+    final result = await db
+        .query(tableStat, where: '${StatFields.idUser} = ?', whereArgs: [id]);
 
     if (result.isNotEmpty) {
       Stat stat = StatMapper.toModel(result.first);
@@ -240,7 +327,6 @@ CREATE TABLE $tableStat (
       where: '${StatFields.idUser} = ?',
       whereArgs: [id],
     );
-
   }
 
   Future close() async {

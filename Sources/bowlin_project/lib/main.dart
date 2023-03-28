@@ -1,4 +1,5 @@
 import 'package:bowl_in/model/LocalManager/LocalData.dart';
+import 'package:bowl_in/model/StubManager/StubData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bowl_in/config/app_router.dart';

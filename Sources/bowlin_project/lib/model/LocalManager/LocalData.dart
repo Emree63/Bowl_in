@@ -16,4 +16,8 @@ class LocalData extends IManager {
 
   List<GameDetail> get gameDetails => _gameDetails;
 
+  set gameDetails(List<GameDetail> gameDetails) {
+    _gameDetails = gameDetails;
+  }
+
 }
