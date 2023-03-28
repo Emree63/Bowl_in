@@ -739,9 +739,13 @@ class _NumberPadState extends State<NumberPad> {
   int NumSelected = 0;
 
   void updateId(int newNum) {
-    setState(() {
+    if (NumSelected == newNum) {
+      NumSelected = 0;
+    } else {
       NumSelected = newNum;
-      widget.setSelectedValue(newNum);
+    }
+    setState(() {
+      widget.setSelectedValue(NumSelected);
     });
   }
 
