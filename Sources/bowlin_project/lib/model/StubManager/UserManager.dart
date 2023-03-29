@@ -13,6 +13,7 @@ class UserManager extends IUserManager {
   UserManager(this.parent) : super(AuthManager(parent));
 
   // Methods
+  @override
   List<Player> getUsersByName(String name) {
     List<Player> players = [];
     for (var player in parent.players) {
@@ -23,6 +24,7 @@ class UserManager extends IUserManager {
     return players;
   }
 
+  @override
   Player getUserById(int id) {
     for (var player in parent.players) {
       if (player is User && player.id == id) {

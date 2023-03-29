@@ -27,6 +27,7 @@ class UserManager extends IUserManager {
     }
   }
 
+  @override
   saveUser(User user) async {
     var result = await parent.database.readUser(0);
     if (result == null) {
@@ -34,15 +35,6 @@ class UserManager extends IUserManager {
     } else {
       await parent.database.updateUser(user);
     }
-  }
-
-  Map<String, dynamic> userToMap(User user) {
-    return {
-      '_id': user.id,
-      'name': user.name,
-      'image': user.image,
-      '_mail': user.mail,
-    };
   }
 
   @override
@@ -54,13 +46,11 @@ class UserManager extends IUserManager {
 
   @override
   Player getUserById(int id) {
-    // TODO: implement getUserById
     throw UnimplementedError();
   }
 
   @override
   List<Player> getUsersByName(String name) {
-    // TODO: implement getUsersByName
     throw UnimplementedError();
   }
 }

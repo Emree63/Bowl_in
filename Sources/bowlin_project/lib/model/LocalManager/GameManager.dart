@@ -31,32 +31,22 @@ class GameManager extends IGameManager {
     await parent.database.createGameDetail(gameDetail);
   }
 
+  @override
   List<GameDetail> getGamesByPlayerId(int id) {
-    List<GameDetail> games = [];
-    for (var element in parent.gameDetails) {
-      for (Player player in element.players) {
-        if (player is User && player.id == id) {
-          games.add(element);
-          break;
-        }
-      }
-    }
-    return games;
+    return parent.gameDetails.where((element) =>
+        element.players.any((player) => player is User && player.id == id)
+    ).toList();
   }
 
+  @override
   List<GameDetail> getGamesByPlayer(Player user) {
-    List<GameDetail> games = [];
-    for (var element in parent.gameDetails) {
-      for (Player player in element.players) {
-        if (player is User && user is User && player.id == user.id) {
-          games.add(element);
-          break;
-        }
-      }
-    }
-    return games;
+    return parent.gameDetails
+        .where((element) =>
+        element.players.any((player) => player is User && user is User && player.id == user.id))
+        .toList();
   }
 
+  @override
   List<GameDetail> getGamesByPlayers(List<Player> users) {
     List<GameDetail> games = [];
     for (var element in parent.gameDetails) {
@@ -67,19 +57,16 @@ class GameManager extends IGameManager {
     return games;
   }
 
+  @override
   List<Player> getPlayersByIdGame(int id) {
-    List<Player> players = [];
-    for (var element in parent.gameDetails) {
-      if (element.id == id) {
-        for (var player in element.players) {
-          players.add(player);
-        }
-        return players;
-      }
-    }
-    throw Exception("Game not found.");
+    final gameDetails = parent.gameDetails.firstWhere(
+            (element) => element.id == id,
+        orElse: () => throw Exception("Game not found.")
+    );
+    return gameDetails.players;
   }
 
+  @override
   Map<Player, int> getRankByIdGame(int id) {
     for (var game in parent.gameDetails) {
       if (game.id == id) {

@@ -11,7 +11,7 @@ abstract class IManager {
   late final IUserManager _userMgr;
   late final IGameManager _gameMgr;
 
-  // Getters and setters
+  // Getters and settersz
   User get userCurrent => _userCurrent;
 
   set userCurrent(User user) {
