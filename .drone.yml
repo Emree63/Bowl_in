@@ -26,7 +26,7 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     commands:
-      - ./mvnw package
+      - ./Sources/API/Quarkus mvnw package
     settings:
       dockerfile: ./Sources/API/Quarkus/src/main/docker/Dockerfile.jvm
       context: ./Sources/API/Quarkus/src/main/docker/
