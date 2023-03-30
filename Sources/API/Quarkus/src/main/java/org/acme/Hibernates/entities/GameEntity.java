@@ -3,73 +3,68 @@ package org.acme.Hibernates.entities;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.*;
 
-// @Entity
-// @Table(name = "games")
+import org.hibernate.annotations.ColumnDefault;
+
+@Entity
+@Table(name = "games")
 public class GameEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(length = 100)
-    private String name;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    public Date time = new Date();
 
-    @Column(length = 100)
-    private String password;
+    @ColumnDefault("0")
+    public Long winner = 0L;
 
-    private Date time;
+    @ColumnDefault("0")
+    public int nbPoints = 0;
 
-    private UUID winner;
+    @ColumnDefault("false")
+    public Boolean isFinished = false;
 
-    private int nbPoints;
+    @ManyToOne
+    @JoinColumn(name = "host_id", referencedColumnName = "id")
+    public UserEntity ownerGame;
 
-    private Boolean isFinished;
-
-    // public List<Player> players = new ArrayList<Player>();
-
-    // public List<Round> rounds = new ArrayList<Round>();
-
-    // return name as uppercase in the model
-    public String getName() {
-        return name.toUpperCase();
+    public GameEntity() {
     }
 
-    // store all names in lowercase in the DB
-    public void setName(String name) {
-        this.name = name.toLowerCase();
+    public GameEntity(UserEntity user) {
+        this.ownerGame = user;
     }
 
-    public String getPassword() {
-        return password;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setPassword(String password) {
-        this.password = password.toLowerCase();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDate() {
         return this.time;
     }
 
-    // store all names in lowercase in the DB
     public void setDate(Date time) {
         this.time = time;
     }
 
-    // store all names in lowercase in the DB
-    public void setWinner(UUID winner) {
+    public void setWinner(Long winner) {
         this.winner = winner;
     }
 
-    public UUID getWinner() {
+    public Long getWinner() {
         return this.winner;
     }
 
-    // store all names in lowercase in the DB
     public void setNbPoints(int nbPoints) {
         this.nbPoints = nbPoints;
     }
@@ -78,7 +73,6 @@ public class GameEntity {
         return this.nbPoints;
     }
 
-    // store all names in lowercase in the DB
     public void setIsFinished(Boolean isFinished) {
         this.isFinished = isFinished;
     }
@@ -86,8 +80,5 @@ public class GameEntity {
     public Boolean getIsFinished() {
         return this.isFinished;
     }
-
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<RoundEntity> rounds = new ArrayList<>();
 
 }
