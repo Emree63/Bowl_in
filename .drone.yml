@@ -15,14 +15,20 @@ steps:
       - cd ./Sources/bowlin_project/
       - flutter build apk
 
+  - name: test
+    image: cirrusci/flutter:stable
+    commands:
+      - cd Sources/bowlin_project/
+      - flutter pub get
+      - flutter test --machine --coverage
+    depends_on: [ app-build ]
+
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
     image: cirrusci/flutter:stable 
     environment:
       SONAR_TOKEN:
         from_secret: SONAR_TOKEN
-    settings:
-      sources: ./Sources/bowlin_project 
     commands:
       - export SONAR_SCANNER_VERSION=4.7.0.2747
       - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -30,8 +36,8 @@ steps:
       - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
       - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
       - export SONAR_SCANNER_OPTS="-server"
-      - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=. -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
-    depends_on: [ app-build ]
+      - sonar-scanner -D sonar.projectKey=Bowl_in -D sonar.sources=./Sources/bowlin_project -D sonar.host.url=https://codefirst.iut.uca.fr/sonar -D sonar.flutter.coverage.reportPath=./Sources/bowlin_project/coverage/lcov.info
+    depends_on: [ test ]
 
 # database container deployment
   - name: deploy-container-postgresql
@@ -51,11 +57,3 @@ steps:
         CODEFIRST_CLIENTDRONE_ENV_POSTGRES_PASSWORD:
           from_secret: db_password
         ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
-  - name: deploy-adminer
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
-    environment:
-      IMAGENAME: adminer
-      CONTAINERNAME: adminer
-      COMMAND: create
-      OVERWRITE: true
-      ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
