@@ -25,13 +25,9 @@ steps:
 
   - name: docker-build-and-push
     image: plugins/docker
-    commands:
-      - ls
-      - cd ./Sources/API/Quarkus 
-      - ls
     settings:
-      dockerfile: ./Sources/API/Quarkus/src/main/docker/Dockerfile.jvm
-      context: ./Sources/API/Quarkus/src/main/docker/
+      dockerfile: Sources/API/Quarkus/src/main/docker/Dockerfile.jvm
+      context: Sources/API/Quarkus/src/main/docker/
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/lucas.delanier/bowl_in
       username:
