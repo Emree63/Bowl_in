@@ -75,6 +75,7 @@
 #   accessed directly. (example: "foo.example.com,bar.example.com")
 #
 ###
+FROM maven:3.8.3-jdk-11 AS build
 FROM registry.access.redhat.com/ubi8/openjdk-11:1.14
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
