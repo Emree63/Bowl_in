@@ -27,7 +27,7 @@ steps:
     image: plugins/docker
     settings:
       dockerfile: Sources/API/Quarkus/src/main/docker/Dockerfile
-      context: Sources/API/Quarkus/src/main/docker/
+      context: Sources/API/Quarkus/
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/lucas.delanier/bowl_in
       username:
