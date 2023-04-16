@@ -51,9 +51,9 @@
 -- (4, 2, 3, 7);
 
 INSERT INTO users (name, password) VALUES ('Alice', 'password123');
-INSERT INTO users (Id, name, Password) VALUES 
-(2, 'Bob', 'password2'),
-(3, 'Charlie', 'password3');
+INSERT INTO users (name, Password) VALUES 
+('Bob', 'password2'),
+('Charlie', 'password3');
 INSERT INTO games (isFinished, nbPoints, time, winner, host_id) VALUES (false, 0, CURRENT_TIMESTAMP, 0, 1);
 INSERT INTO participe (idGame, position, guestname, totalpoints, iduser) VALUES (1, 1, 'Alice', 0, 1);
 INSERT INTO round (game_id, idGame, position, turnNumber, points) VALUES (1, 1, 1, 1, 0);
