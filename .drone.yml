@@ -76,7 +76,7 @@ steps:
         IMAGENAME: postgres:latest
         CONTAINERNAME: postgresql
         COMMAND: create
-        # OVERWRITE: false
+        OVERWRITE: false
         PRIVATE: false
         CODEFIRST_CLIENTDRONE_ENV_POSTGRES_ROOT_PASSWORD:
           from_secret: db_root_password
