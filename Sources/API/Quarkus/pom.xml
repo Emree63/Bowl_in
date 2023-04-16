@@ -46,6 +46,17 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+     <!-- Mockito dependencies -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <scope>test</scope>
+    </dependency>
     <!-- Hibernate Reactive dependency -->
     <dependency>
         <groupId>io.quarkus</groupId>
@@ -61,7 +72,23 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
-</dependency>
+    </dependency>
+  <!-- Dependency for openID -->
+    <!-- <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-oidc</artifactId>
+    </dependency>
+    <dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-oidc-client</artifactId>
+    </dependency> -->
+
+    <!-- Dependency for Keyclock -->
+    <!-- <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-keycloak-authorization</artifactId>
+    </dependency> -->
+
 <dependency>
     <groupId>io.quarkus</groupId>
     <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
