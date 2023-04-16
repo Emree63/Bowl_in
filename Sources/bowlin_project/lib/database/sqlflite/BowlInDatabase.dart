@@ -249,6 +249,7 @@ CREATE TABLE $tablePlayer (
     });
   }
 
+
   Future<List<Game>> readGame(int id) async {
     final db = await instance.database;
     final result = await db

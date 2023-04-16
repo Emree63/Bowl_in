@@ -14,21 +14,21 @@ class UserManager extends IUserManager {
 
   // Methods
   @override
-  List<Player> getUsersByName(String name) {
+  Future<List<Player>> getUsersByName(String name) {
     List<Player> players = [];
     for (var player in parent.players) {
       if (player.name == name) {
         players.add(player);
       }
     }
-    return players;
+    return Future.value(players);
   }
 
   @override
-  Player getUserById(int id) {
+  Future<User> getUserById(int id) {
     for (var player in parent.players) {
       if (player is User && player.id == id) {
-        return player;
+        return Future.value(player);
       }
     }
     throw new Exception("Player not found");

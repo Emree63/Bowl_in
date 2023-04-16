@@ -45,12 +45,12 @@ class UserManager extends IUserManager {
   }
 
   @override
-  Player getUserById(int id) {
+  Future<Player> getUserById(int id) {
     throw UnimplementedError();
   }
 
   @override
-  List<Player> getUsersByName(String name) {
+  Future<List<Player>> getUsersByName(String name) {
     throw UnimplementedError();
   }
 }

@@ -10,8 +10,8 @@ abstract class IUserManager {
 
   // Methods
   IAuthManager get authMgr => _authMgr;
-  List<Player> getUsersByName(String name);
-  Player getUserById(int id);
+  Future<List<Player>> getUsersByName(String name);
+  Future<Player> getUserById(int id);
   saveUser(User user);
   List<User> getRankingWithFriends();
 }
