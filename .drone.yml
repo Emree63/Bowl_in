@@ -23,6 +23,29 @@ steps:
       - flutter test --machine --coverage
     depends_on: [ app-build ]
 
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+      dockerfile: Sources/API/Quarkus/src/main/docker/Dockerfile.jvm
+      context: Sources/API/Quarkus/src/main/docker/
+      registry: hub.codefirst.iut.uca.fr
+      repo: hub.codefirst.iut.uca.fr/lucas.delanier/bowl_in
+      username:
+        from_secret: SECRET_REGISTRY_USERNAME
+      password:
+        from_secret: SECRET_REGISTRY_PASSWORD
+
+  #container deployment
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/lucas.delanier/bowl_in:latest
+        CONTAINERNAME: bowl-api
+        COMMAND: create
+        OVERWRITE: true
+        ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
+    depends_on: [ docker-build-and-push ]
+    
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
     image: cirrusci/flutter:stable 
