@@ -22,6 +22,7 @@ steps:
       - flutter pub get
       - flutter test --machine --coverage
     depends_on: [ app-build ]
+
   - name: docker-build
     image: maven:3-jdk-11
     commands:
@@ -50,7 +51,7 @@ steps:
         COMMAND: create
         OVERWRITE: true
         ADMINS: emrekartal,louisonparant,davidd_almeida,lucasdelanier,arthurvalin
-    depends_on: [ docker-build-and-push ]
+    depends_on: [ docker-push ]
     
 # build CONTAINER for sonar on flutter IMAGE
   - name: code-analysis
