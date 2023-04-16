@@ -1,8 +1,7 @@
 package org.acme.Api.DTO;
 
-import io.quarkus.hibernate.reactive.panache.common.ProjectedFieldName;
+import io.quarkus.hibernate.orm.panache.common.ProjectedFieldName;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.acme.Hibernates.entities.UserStatsEntity;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @RegisterForReflection

@@ -144,7 +144,7 @@ public class RoundEntity {
     @EmbeddedId
     public RoundId id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id", referencedColumnName = "id", insertable = false, updatable = false)
     public GameEntity game;
 
@@ -162,11 +162,15 @@ public class RoundEntity {
     public List<ThrowEntity> throwsGame = new ArrayList<>();
 
     public RoundEntity() {
+        this.throwsGame.add(new ThrowEntity());
+        this.throwsGame.add(new ThrowEntity());
     }
 
-    public RoundEntity(GameEntity game, ParticipeEntity participe) {
+    public RoundEntity(GameEntity game, ParticipeEntity participe, Integer points, ThrowEntity throwEntity) {
         this.game = game;
         this.participe = participe;
+        this.points = points;
+        this.throwsGame.add(throwEntity);
     }
 
 }

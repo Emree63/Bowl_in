@@ -21,12 +21,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.acme.Api.DTO.GameDto;
-import org.acme.Api.service.GameService;
+import org.acme.Api.DTO.UserTinyDTO;
+import org.acme.Api.Manager.DbManager;
+import org.acme.Api.Manager.GameManager;
+import org.acme.Api.service.GameRepository;
 import org.acme.Hibernates.entities.GameEntity;
 import org.acme.Hibernates.entities.UserEntity;
 import org.jboss.logging.Logger;
 
-import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
 import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;
 
@@ -36,56 +38,58 @@ import io.smallrye.mutiny.Uni;
 @Path("/games")
 public class GameController {
     private static final Logger LOGGER = Logger.getLogger(GameController.class.getName());
-
     @Inject
-    GameService service;
+    DbManager dbManager;
 
     @GET
-    public Uni<List<GameDto>> getUsers() {
+    public List<GameDto> getUsers() {
         LOGGER.info("Getting all game");
-        Uni<List<GameDto>> allGames = service.findAll().project(GameDto.class).list();
+        List<GameDto> allGames = dbManager.gameManager.getAllGames();
+
         return allGames;
     }
 
     @GET
     @Path("/{id}")
-    public Uni<Response> getGameById(@PathParam("/{id}") Long id) {
+    public Response getGameById(@PathParam("id") Long id) {
         LOGGER.info("Get game with id : " + id);
-        return service.find("id", id).project(GameDto.class).list()
-                .onItem()
-                .transform(
-                        entity -> entity == null ? Response.status(Status.NOT_FOUND) : Response.ok(entity).status(200))
-                .onItem().transform(Response.ResponseBuilder::build);
+        GameDto entity = dbManager.gameManager.getDetailsGameById(id);
+        if (entity == null) {
+            Response.status(Status.NOT_FOUND);
+        }
+
+        return Response.ok(entity).status(200).build();
 
     }
 
     @POST
-    @ReactiveTransactional
-    public Uni<Response> createGame(GameEntity game) {
+    @Transactional
+    public Response createGame(GameDto game) {
         if (game == null) {
             throw new WebApplicationException("user was invalidly set on request.", 422);
         }
-        LOGGER.info("creating game: " + game.getId());
-        return service.persist(game)
-                .map(persistedGame -> Response
-                        .created(URI.create("/game/" + game.id))
-                        .entity(persistedGame)
-                        .build())
-                .onFailure().recoverWithItem(Response.status(Status.BAD_REQUEST).build());
+        GameDto entity = dbManager.gameManager.saveGame(game);
+        if (entity == null) {
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+        LOGGER.info("creating game: ");
+        return Response.created(URI.create("/game/" + game.id)).build();
+
     }
 
-    @DELETE
-    @Path("/{id}")
-    @ReactiveTransactional
-    public Uni<Response> delete(@PathParam("id") Long id) {
-        return service.deleteById(id)
-                .onItem().transform(entity -> !entity ? Response.status(Status.NOT_FOUND).build()
-                        : Response.ok().status(200).build());
-    }
+    // @DELETE
+    // @Path("/{id}")
+    // @ReactiveTransactional
+    // public Uni<Response> delete(@PathParam("id") Long id) {
+    // return service.deleteById(id)
+    // .onItem().transform(entity -> !entity ?
+    // Response.status(Status.NOT_FOUND).build()
+    // : Response.ok().status(200).build());
+    // }
 
     @GET
     @Path("/count")
-    public Uni<Long> count() {
-        return service.count();
+    public Long count() {
+        return dbManager.gameManager.countGame();
     }
 }

@@ -37,4 +37,76 @@ public class UserStatsEntity {
     public UserStatsEntity(UserEntity user) {
         this.user = user;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public Long getNbVictories() {
+        return nbVictories;
+    }
+
+    public void setNbVictories(Long nbVictories) {
+        this.nbVictories = nbVictories;
+    }
+
+    public Long getNbGames() {
+        return nbGames;
+    }
+
+    public void setNbGames(Long nbGames) {
+        this.nbGames = nbGames;
+    }
+
+    public Long getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(Long highscore) {
+        this.highscore = highscore;
+    }
+
+    public Long getNbStrikes() {
+        return nbStrikes;
+    }
+
+    public void setNbStrikes(Long nbStrikes) {
+        this.nbStrikes = nbStrikes;
+    }
+
+    public Long getNbSpares() {
+        return nbSpares;
+    }
+
+    public void setNbSpares(Long nbSpares) {
+        this.nbSpares = nbSpares;
+    }
+
+    public double getAvgScore() {
+        return avgScore;
+    }
+
+    public void setAvgScore(double avgScore) {
+        this.avgScore = avgScore;
+    }
+
+    public double getAvgPinsPerRound() {
+        return avgPinsPerRound;
+    }
+
+    public void setAvgPinsPerRound(double avgPinsPerRound) {
+        this.avgPinsPerRound = avgPinsPerRound;
+    }
 }

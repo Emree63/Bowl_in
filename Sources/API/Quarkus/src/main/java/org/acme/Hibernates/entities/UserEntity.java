@@ -12,13 +12,13 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     @Column(length = 100)
-    private String name;
+    public String name;
 
     @Column(length = 100)
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    private UserStatsEntity stats;
+    public UserStatsEntity stats;
 
     public UserEntity() {
         this.stats = new UserStatsEntity(this);

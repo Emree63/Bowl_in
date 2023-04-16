@@ -10,12 +10,6 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class ParticipeDto {
-    @Schema(description = "Composite primary key of the entity")
-    public ParticipeId id;
-
-    @Schema(description = "Position of the player in the game")
-    public int position;
-
     public Long idUser;
 
     @Schema(description = "Name of the guest")
@@ -24,21 +18,15 @@ public class ParticipeDto {
     @Schema(description = "Total points of the player in the game")
     public int totalPoints;
 
-    @Schema(description = "The Game entity that this Participe belongs to")
-    public GameDto game;
-
     @Schema(description = "The User entity that this Participe belongs to")
     public UserDTO user;
 
-    public ParticipeDto() {
-    }
+    public ParticipeDto(Long idUser, UserDTO user, Integer totalPoints, String guestName) {
 
-    public ParticipeDto(ParticipeEntity entity) {
-        this.id = entity.id;
-        this.position = entity.id.position;
-        this.idUser = entity.user.id;
-        this.guestName = entity.guestName;
-        this.totalPoints = entity.totalPoints;
+        this.idUser = idUser;
+        this.guestName = guestName;
+        this.totalPoints = totalPoints;
+        this.user = user;
 
         // if (entity.getGame() != null) {
         // this.game = new GameDto(entity.getGame());

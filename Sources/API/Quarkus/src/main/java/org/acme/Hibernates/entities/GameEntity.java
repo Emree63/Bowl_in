@@ -37,8 +37,13 @@ public class GameEntity {
     public GameEntity() {
     }
 
-    public GameEntity(UserEntity user) {
+    public GameEntity(UserEntity user, List<ParticipeEntity> players, List<RoundEntity> rounds, Date time, Long winner,
+            int nbPoints, Boolean isFinished) {
         this.ownerGame = user;
+        this.time = time;
+        this.winner = winner;
+        this.nbPoints = nbPoints;
+        this.isFinished = isFinished;
     }
 
     public Long getId() {
