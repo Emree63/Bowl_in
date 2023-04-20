@@ -40,6 +40,7 @@ import io.smallrye.mutiny.Uni;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/users")
 public class UserController {
+    
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     @Inject
@@ -69,7 +70,7 @@ public class UserController {
     }
 
     @POST
-    @Operation(summary = "Create a new User")
+    @Operation(summary = "Create a new user")
     @APIResponse(responseCode = "201", description = "User successfully created")
     @APIResponse(responseCode = "422", description = "User invalidly set on request")
     @ReactiveTransactional
@@ -87,7 +88,7 @@ public class UserController {
     }
 
     @PUT
-    @Operation(summary = "Update a User")
+    @Operation(summary = "Update a user")
     @APIResponse(responseCode = "200", description = "OK")
     @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
@@ -103,7 +104,7 @@ public class UserController {
     }
 
     @DELETE
-    @Operation(summary = "Delete a User")
+    @Operation(summary = "Delete a user")
     @APIResponse(responseCode = "200", description = "User successfully deleted")
     @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")

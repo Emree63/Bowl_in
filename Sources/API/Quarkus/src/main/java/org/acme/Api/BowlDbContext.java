@@ -18,5 +18,4 @@ public class BowlDbContext {
     public ParticipeRepository participeRepository;
     @Inject
     public ThrowRepository throwRepository;
-
 }

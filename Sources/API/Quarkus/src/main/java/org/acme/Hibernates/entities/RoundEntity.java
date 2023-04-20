@@ -138,7 +138,7 @@ import javax.persistence.*;
 //     // constructors, getters and setters
 // }
 @Entity
-@Table(name = "round")
+@Table(name = "Round")
 public class RoundEntity {
 
     @EmbeddedId

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "throwtable")
+@Table(name = "Throw")
 public class ThrowEntity {
 
     @EmbeddedId

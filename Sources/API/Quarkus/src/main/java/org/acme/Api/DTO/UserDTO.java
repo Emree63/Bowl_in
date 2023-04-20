@@ -10,9 +10,18 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 public class UserDTO {
     public Long id;
     public String name;
-    public UserStatsDTO stats;
+    public String image;
+    public String mail;
+    //public UserStatsDTO stats;
 
-    public UserDTO(Long id, String name,
+    public UserDTO(Long id, String name, String image, String mail) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.mail = mail;
+    }
+
+    /*public UserDTO(Long id, String name,
             @ProjectedFieldName("stats.nbVictories") Long nbVictories,
             @ProjectedFieldName("stats.nbGames") Long nbGames,
             @ProjectedFieldName("stats.highscore") Long highscore,
@@ -23,5 +32,5 @@ public class UserDTO {
         this.id = id;
         this.name = name;
         this.stats = new UserStatsDTO(nbVictories, nbGames, highscore, nbStrikes, nbSpares, avgScore, avgPinsPerRound);
-    }
+    }*/
 }

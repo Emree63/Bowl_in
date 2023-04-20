@@ -7,13 +7,13 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user_stats")
+@Table(name = "UserStats")
 public class UserStatsEntity {
     @Id
     private Long id;
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
     private UserEntity user;
 
     @ColumnDefault("0")

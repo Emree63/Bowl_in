@@ -6,22 +6,30 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-    @Column(length = 100)
-    public String name;
 
-    @Column(length = 100)
+    @Column(length = 64)
+    private String name;
+
+    @Column(length = 255)
+    private String image;
+
+    @Column(length = 255)
+    private String mail;
+
+    @Column(length = 144)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    public UserStatsEntity stats;
+    //@OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    //public UserStatsEntity stats;
 
     public UserEntity() {
-        this.stats = new UserStatsEntity(this);
+        //this.stats = new UserStatsEntity(this);
     }
 
     // return name as uppercase in the model

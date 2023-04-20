@@ -73,10 +73,6 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-smallrye-openapi-ui</artifactId>
-  </dependency>
   <!-- Dependency for openID -->
     <!-- <dependency>
       <groupId>io.quarkus</groupId>

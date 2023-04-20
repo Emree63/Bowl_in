@@ -13,8 +13,9 @@ import io.smallrye.mutiny.Uni;
 
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<UserEntity> {
+
     // public Uni<UserEntity> getUserByName(String name) {
-    // return UserEntity.find("name", name).firstResult();
+    //      return UserEntity.find("name", name).firstResult();
     // }
 
     public Uni<List<UserEntity>> findwithName(String name) {
@@ -26,6 +27,7 @@ public class UserRepository implements PanacheRepository<UserEntity> {
     }
 
     // public Uni<Long> deleteUser() {
-    // return delete("name", "Stef");
+    //     return delete("name", "Stef");
     // }
+
 }

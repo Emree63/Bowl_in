@@ -9,7 +9,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "games")
+@Table(name = "Game")
 public class GameEntity {
 
     @Id
