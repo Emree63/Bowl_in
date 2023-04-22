@@ -1,11 +1,10 @@
-package org.acme.Api.service;
+package org.acme.api.service;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.Hibernates.entities.GameEntity;
-import org.acme.Hibernates.entities.RoundEntity;
+import org.acme.hibernates.entities.RoundEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.smallrye.mutiny.Uni;

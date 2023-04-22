@@ -1,17 +1,8 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.acme.Api.BowlDbContext;
-import org.acme.Api.DTO.GameDto;
-import org.acme.Api.DTO.UserTinyDTO;
-import org.acme.Hibernates.entities.GameEntity;
+import org.acme.api.BowlDbContext;
+import org.acme.api.dto.GameDto;
+import org.acme.hibernates.entities.GameEntity;
 
 public class GameMappeur {
 

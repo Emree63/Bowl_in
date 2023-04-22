@@ -1,8 +1,8 @@
-package org.acme.Api.service;
+package org.acme.api.service;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.Hibernates.entities.ThrowEntity;
+import org.acme.hibernates.entities.ThrowEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 

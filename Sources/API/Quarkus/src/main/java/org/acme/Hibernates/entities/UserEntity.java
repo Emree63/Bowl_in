@@ -1,12 +1,9 @@
-package org.acme.Hibernates.entities;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.acme.hibernates.entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}), @UniqueConstraint(columnNames = {"mail"})})
 public class UserEntity {
 
     @Id

@@ -1,25 +1,17 @@
-package org.acme.Api.DTO;
+package org.acme.api.dto;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.acme.Hibernates.entities.GameEntity;
-import org.acme.Hibernates.entities.ParticipeEntity;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.quarkus.hibernate.reactive.panache.common.ProjectedFieldName;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import io.smallrye.mutiny.Uni;
-import io.quarkus.runtime.annotations.RegisterForReflection;
+
 import java.time.LocalDate;
-import java.util.List;
 
 // @RegisterForReflection
 // @Schema(description = "A DTO for transferring game details")
@@ -77,11 +69,11 @@ public class GameDto {
 
     // Constructeur avec tous les champs sauf l'ID (généré automatiquement)
     public GameDto(Long id,
-            Uni<List<ParticipeDto>> players,
-            LocalDate time,
-            Long ownerGame,
-            UserTinyDTO winner,
-            Uni<List<RoundDto>> rounds) {
+                   Uni<List<ParticipeDto>> players,
+                   LocalDate time,
+                   Long ownerGame,
+                   UserTinyDTO winner,
+                   Uni<List<RoundDto>> rounds) {
         this.players = players;
         this.date = time;
         this.hostID = ownerGame;

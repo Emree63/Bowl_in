@@ -1,10 +1,9 @@
-package org.acme.Api.Manager;
+package org.acme.api.manager;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.acme.Api.BowlDbContext;
+import org.acme.api.BowlDbContext;
 
 @Singleton
 public class DbManager {

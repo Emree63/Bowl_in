@@ -1,4 +1,4 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.acme.Api.DTO.ParticipeDto;
-import org.acme.Api.DTO.RoundDto;
-import org.acme.Hibernates.entities.ParticipeEntity;
-import org.acme.Hibernates.entities.RoundEntity;
+import org.acme.api.dto.ParticipeDto;
+import org.acme.api.dto.RoundDto;
+import org.acme.hibernates.entities.ParticipeEntity;
+import org.acme.hibernates.entities.RoundEntity;
 
 import io.smallrye.mutiny.Uni;
 

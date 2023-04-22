@@ -1,15 +1,13 @@
-package org.acme.Api.controllers;
+package org.acme.api.controllers;
 
 import java.net.URI;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -20,19 +18,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import io.quarkus.hibernate.reactive.panache.PanacheQuery;
-
-import org.acme.Api.BowlDbContext;
-import org.acme.Api.DTO.UserDTO;
-import org.acme.Api.DTO.UserTinyDTO;
-import org.acme.Api.service.UserRepository;
-import org.acme.Hibernates.entities.UserEntity;
+import org.acme.api.BowlDbContext;
+import org.acme.api.dto.UserDTO;
+import org.acme.hibernates.entities.UserEntity;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.jboss.logging.Logger;
 
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
-import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;
 
 @ApplicationScoped
@@ -40,7 +33,7 @@ import io.smallrye.mutiny.Uni;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/users")
 public class UserController {
-    
+
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     @Inject
@@ -61,12 +54,33 @@ public class UserController {
     @Path("/{id}")
     public Uni<Response> getUserById(@PathParam("id") Long id) {
         LOGGER.info("Get user with id : " + id);
-        return service.userRepository.findByBowlinId(id)
-                .onItem()
-                .transform(
-                        entity -> entity == null ? Response.status(Status.NOT_FOUND) : Response.ok(entity).status(200))
-                .onItem().transform(Response.ResponseBuilder::build);
+        return service.userRepository.getUserById(id)
+                .map(user -> user == null ? Response.status(Status.NOT_FOUND) : Response.ok(user).status(200))
+                .map(Response.ResponseBuilder::build);
+    }
 
+    @GET
+    @Operation(summary = "Get a user by name")
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "User not found")
+    @Path("/name/{name}")
+    public Uni<Response> getUserByName(@PathParam("name") String name) {
+        LOGGER.info("Get user with name : " + name);
+        return service.userRepository.findwithName(name)
+                .map(user -> user == null ? Response.status(Status.NOT_FOUND) : Response.ok(user).status(200))
+                .map(Response.ResponseBuilder::build);
+    }
+
+    @GET
+    @Operation(summary = "Get a user by mail")
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "User not found")
+    @Path("/mail/{mail}")
+    public Uni<Response> getUserByMail(@PathParam("mail") String mail) {
+        LOGGER.info("Get user with mail : " + mail);
+        return service.userRepository.findwithMail(mail)
+                .map(user -> user == null ? Response.status(Status.NOT_FOUND) : Response.ok(user).status(200))
+                .map(Response.ResponseBuilder::build);
     }
 
     @POST
@@ -105,7 +119,7 @@ public class UserController {
 
     @DELETE
     @Operation(summary = "Delete a user")
-    @APIResponse(responseCode = "200", description = "User successfully deleted")
+    @APIResponse(responseCode = "204")
     @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
     @ReactiveTransactional
@@ -113,7 +127,7 @@ public class UserController {
         LOGGER.info("Delete user with id : " + id);
         return service.userRepository.deleteById(id)
                 .onItem().transform(entity -> !entity ? Response.status(Status.NOT_FOUND).build()
-                        : Response.ok().status(200).build());
+                        : Response.noContent().build());
     }
 
     @GET

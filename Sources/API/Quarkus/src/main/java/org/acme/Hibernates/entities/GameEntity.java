@@ -1,4 +1,4 @@
-package org.acme.Hibernates.entities;
+package org.acme.hibernates.entities;
 
 import java.util.ArrayList;
 import java.util.Date;

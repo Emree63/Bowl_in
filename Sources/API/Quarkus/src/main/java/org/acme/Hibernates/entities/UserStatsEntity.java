@@ -1,4 +1,4 @@
-package org.acme.Hibernates.entities;
+package org.acme.hibernates.entities;
 
 import org.hibernate.annotations.ColumnDefault;
 

@@ -1,8 +1,8 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
-import org.acme.Api.DTO.UserDTO;
-import org.acme.Api.DTO.UserTinyDTO;
-import org.acme.Hibernates.entities.UserEntity;
+import org.acme.api.dto.UserDTO;
+import org.acme.api.dto.UserTinyDTO;
+import org.acme.hibernates.entities.UserEntity;
 
 public class UserMappeur {
     public static UserDTO toUserDto(UserEntity entity) {

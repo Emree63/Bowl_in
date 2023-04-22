@@ -1,13 +1,11 @@
-package org.acme.Api.service;
+package org.acme.api.service;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.NotFoundException;
 
-import org.acme.Api.DTO.GameDto;
-import org.acme.Api.Mappeur.GameMappeur;
-import org.acme.Hibernates.entities.GameEntity;
+import org.acme.api.dto.GameDto;
+import org.acme.hibernates.entities.GameEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.smallrye.mutiny.Uni;

@@ -1,12 +1,9 @@
-package org.acme.Api.service;
-
-import java.util.List;
+package org.acme.api.service;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.Api.DTO.UserDTO;
-import org.acme.Api.DTO.UserTinyDTO;
-import org.acme.Hibernates.entities.UserEntity;
+import org.acme.api.dto.UserDTO;
+import org.acme.hibernates.entities.UserEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 import io.smallrye.mutiny.Uni;
@@ -18,16 +15,16 @@ public class UserRepository implements PanacheRepository<UserEntity> {
     //      return UserEntity.find("name", name).firstResult();
     // }
 
-    public Uni<List<UserEntity>> findwithName(String name) {
-        return list("name", name);
+    public Uni<UserDTO> findwithName(String name) {
+        return find("name", name.toLowerCase()).project(UserDTO.class).firstResult();
     }
 
-    public Uni<List<UserDTO>> findByBowlinId(Long id) {
-        return find("id", id).project(UserDTO.class).list();
+    public Uni<UserDTO> findwithMail(String mail) {
+        return find("mail", mail.toLowerCase()).project(UserDTO.class).firstResult();
     }
 
-    // public Uni<Long> deleteUser() {
-    //     return delete("name", "Stef");
-    // }
+    public Uni<UserDTO> getUserById(Long id) {
+        return find("id", id).project(UserDTO.class).firstResult();
+    }
 
 }

@@ -1,10 +1,10 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
 import java.util.List;
 
-import org.acme.Api.DTO.RoundDto;
-import org.acme.Hibernates.entities.RoundEntity;
-import org.acme.Hibernates.entities.ThrowEntity;
+import org.acme.api.dto.RoundDto;
+import org.acme.hibernates.entities.RoundEntity;
+import org.acme.hibernates.entities.ThrowEntity;
 
 public class RoundMappeur {
 

@@ -1,10 +1,9 @@
-package org.acme.Api;
+package org.acme.api;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.acme.Api.service.*;
+import org.acme.api.service.*;
 
 @Singleton
 public class BowlDbContext {

@@ -1,9 +1,5 @@
-package org.acme.Api.DTO;
+package org.acme.api.dto;
 
-import java.util.UUID;
-
-import org.acme.Hibernates.entities.ParticipeEntity;
-import org.acme.Hibernates.entities.ParticipeId;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;

@@ -1,13 +1,12 @@
-package org.acme.Api.DTO;
+package org.acme.api.dto;
 
-import io.quarkus.hibernate.reactive.panache.common.ProjectedFieldName;
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.acme.Hibernates.entities.UserStatsEntity;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @RegisterForReflection
 @Schema(description = "A DTO for transferring user details")
 public class UserDTO {
+
     public Long id;
     public String name;
     public String image;

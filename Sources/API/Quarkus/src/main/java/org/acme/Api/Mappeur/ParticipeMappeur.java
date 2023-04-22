@@ -1,8 +1,7 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
-import org.acme.Api.DTO.ParticipeDto;
-import org.acme.Api.DTO.RoundDto;
-import org.acme.Hibernates.entities.ParticipeEntity;
+import org.acme.api.dto.ParticipeDto;
+import org.acme.hibernates.entities.ParticipeEntity;
 
 public class ParticipeMappeur {
     public static ParticipeDto toDto(ParticipeEntity entity) {

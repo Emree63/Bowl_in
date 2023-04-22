@@ -1,13 +1,12 @@
-package org.acme.Api.Manager;
+package org.acme.api.manager;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.NotFoundException;
 
-import org.acme.Api.DTO.GameDto;
-import org.acme.Api.Mappeur.GameMappeur;
+import org.acme.api.dto.GameDto;
+import org.acme.api.mappeur.GameMappeur;
 
 import io.smallrye.mutiny.Uni;
 

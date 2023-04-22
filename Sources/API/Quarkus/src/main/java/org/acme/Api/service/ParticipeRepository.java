@@ -1,11 +1,11 @@
-package org.acme.Api.service;
+package org.acme.api.service;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.Api.DTO.ParticipeDto;
-import org.acme.Hibernates.entities.ParticipeEntity;
+import org.acme.api.dto.ParticipeDto;
+import org.acme.hibernates.entities.ParticipeEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheQuery;
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;

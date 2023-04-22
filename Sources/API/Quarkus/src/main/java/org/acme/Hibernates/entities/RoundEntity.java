@@ -1,4 +1,4 @@
-package org.acme.Hibernates.entities;
+package org.acme.hibernates.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

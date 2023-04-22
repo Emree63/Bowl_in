@@ -1,17 +1,13 @@
-package org.acme.Api.controllers;
+package org.acme.api.controllers;
 
 import java.net.URI;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -20,17 +16,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.acme.Api.DTO.GameDto;
-import org.acme.Api.DTO.UserTinyDTO;
-import org.acme.Api.Manager.DbManager;
-import org.acme.Api.Manager.GameManager;
-import org.acme.Api.service.GameRepository;
-import org.acme.Hibernates.entities.GameEntity;
-import org.acme.Hibernates.entities.UserEntity;
+import org.acme.api.dto.GameDto;
+import org.acme.api.manager.DbManager;
 import org.jboss.logging.Logger;
 
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional;
-import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;
 
 @ApplicationScoped

@@ -1,4 +1,4 @@
-package org.acme.Api.Mappeur;
+package org.acme.api.mappeur;
 
 public class TrhowMappeur {
 
