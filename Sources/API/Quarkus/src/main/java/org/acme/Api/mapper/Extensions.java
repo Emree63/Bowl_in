@@ -1,4 +1,4 @@
-package org.acme.api.mappeur;
+package org.acme.api.mapper;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -17,7 +17,7 @@ import io.smallrye.mutiny.Uni;
 public class Extensions {
     public static Uni<List<RoundDto>> toRoundDtoList(Uni<List<RoundEntity>> uni) {
         return uni.map(roundEntities -> roundEntities.stream()
-                .map(RoundMappeur::toDto)
+                .map(RoundMapper::toDto)
                 .collect(Collectors.toList()));
     }
 
@@ -26,7 +26,7 @@ public class Extensions {
                 .onItem().transformToUni(participes -> {
                     List<ParticipeDto> dtos = new ArrayList<>();
                     for (ParticipeEntity entity : participes) {
-                        dtos.add(ParticipeMappeur.toDto(entity));
+                        dtos.add(ParticipeMapper.toDto(entity));
                     }
                     return Uni.createFrom().item(dtos);
                 })

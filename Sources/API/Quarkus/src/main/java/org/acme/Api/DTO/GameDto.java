@@ -57,7 +57,7 @@ public class GameDto {
     public Long hostID;
 
     @JsonProperty("winner")
-    public UserTinyDTO winner;
+    public UserTinyDto winner;
 
     @JsonIgnore
     @JsonProperty("rounds")
@@ -72,7 +72,7 @@ public class GameDto {
                    Uni<List<ParticipeDto>> players,
                    LocalDate time,
                    Long ownerGame,
-                   UserTinyDTO winner,
+                   UserTinyDto winner,
                    Uni<List<RoundDto>> rounds) {
         this.players = players;
         this.date = time;

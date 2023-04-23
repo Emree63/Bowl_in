@@ -1,4 +1,4 @@
-package org.acme.api.mappeur;
+package org.acme.api.mapper;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.acme.api.dto.RoundDto;
 import org.acme.hibernates.entities.RoundEntity;
 import org.acme.hibernates.entities.ThrowEntity;
 
-public class RoundMappeur {
+public class RoundMapper {
 
     public static RoundDto toDto(RoundEntity entity) {
         List<ThrowEntity> throwsGame = entity.throwsGame;

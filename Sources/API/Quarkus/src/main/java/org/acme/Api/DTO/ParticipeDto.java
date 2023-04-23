@@ -15,9 +15,9 @@ public class ParticipeDto {
     public int totalPoints;
 
     @Schema(description = "The User entity that this Participe belongs to")
-    public UserDTO user;
+    public UserDto user;
 
-    public ParticipeDto(Long idUser, UserDTO user, Integer totalPoints, String guestName) {
+    public ParticipeDto(Long idUser, UserDto user, Integer totalPoints, String guestName) {
 
         this.idUser = idUser;
         this.guestName = guestName;

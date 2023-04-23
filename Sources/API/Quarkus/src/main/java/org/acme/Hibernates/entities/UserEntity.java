@@ -29,9 +29,17 @@ public class UserEntity {
         //this.stats = new UserStatsEntity(this);
     }
 
+    public UserEntity(String name, String image, String mail, String password) {
+        this.name = name;
+        this.image = image;
+        this.mail = mail;
+        this.password = password;
+        //this.stats = new UserStatsEntity(this);
+    }
+
     // return name as uppercase in the model
     public String getName() {
-        return name.toUpperCase();
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
     // store all names in lowercase in the DB
@@ -44,7 +52,23 @@ public class UserEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password.toLowerCase();
+        this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail.toLowerCase();
     }
 
 }

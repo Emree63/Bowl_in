@@ -1,10 +1,10 @@
-package org.acme.api.mappeur;
+package org.acme.api.mapper;
 
 import org.acme.api.BowlDbContext;
 import org.acme.api.dto.GameDto;
 import org.acme.hibernates.entities.GameEntity;
 
-public class GameMappeur {
+public class GameMapper {
 
     public static GameDto toDto(GameEntity entity, BowlDbContext dbContext) {
         GameDto dto = new GameDto();
