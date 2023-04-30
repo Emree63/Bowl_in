@@ -1,9 +1,9 @@
-package org.acme.api.service;
+package org.acme.api.repository;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.api.dto.UserDto;
-import org.acme.api.dto.UserTinyDto;
+import org.acme.api.dto.UserDTO;
+import org.acme.api.dto.UserTinyDTO;
 import org.acme.api.mapper.UserMapper;
 import org.acme.hibernates.entities.UserEntity;
 
@@ -15,13 +15,13 @@ import java.util.Objects;
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<UserEntity> {
 
-    public Uni<UserDto> addUser(UserTinyDto user) {
+    public Uni<UserDTO> addUser(UserTinyDTO user) {
         UserEntity userEntity = UserMapper.toEntity(user);
         return persistAndFlush(userEntity)
                 .map(ignore -> UserMapper.toDto(userEntity));
     }
 
-    public Uni<UserDto> findWithName(String name) {
+    public Uni<UserDTO> findWithName(String name) {
         return find("name", name.toLowerCase())
                 .firstResult()
                 .map(UserMapper::toDto);
@@ -39,13 +39,13 @@ public class UserRepository implements PanacheRepository<UserEntity> {
                 .map(Objects::nonNull);
     }
 
-    public Uni<UserDto> findWithMail(String mail) {
+    public Uni<UserDTO> findWithMail(String mail) {
         return find("mail", mail.toLowerCase())
                 .firstResult()
                 .map(UserMapper::toDto);
     }
 
-    public Uni<UserDto> getUserById(Long id) {
+    public Uni<UserDTO> getUserById(Long id) {
         return find("id", id)
                 .firstResult()
                 .map(UserMapper::toDto);

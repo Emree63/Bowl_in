@@ -5,19 +5,20 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @RegisterForReflection
 @Schema(description = "A DTO for transferring user details")
-public class UserDto {
+public class UserDTO {
 
     public Long id;
     public String name;
     public String image;
     public String mail;
-    //public UserStatsDTO stats;
+    public UserStatsDTO stats;
 
-    public UserDto(Long id, String name, String image, String mail) {
+    public UserDTO(Long id, String name, String image, String mail, UserStatsDTO stats) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.mail = mail;
+        this.stats = stats;
     }
 
     /*public UserDTO(Long id, String name,

@@ -3,17 +3,17 @@ package org.acme.api.dto;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
-public class RoundDto {
+public class RoundDTO {
     private int playerPosition;
     private int turn;
     private int pinsFirstThrow;
     private int pinsSecondThrow;
     private int points;
 
-    public RoundDto() {
+    public RoundDTO() {
     }
 
-    public RoundDto(int playerPosition, int turn, int pinsFirstThrow, int pinsSecondThrow, int points) {
+    public RoundDTO(int playerPosition, int turn, int pinsFirstThrow, int pinsSecondThrow, int points) {
         this.playerPosition = playerPosition;
         this.turn = turn;
         this.pinsFirstThrow = pinsFirstThrow;

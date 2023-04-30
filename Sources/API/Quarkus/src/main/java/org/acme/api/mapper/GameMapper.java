@@ -1,13 +1,13 @@
 package org.acme.api.mapper;
 
 import org.acme.api.BowlDbContext;
-import org.acme.api.dto.GameDto;
+import org.acme.api.dto.GameDTO;
 import org.acme.hibernates.entities.GameEntity;
 
 public class GameMapper {
 
-    public static GameDto toDto(GameEntity entity, BowlDbContext dbContext) {
-        GameDto dto = new GameDto();
+    public static GameDTO toDto(GameEntity entity, BowlDbContext dbContext) {
+        GameDTO dto = new GameDTO();
         dto.id = entity.id;
         dto.players = dbContext.participeRepository.findByGameIdQ(entity.id);
         dto.date = Extensions.toLocalDate(entity.time);
@@ -16,7 +16,7 @@ public class GameMapper {
         return dto;
     }
 
-    public static GameEntity toEntity(GameDto entity, BowlDbContext dbContext) {
+    public static GameEntity toEntity(GameDTO entity, BowlDbContext dbContext) {
         GameEntity game = new GameEntity();
 
         return game;

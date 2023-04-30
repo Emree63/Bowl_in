@@ -1,10 +1,10 @@
-package org.acme.api.service;
+package org.acme.api.repository;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.api.dto.GameDto;
+import org.acme.api.dto.GameDTO;
 import org.acme.hibernates.entities.GameEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
@@ -16,8 +16,8 @@ public class GameRepository implements PanacheRepository<GameEntity> {
         return list("id", id);
     }
 
-    public Uni<List<GameDto>> findByIdGame(Long id) {
-        return find("id", id).project(GameDto.class).list();
+    public Uni<List<GameDTO>> findByIdGame(Long id) {
+        return find("id", id).project(GameDTO.class).list();
     }
 }
 // public Uni<GameDto> getDetailsGameById(Long gameId) {

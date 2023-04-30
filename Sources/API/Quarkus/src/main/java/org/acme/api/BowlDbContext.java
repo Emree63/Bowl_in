@@ -3,7 +3,7 @@ package org.acme.api;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.acme.api.service.*;
+import org.acme.api.repository.*;
 
 @Singleton
 public class BowlDbContext {

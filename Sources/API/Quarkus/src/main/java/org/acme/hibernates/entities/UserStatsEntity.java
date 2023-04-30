@@ -7,15 +7,14 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "UserStats")
+@Table(name = "userStats")
 public class UserStatsEntity {
     @Id
     private Long id;
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private UserEntity user;
-
     @ColumnDefault("0")
     private Long nbVictories = 0L;
     @ColumnDefault("0")
@@ -33,11 +32,9 @@ public class UserStatsEntity {
 
     public UserStatsEntity() {
     }
-
     public UserStatsEntity(UserEntity user) {
         this.user = user;
     }
-
     public Long getId() {
         return id;
     }

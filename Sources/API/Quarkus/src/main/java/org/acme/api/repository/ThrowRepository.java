@@ -1,4 +1,4 @@
-package org.acme.api.service;
+package org.acme.api.repository;
 
 import javax.enterprise.context.ApplicationScoped;
 

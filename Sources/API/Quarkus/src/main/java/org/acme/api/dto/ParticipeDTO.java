@@ -5,7 +5,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
-public class ParticipeDto {
+public class ParticipeDTO {
     public Long idUser;
 
     @Schema(description = "Name of the guest")
@@ -15,9 +15,9 @@ public class ParticipeDto {
     public int totalPoints;
 
     @Schema(description = "The User entity that this Participe belongs to")
-    public UserDto user;
+    public UserDTO user;
 
-    public ParticipeDto(Long idUser, UserDto user, Integer totalPoints, String guestName) {
+    public ParticipeDTO(Long idUser, UserDTO user, Integer totalPoints, String guestName) {
 
         this.idUser = idUser;
         this.guestName = guestName;

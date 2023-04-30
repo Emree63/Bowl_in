@@ -1,7 +1,7 @@
 package org.acme.api.mapper;
 
-import org.acme.api.dto.UserDto;
-import org.acme.api.dto.UserTinyDto;
+import org.acme.api.dto.UserDTO;
+import org.acme.api.dto.UserTinyDTO;
 import org.acme.hibernates.entities.UserEntity;
 import java.security.MessageDigest;
 
@@ -9,11 +9,11 @@ public class UserMapper {
 
     private static final String HASH_ALGORITHM = "SHA-256";
 
-    public static UserDto toDto(UserEntity user) {
-        return new UserDto(user.id, user.getName(), user.getImage(), user.getMail());
+    public static UserDTO toDto(UserEntity user) {
+        return new UserDTO(user.id, user.getName(), user.getImage(), user.getMail(), UserStatsMapper.toDto(user.stats));
     }
 
-    public static UserEntity toEntity(UserTinyDto user) {
+    public static UserEntity toEntity(UserTinyDTO user) {
         try {
             MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
             byte[] hashedBytes = digest.digest(user.password.getBytes("UTF-8"));

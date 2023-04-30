@@ -1,10 +1,10 @@
-package org.acme.api.service;
+package org.acme.api.repository;
 
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.acme.api.dto.ParticipeDto;
+import org.acme.api.dto.ParticipeDTO;
 import org.acme.hibernates.entities.ParticipeEntity;
 
 import io.quarkus.hibernate.reactive.panache.PanacheQuery;
@@ -17,8 +17,8 @@ public class ParticipeRepository implements PanacheRepository<ParticipeEntity> {
         return list("game.id", gameId);
     }
 
-    public Uni<List<ParticipeDto>> findByGameIdQ(Long gameId) {
-        PanacheQuery<ParticipeDto> query = find("game.id", gameId).project(ParticipeDto.class);
+    public Uni<List<ParticipeDTO>> findByGameIdQ(Long gameId) {
+        PanacheQuery<ParticipeDTO> query = find("game.id", gameId).project(ParticipeDTO.class);
         return query.list();
     }
 }

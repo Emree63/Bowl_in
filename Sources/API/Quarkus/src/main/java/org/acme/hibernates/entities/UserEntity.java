@@ -3,30 +3,25 @@ package org.acme.hibernates.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}), @UniqueConstraint(columnNames = {"mail"})})
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}), @UniqueConstraint(columnNames = {"mail"})})
 public class UserEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-
     @Column(length = 64)
     private String name;
-
     @Column(length = 255)
     private String image;
-
     @Column(length = 255)
     private String mail;
-
     @Column(length = 144)
     private String password;
 
-    //@OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    //public UserStatsEntity stats;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    public UserStatsEntity stats;
 
     public UserEntity() {
-        //this.stats = new UserStatsEntity(this);
+        this.stats = new UserStatsEntity(this);
     }
 
     public UserEntity(String name, String image, String mail, String password) {
@@ -34,15 +29,13 @@ public class UserEntity {
         this.image = image;
         this.mail = mail;
         this.password = password;
-        //this.stats = new UserStatsEntity(this);
+        this.stats = new UserStatsEntity(this);
     }
 
-    // return name as uppercase in the model
     public String getName() {
         return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
-    // store all names in lowercase in the DB
     public void setName(String name) {
         this.name = name.toLowerCase();
     }

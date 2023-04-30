@@ -5,12 +5,10 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "Throw")
+@Table(name = "throws")
 public class ThrowEntity {
-
     @EmbeddedId
     public ThrowId id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "game_id", referencedColumnName = "game_id", insertable = false, updatable = false),
@@ -19,7 +17,6 @@ public class ThrowEntity {
             @JoinColumn(name = "turnNumber", referencedColumnName = "turnNumber", insertable = false, updatable = false)
     })
     public RoundEntity round;
-
     @ColumnDefault("0")
     @Column(name = "pins")
     public int pins = 0;

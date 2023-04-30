@@ -41,13 +41,13 @@ import java.time.LocalDate;
 
 @RegisterForReflection // Annotation pour permettre l'utilisation avec Quarkus
 @Schema(description = "A DTO for transferring game details")
-public class GameDto {
+public class GameDTO {
 
     @JsonProperty("id")
     public Long id;
 
     @JsonProperty("players")
-    public Uni<List<ParticipeDto>> players;
+    public Uni<List<ParticipeDTO>> players;
 
     @JsonProperty("date")
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -57,23 +57,23 @@ public class GameDto {
     public Long hostID;
 
     @JsonProperty("winner")
-    public UserTinyDto winner;
+    public UserTinyDTO winner;
 
     @JsonIgnore
     @JsonProperty("rounds")
-    public Uni<List<RoundDto>> rounds;
+    public Uni<List<RoundDTO>> rounds;
 
-    public GameDto() {
+    public GameDTO() {
         // Constructeur vide pour la désérialisation
     }
 
     // Constructeur avec tous les champs sauf l'ID (généré automatiquement)
-    public GameDto(Long id,
-                   Uni<List<ParticipeDto>> players,
+    public GameDTO(Long id,
+                   Uni<List<ParticipeDTO>> players,
                    LocalDate time,
                    Long ownerGame,
-                   UserTinyDto winner,
-                   Uni<List<RoundDto>> rounds) {
+                   UserTinyDTO winner,
+                   Uni<List<RoundDTO>> rounds) {
         this.players = players;
         this.date = time;
         this.hostID = ownerGame;

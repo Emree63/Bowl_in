@@ -138,26 +138,21 @@ import javax.persistence.*;
 //     // constructors, getters and setters
 // }
 @Entity
-@Table(name = "Round")
+@Table(name = "rounds")
 public class RoundEntity {
-
     @EmbeddedId
     public RoundId id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id", referencedColumnName = "id", insertable = false, updatable = false)
     public GameEntity game;
-
     @ManyToOne
     @JoinColumns({
             @JoinColumn(name = "idGame", referencedColumnName = "idGame", insertable = false, updatable = false),
             @JoinColumn(name = "position", referencedColumnName = "position", insertable = false, updatable = false)
     })
     public ParticipeEntity participe;
-
     @Column(name = "points")
     public Integer points;
-
     @OneToMany(mappedBy = "round", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<ThrowEntity> throwsGame = new ArrayList<>();
 

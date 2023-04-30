@@ -7,24 +7,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.acme.api.dto.ParticipeDto;
-import org.acme.api.dto.RoundDto;
+import org.acme.api.dto.ParticipeDTO;
+import org.acme.api.dto.RoundDTO;
 import org.acme.hibernates.entities.ParticipeEntity;
 import org.acme.hibernates.entities.RoundEntity;
 
 import io.smallrye.mutiny.Uni;
 
 public class Extensions {
-    public static Uni<List<RoundDto>> toRoundDtoList(Uni<List<RoundEntity>> uni) {
+    public static Uni<List<RoundDTO>> toRoundDtoList(Uni<List<RoundEntity>> uni) {
         return uni.map(roundEntities -> roundEntities.stream()
                 .map(RoundMapper::toDto)
                 .collect(Collectors.toList()));
     }
 
-    public static Uni<List<ParticipeDto>> toParticipeDtoList(Uni<List<ParticipeEntity>> uni) {
+    public static Uni<List<ParticipeDTO>> toParticipeDtoList(Uni<List<ParticipeEntity>> uni) {
         return uni
                 .onItem().transformToUni(participes -> {
-                    List<ParticipeDto> dtos = new ArrayList<>();
+                    List<ParticipeDTO> dtos = new ArrayList<>();
                     for (ParticipeEntity entity : participes) {
                         dtos.add(ParticipeMapper.toDto(entity));
                     }

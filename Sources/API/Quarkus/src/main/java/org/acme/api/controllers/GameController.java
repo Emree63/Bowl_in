@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.acme.api.dto.GameDto;
+import org.acme.api.dto.GameDTO;
 import org.acme.api.manager.DbManager;
 import org.jboss.logging.Logger;
 
@@ -33,9 +33,9 @@ public class GameController {
     DbManager dbManager;
 
     @GET
-    public Uni<List<GameDto>> getUsers() {
+    public Uni<List<GameDTO>> getUsers() {
         LOGGER.info("Getting all game");
-        Uni<List<GameDto>> allGames = dbManager.gameManager.getAllGames();
+        Uni<List<GameDTO>> allGames = dbManager.gameManager.getAllGames();
 
         return allGames;
     }
@@ -54,7 +54,7 @@ public class GameController {
 
     @POST
     @ReactiveTransactional
-    public Uni<Response> createGame(GameDto game) {
+    public Uni<Response> createGame(GameDTO game) {
         if (game == null) {
             throw new WebApplicationException("user was invalidly set on request.", 422);
         }

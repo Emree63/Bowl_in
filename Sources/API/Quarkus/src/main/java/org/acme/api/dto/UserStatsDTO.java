@@ -5,7 +5,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @RegisterForReflection
 @Schema(description = "A DTO describing the stats of a User")
-public class UserStatsDto {
+public class UserStatsDTO {
     public Long nbVictories;
     public Long nbGames;
     public Long highscore;
@@ -14,7 +14,7 @@ public class UserStatsDto {
     public Double avgScore;
     public Double avgPinsPerRound;
 
-    public UserStatsDto(Long nbVictories, Long nbGames, Long highscore, Long nbStrikes, Long nbSpares, Double avgScore,
+    public UserStatsDTO(Long nbVictories, Long nbGames, Long highscore, Long nbStrikes, Long nbSpares, Double avgScore,
                         Double avgPinsPerRound) {
         this.nbVictories = nbVictories;
         this.nbGames = nbGames;

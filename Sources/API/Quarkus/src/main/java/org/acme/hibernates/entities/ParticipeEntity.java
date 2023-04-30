@@ -8,23 +8,18 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "participe")
+@Table(name = "participes")
 public class ParticipeEntity {
-
     @EmbeddedId
     public ParticipeId id;
-
     @ManyToOne
     @JoinColumn(name = "idUser", referencedColumnName = "id")
     public UserEntity user;
-   
     @ManyToOne
     @JoinColumn(name = "idGame", referencedColumnName = "id", insertable = false, updatable = false)
     public GameEntity game;
-
     @Column(name = "guestName")
     public String guestName;
-
     @ColumnDefault("0")
     @Column(name = "totalPoints")
     public Integer totalPoints = 0;

@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.acme.api.BowlDbContext;
-import org.acme.api.dto.UserDto;
-import org.acme.api.dto.UserTinyDto;
+import org.acme.api.dto.UserDTO;
+import org.acme.api.dto.UserTinyDTO;
 import org.acme.api.mapper.UserMapper;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -35,7 +35,7 @@ public class UserController {
     @GET
     @Operation(summary = "Get all users")
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<List<UserDto>> getUsers() {
+    public Uni<List<UserDTO>> getUsers() {
         LOGGER.info("Get all users");
         return service.userRepository.findAll().list()
                 .map(entities -> entities.stream().map(UserMapper::toDto).collect(Collectors.toList()));
@@ -97,7 +97,7 @@ public class UserController {
     @APIResponse(responseCode = "201", description = "User successfully created")
     @APIResponse(responseCode = "422", description = "User invalidly set on request")
     @ReactiveTransactional
-    public Uni<Response> createUser(UserTinyDto user) {
+    public Uni<Response> createUser(UserTinyDTO user) {
         if (user == null) {
             throw new WebApplicationException("user was invalidly set on request.", 422);
         }
@@ -129,7 +129,7 @@ public class UserController {
     @APIResponse(responseCode = "404", description = "User not found")
     @Path("/{id}")
     @ReactiveTransactional
-    public Uni<Response> updateUser(@PathParam("id") Long id, UserTinyDto newUser) {
+    public Uni<Response> updateUser(@PathParam("id") Long id, UserTinyDTO newUser) {
         LOGGER.info("Update user with id : " + id);
         return service.userRepository.findById(id)
                 .onItem().ifNull().failWith(() -> new WebApplicationException("User not found", Status.NOT_FOUND))

@@ -2,13 +2,13 @@ package org.acme.api.mapper;
 
 import java.util.List;
 
-import org.acme.api.dto.RoundDto;
+import org.acme.api.dto.RoundDTO;
 import org.acme.hibernates.entities.RoundEntity;
 import org.acme.hibernates.entities.ThrowEntity;
 
 public class RoundMapper {
 
-    public static RoundDto toDto(RoundEntity entity) {
+    public static RoundDTO toDto(RoundEntity entity) {
         List<ThrowEntity> throwsGame = entity.throwsGame;
         int val1 = 0;
         int val2 = 0;
@@ -20,6 +20,6 @@ public class RoundMapper {
             val1 = throwsGame.get(1).pins;
         }
 
-        return new RoundDto(entity.participe.id.position, 0, val1, val2, entity.points);
+        return new RoundDTO(entity.participe.id.position, 0, val1, val2, entity.points);
     }
 }

@@ -9,27 +9,21 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "Game")
+@Table(name = "games")
 public class GameEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @ColumnDefault("CURRENT_TIMESTAMP")
     public Date time = new Date();
-
     @ColumnDefault("0")
     public Long winner = 0L;
-
     @ColumnDefault("0")
     public int nbPoints = 0;
-
     @ColumnDefault("false")
     public Boolean isFinished = false;
-
     @ManyToOne
     @JoinColumn(name = "host_id", referencedColumnName = "id")
     public UserEntity ownerGame;
@@ -38,7 +32,7 @@ public class GameEntity {
     }
 
     public GameEntity(UserEntity user, List<ParticipeEntity> players, List<RoundEntity> rounds, Date time, Long winner,
-            int nbPoints, Boolean isFinished) {
+                      int nbPoints, Boolean isFinished) {
         this.ownerGame = user;
         this.time = time;
         this.winner = winner;
